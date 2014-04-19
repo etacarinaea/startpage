@@ -1,0 +1,92 @@
+/**************
+* w-what am I doing!?
+* background(dark): rgb(27,27,27) / #1b1b1b
+* background(light): rgb(35,35,35) / #232323
+* text: rgb(202,202,202) / #cacaca
+* accent: rgb(230,71,71) / #e64747
+* the tab-close-button is still there, just invisible
+**************/
+
+
+/******* HIDDEN *******/
+#appmenu-button,
+#identity-box,
+#notification-popup-box,
+#urlbar-icons,
+#urlbar-container dropmarker,
+#tabbrowser-tabs .scrollbutton-up,
+#tabbrowser-tabs .scrollbutton-down,
+#tabbrowser-tabs tab .tab-throbber,
+#tabbrowser-tabs tab .tab-icon-image
+{
+    display:none!important;
+}
+
+
+
+/******* MAIN-WINDOW *******/
+#main-window[sizemode="normal"] #TabsToolbar
+{
+    margin:3px 0 -3px -13px!important;
+    padding:0 105px 2px 16px!important;
+}
+#main-window:not([chromehidden*="toolbar"])[sizemode="normal"]
+{
+    margin-top:-20px!important;
+}
+#main-window #nav-bar
+{
+    background:#232323;
+}
+
+
+
+/******* TABS *******/
+#main-window #tabbrowser-tabs tab
+{
+    font-family:"cure.se"!important;
+    background:#1b1b1b!important;
+    border:0!important;
+    color:#cacaca!important;
+    padding:1px 5px 1px 5px!important;
+}
+#main-window #tabbrowser-tabs tab .tab-close-button
+{
+    opacity:0!important;
+}
+#main-window #tabbrowser-tabs tab[selected],
+#main-window #tabbrowser-tabs tab:hover
+{
+    background:#232323!important;
+    border-top:2px solid #e64747!important;
+    padding:0 5px 1px 5px!important;
+}
+#main-window #tabbrowser-tabs tab[fadein]
+{
+    -moz-transition:all .25s ease-in-out!important;      /* makes .tab-content(>label) "hop" on out (that's an issue, not a feature) */
+}
+#main-window #tabbrowser-tabs tab[fadein]:not([pinned])
+{
+    min-width:40px!important;
+    max-width:1000px!important;
+}
+
+
+
+/******* URLBAR *******/
+#main-window #urlbar-container
+{
+    margin:5px 1px 4px 15px!important;
+    max-height:14px!important;
+    min-height:14px!important;
+}
+#main-window #urlbar
+{
+    font-family:"cure.se"!important;
+    background:#232323!important;
+    border:0!important;
+    color:#cacaca!important;
+    padding:0!important;
+    max-width:350px!important;
+    min-width:100px!important;
+}
