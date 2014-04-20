@@ -17,7 +17,8 @@
 #tabbrowser-tabs .scrollbutton-up,
 #tabbrowser-tabs .scrollbutton-down,
 #tabbrowser-tabs tab .tab-throbber,
-#tabbrowser-tabs tab .tab-icon-image
+#tabbrowser-tabs tab .tab-icon-image,
+#TabsToolbar #alltabs-button
 {
     display:none!important;
 }
@@ -67,8 +68,9 @@
 }
 #main-window #tabbrowser-tabs tab[fadein]:not([pinned])
 {
-    min-width:40px!important;
     max-width:1000px!important;
+    width:1000px!important;
+    min-width:40px!important;
 }
 
 
@@ -88,5 +90,5 @@
     color:#cacaca!important;
     padding:0!important;
     max-width:350px!important;
-    min-width:100px!important;
+    min-width:350px!important;
 }
