@@ -1,0 +1,56 @@
+body {
+	font-family:'ProFontWindows',sans-serif;
+	background-color:#1B1B1B;
+}
+a {
+	text-decoration:none;
+	color:#e64747;
+	font-size:14;
+}
+a:hover {
+}
+
+#bgimg {
+	z-index:-10;
+	position:fixed;
+	bottom:0px;
+	right:0px;
+	height:500px;
+	width:400px;
+	background-image:url("file://C:/background.png");
+	opacity:.2;
+}
+
+#container {
+	height:100%;
+	width:100%;
+	display:table;
+}
+#cell {
+	display:table-cell;
+	vertical-align:middle;
+	text-align: center;
+}
+
+.sqr {
+	display:inline-block;
+	width:150px;
+	height:150px;
+	margin:4px -2px;
+	overflow:hidden;
+	color:#cacaca;
+	background-color:#232323;
+    -moz-transition:all .25s ease-in-out;
+	vertical-align:middle;
+}
+.content {
+	margin:0 10px 0;
+	line-height: 25px;
+}
+span {
+	width:inherit;
+	height:inherit;
+	font-size: 25;
+	font-weight:900;
+	line-height:150px;
+}
