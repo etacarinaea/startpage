@@ -1,5 +1,6 @@
 function expand(x){
-	x.style.height=450+"px";
+	var acount = x.getElementsByTagName('a').length;
+	x.style.height=300+25*acount+"px";
 	x.style.borderTop="2px solid #e64747";
 	x.style.borderBottom="2px solid #e64747";
 }
