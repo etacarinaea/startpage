@@ -35,7 +35,7 @@ a {
 	display:inline-block;
 	width:150px;
 	height:150px;
-	margin:3px -3px;
+	margin:3px 0;
 	overflow:hidden;
 	background-color:#1e1e1e;
     -moz-transition:all .25s ease-in-out;
