@@ -1,10 +1,11 @@
 body {
-	font-family:'ProFontWindows',sans-serif;
+	font-family:'cure.se',sans-serif;
 	background-color:#1B1B1B;
 }
 a {
 	text-decoration:none;
-	color:#e64747;
+	font-family:'ProFontWindows',sans-serif;
+	color:#6f5555;
 	font-size:14;
 }
 
@@ -34,15 +35,22 @@ a {
 	display:inline-block;
 	width:150px;
 	height:150px;
-	margin:4px -2px;
+	margin:3px -3px;
 	overflow:hidden;
+<<<<<<< HEAD
+	background-color:#1e1e1e;
+	-moz-transition:all .25s ease-in-out;
+=======
 	color:#cacaca;
 	background-color:#232323;
     -moz-transition:all .25s ease-in-out;
+>>>>>>> 07786947d437b66def6cb8325a0482d60060c318
 	-webkit-transition:all .25s ease-in-out;
 	-o-transition:all .25s ease-in-out;
 	transition:all .25s ease-in-out;
 	vertical-align:middle;
+	border-top:0 solid #ad3636;
+	border-bottom:0 solid #ad3636;
 }
 .content {
 	margin:0 10px 0;
@@ -51,7 +59,9 @@ a {
 span {
 	width:inherit;
 	height:inherit;
-	font-size: 25;
+	color:#912d2d;
+	font-size: 35;
 	font-weight:900;
 	line-height:150px;
+	text-transform:uppercase;
 }
