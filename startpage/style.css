@@ -39,6 +39,9 @@ a {
 	color:#cacaca;
 	background-color:#232323;
     -moz-transition:all .25s ease-in-out;
+	-webkit-transition:all .25s ease-in-out;
+	-o-transition:all .25s ease-in-out;
+	transition:all .25s ease-in-out;
 	vertical-align:middle;
 }
 .content {
