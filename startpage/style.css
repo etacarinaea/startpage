@@ -37,14 +37,8 @@ a {
 	height:150px;
 	margin:3px -3px;
 	overflow:hidden;
-<<<<<<< HEAD
 	background-color:#1e1e1e;
-	-moz-transition:all .25s ease-in-out;
-=======
-	color:#cacaca;
-	background-color:#232323;
     -moz-transition:all .25s ease-in-out;
->>>>>>> 07786947d437b66def6cb8325a0482d60060c318
 	-webkit-transition:all .25s ease-in-out;
 	-o-transition:all .25s ease-in-out;
 	transition:all .25s ease-in-out;
