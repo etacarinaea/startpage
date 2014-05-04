@@ -28,7 +28,7 @@
 /******* MAIN-WINDOW *******/
 #main-window[sizemode="normal"] #TabsToolbar
 {
-    margin:3px 0 -3px -13px!important;
+    margin:3px 0 -3px -16px!important;
     padding:0 105px 2px 16px!important;
 }
 #main-window:not([chromehidden*="toolbar"])[sizemode="normal"]
@@ -38,6 +38,11 @@
 #main-window #nav-bar
 {
     background:#232323!important;
+}
+#main-window #browser-border-start,
+#main-window #browser-border-end
+{
+	display:none!important;
 }
 
 
@@ -59,7 +64,7 @@
 #main-window #tabbrowser-tabs tab:hover
 {
     background:#232323!important;
-    border-top:2px solid #e64747!important;
+    border-top:2px solid #ad3636!important;
     padding:0 5px 1px 5px!important;
 }
 #main-window #tabbrowser-tabs tab[fadein]
@@ -78,7 +83,7 @@
 /******* URLBAR *******/
 #main-window #urlbar-container
 {
-    margin:5px 1px 4px 15px!important;
+    margin:5px -15px 4px 15px!important;
     max-height:14px!important;
     min-height:14px!important;
 }
@@ -89,6 +94,6 @@
     border:0!important;
     color:#cacaca!important;
     padding:0!important;
-    max-width:350px!important;
-    min-width:350px!important;
+    max-width:175px!important;
+    min-width:175px!important;
 }
