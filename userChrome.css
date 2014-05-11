@@ -18,9 +18,16 @@
 #tabbrowser-tabs .scrollbutton-down,
 #tabbrowser-tabs tab .tab-throbber,
 #tabbrowser-tabs tab .tab-icon-image,
-#TabsToolbar #alltabs-button
+#TabsToolbar #alltabs-button,
+#main-window #browser-border-start,
+#main-window #browser-border-end,
+#main-window #tabbrowser-tabs tab:not([selected]) .tab-close-button
 {
     display:none!important;
+}
+#main-window #tabbrowser-tabs tab[selected] .tab-close-button
+{
+    opacity:0!important;
 }
 
 
@@ -38,11 +45,6 @@
 #main-window #nav-bar
 {
     background:#232323!important;
-}
-#main-window #browser-border-start,
-#main-window #browser-border-end
-{
-	display:none!important;
 }
 
 
@@ -69,7 +71,7 @@
 }
 #main-window #tabbrowser-tabs tab[fadein]
 {
-    -moz-transition:all .25s ease-in-out!important;      /* makes .tab-content(>label) "hop" on out (that's an issue, not a feature) */
+    -moz-transition:all .25s ease-in-out!important;
 }
 #main-window #tabbrowser-tabs tab[fadein]:not([pinned])
 {
@@ -77,7 +79,15 @@
     width:1000px!important;
     min-width:40px!important;
 }
-
+#main-window #tabbrowser-tabs tab[pinned]
+{
+    height:25px!important;
+}
+#main-window #tabbrowser-tabs tab[pinned] .tab-icon-image
+{
+    margin-top:2px!important;
+    display:inline!important;
+}
 
 
 /******* URLBAR *******/
