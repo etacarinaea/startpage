@@ -1,12 +1,12 @@
 body {
 	font-family:'cure.se',sans-serif;
-	background-color:#1B1B1B;
+	background-color:#1b1b1b;
 }
 a {
 	text-decoration:none;
 	font-family:'ProFontWindows',sans-serif;
 	color:#6f5555;
-	font-size:14;
+	font-size:14px;
 }
 
 #bgimg {
@@ -28,7 +28,7 @@ a {
 #cell {
 	display:table-cell;
 	vertical-align:middle;
-	text-align: center;
+	text-align:center;
 }
 
 .sqr {
@@ -48,13 +48,13 @@ a {
 }
 .content {
 	margin:0 10px 0;
-	line-height: 25px;
+	line-height:25px;
 }
 span {
 	width:inherit;
 	height:inherit;
 	color:#912d2d;
-	font-size: 35;
+	font-size:37px;
 	font-weight:900;
 	line-height:150px;
 	text-transform:uppercase;
