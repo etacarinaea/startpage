@@ -1,0 +1,31 @@
+{
+    "bool": {
+        "borders":              true,
+        "simplesearch":         false,
+        "alwaysopen":           false,
+        "mascot":               false
+    },
+    
+    "style": {
+        "heading_font":         "cure.se",
+        "link_font":            "ProFontWindows",
+        "heading_font_size":    "42px",
+        "link_font_size":       "14px",
+        "background":           "#1b1b1b",
+        "foreground":           "#1e1e1e",
+        "heading_color":        "#912d2d",
+        "link_color":           "#6f5555",
+        "border_color":         "#ad3636",
+        "border_width":         "2px"
+    },
+    
+    "ext": {
+        "ref":                  "file://",
+        "bottom":               "0",
+        "right":                "0",
+        "height":               "500px",
+        "width":                "400px",
+        "opacity":              ".2",
+        "dflt_search_engine":   ""
+    }
+}
