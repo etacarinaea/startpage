@@ -1,12 +1,12 @@
 body {
-	font-family:'cure.se',sans-serif;
 	background-color:#1b1b1b;
 }
 a {
 	text-decoration:none;
-	font-family:'ProFontWindows',sans-serif;
+	font-family:"ProFontWindows",sans-serif;
 	color:#6f5555;
 	font-size:14px;
+    line-height:25px;
 }
 
 #bgimg {
@@ -17,6 +17,8 @@ a {
 	height:500px;
 	width:400px;
 	background-image:url("file://C:/background.png");
+    background-size:cover;
+    background-repeat:no-repeat;
 	opacity:.2;
 }
 
@@ -35,7 +37,7 @@ a {
 	display:inline-block;
 	width:150px;
 	height:150px;
-	margin:3px 0;
+	margin:3px 1px;
 	overflow:hidden;
 	background-color:#1e1e1e;
     -moz-transition:all .25s ease-in-out;
@@ -51,6 +53,7 @@ a {
 	line-height:25px;
 }
 span {
+	font-family:"cure.se",sans-serif;
 	width:inherit;
 	height:inherit;
 	color:#912d2d;
@@ -58,4 +61,13 @@ span {
 	font-weight:900;
 	line-height:150px;
 	text-transform:uppercase;
+}
+
+#searchinput {
+    width:150px;
+    height:37px;
+    margin-left:-10px;
+    padding-left:10px;
+    border:none;
+    background-color:#2a2a2a;
 }
