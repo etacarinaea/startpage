@@ -25,7 +25,6 @@
         "right":                "0",
         "height":               "500px",
         "width":                "400px",
-        "opacity":              ".2",
-        "dflt_search_engine":   ""
+        "opacity":              ".2"
     }
 }
