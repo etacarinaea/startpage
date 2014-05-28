@@ -100,6 +100,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             }
             sqr[i].style.height=225+25*a+"px";
+            if(cfg_bool[0]){
+                sqr[i].style.borderTop= cfg[9] + " solid " + cfg[8];
+                sqr[i].style.borderBottom= cfg[9] + " solid " + cfg[8];
+            }
         }
     }
 }, false)
