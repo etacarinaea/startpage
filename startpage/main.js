@@ -10,6 +10,8 @@ $.getJSON("config.json", function(data){
         data.style.link_color,
         data.style.border_color,
         data.style.border_width,
+        data.style.search_color,
+        data.style.search_bg_color,
         data.ext.ref,
         data.ext.bottom,
         data.ext.right,
@@ -33,13 +35,15 @@ $.getJSON("config.json", function(data){
     $("a").css("color", cfg[7]);
     $(".sqr").css("borderTop", "0 solid " + cfg[8]);
     $(".sqr").css("borderBottom", "0 solid " + cfg[8]);
+    $("#searchinput").css("color", cfg[10]);
+    $("#searchinput").css("backgroundColor", cfg[11]);
     if(cfg_bool[3]){
-        $("#bgimg").css("backgroundImage", "url('" +  cfg[10] + "')");
-        $("#bgimg").css("bottom", cfg[11]);
-        $("#bgimg").css("right", cfg[12]);
-        $("#bgimg").css("height", cfg[13]);
-        $("#bgimg").css("width", cfg[14]);
-        $("#bgimg").css("opacity", cfg[15]);
+        $("#bgimg").css("backgroundImage", "url('" +  cfg[12] + "')");
+        $("#bgimg").css("bottom", cfg[13]);
+        $("#bgimg").css("right", cfg[14]);
+        $("#bgimg").css("height", cfg[15]);
+        $("#bgimg").css("width", cfg[16]);
+        $("#bgimg").css("opacity", cfg[17]);
     }else{
         $("#bgimg").css("backgroundImage", "");
     }
