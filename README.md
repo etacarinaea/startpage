@@ -1,7 +1,7 @@
 html
 ====
 some stuff I use for firefox<br>
-doesn't work with ff v29 at the moment
+userChrome.css doesn't work with ff v29 at the moment
 
 The startpage should work fine with all browsers.
 
@@ -42,7 +42,7 @@ The structure should always stay like this:
 ```
 
 <br>
-###### advanced search:
+###### advanced search
 ```
 -g      Google
 -a      DuckDuckGo
