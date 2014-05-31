@@ -2,7 +2,7 @@
 * w-what am I doing!?
 * background(dark): rgb(27,27,27) / #1b1b1b
 * background(light): rgb(35,35,35) / #232323
-* text: rgb(202,202,202) / #cacaca
+* text: rgb(202,202,202) / #8b8b8b
 * accent: rgb(230,71,71) / #e64747
 * the tab-close-button is still there, just invisible
 **************/
@@ -21,7 +21,8 @@
 #TabsToolbar #alltabs-button,
 #main-window #browser-border-start,
 #main-window #browser-border-end,
-#main-window #tabbrowser-tabs tab:not([selected]) .tab-close-button
+#main-window #tabbrowser-tabs tab:not([selected]) .tab-close-button,
+.toolbarbutton-menubutton-dropmarker
 {
     display:none!important;
 }
@@ -55,8 +56,10 @@
     font-family:"cure.se"!important;
     background:#1b1b1b!important;
     border:0!important;
-    color:#cacaca!important;
+    color:#8b8b8b!important;
     padding:1px 5px 1px 5px!important;
+    max-height:25px!important;
+    min-height:25px!important;
 }
 #main-window #tabbrowser-tabs tab .tab-close-button
 {
@@ -65,6 +68,7 @@
 #main-window #tabbrowser-tabs tab[selected],
 #main-window #tabbrowser-tabs tab:hover
 {
+    color:#cacaca!important;
     background:#232323!important;
     border-top:2px solid #ad3636!important;
     padding:0 5px 1px 5px!important;
@@ -102,7 +106,7 @@
     font-family:"cure.se"!important;
     background:#232323!important;
     border:0!important;
-    color:#cacaca!important;
+    color:#8b8b8b!important;
     padding:0!important;
     max-width:175px!important;
     min-width:175px!important;

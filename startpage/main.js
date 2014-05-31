@@ -66,7 +66,7 @@ window.onload = function(){
                         break;
                     case "-d ":
                         srstring = srstring.substr(3);
-                        window.location="http://www.donmai.us/posts?utf8=%E2%9C%93&tags=" + srstring.replaceChars(" ", "+");
+                        window.location="http://www.donmai.us/posts?tags=" + srstring.replaceChars(" ", "+");
                         break;
                     case "-y ":
                         srstring = srstring.substr(3);
