@@ -86,6 +86,21 @@ window.onload = function(){
             }
         }
     });
+    
+    document.addEventListener("keypress", function search(a){
+        var key = a.keyCode;
+        if(key == 9){
+            var search_sqr = document.getElementById("search_sqr")
+            search_sqr.style.height=300+37+"px";
+            search_sqr.style.borderTop= cfg[9] + " solid " + cfg[8];
+            search_sqr.style.borderBottom= cfg[9] + " solid " + cfg[8];
+            document.getElementById("searchinput").focus();
+        }
+    
+        if([9].indexOf(key) > -1) {
+            a.preventDefault();
+        }
+    });
 }
 
 document.addEventListener("DOMContentLoaded", function() {
