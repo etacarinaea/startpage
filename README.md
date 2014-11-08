@@ -1,11 +1,6 @@
-html
+startpage
 ====
-some stuff I use for firefox<br>
-userChrome.css doesn't work with ff v29 at the moment
 
-The startpage should work fine with all browsers.
-
-Screenshot:
 ![example screenshot (140524)](http://puu.sh/8ZnKk.png)
 
 <br>
