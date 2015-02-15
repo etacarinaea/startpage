@@ -1,25 +1,15 @@
 body {
-	background-color:#1b1b1b;
 }
 a {
 	text-decoration:none;
-	font-family:"ProFontWindows",sans-serif;
-	color:#6f5555;
-	font-size:14px;
     line-height:25px;
 }
 
 #bgimg {
 	z-index:-10;
 	position:fixed;
-	bottom:0px;
-	right:0px;
-	height:500px;
-	width:400px;
-	background-image:url("file://C:/background.png");
     background-size:cover;
     background-repeat:no-repeat;
-	opacity:.2;
 }
 
 #container {
@@ -39,26 +29,19 @@ a {
 	height:150px;
 	margin:3px 1px;
 	overflow:hidden;
-	background-color:#1e1e1e;
     -moz-transition:all .25s ease-in-out;
 	-webkit-transition:all .25s ease-in-out;
 	-o-transition:all .25s ease-in-out;
 	transition:all .25s ease-in-out;
 	vertical-align:middle;
-	border-top:0 solid #ad3636;
-	border-bottom:0 solid #ad3636;
 }
 .content {
 	margin:0 10px 0;
 	line-height:25px;
 }
 span {
-	font-family:"cure.se",sans-serif;
 	width:inherit;
 	height:inherit;
-	color:#912d2d;
-	font-size:37px;
-	font-weight:900;
 	line-height:150px;
 	text-transform:uppercase;
 }
