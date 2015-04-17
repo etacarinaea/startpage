@@ -101,9 +101,7 @@ window.onload = function(){
             a.preventDefault();
         }
     });
-}
 
-document.addEventListener("DOMContentLoaded", function() {
     var sqr = document.querySelectorAll(".sqr");
     if(!cfg_bool[2]){
         for(var i = 0; i < sqr.length; ++i) {
@@ -125,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
     }
-}, false)
+}
 
 function expand(){
 	var acount = this.getElementsByTagName("a").length;
