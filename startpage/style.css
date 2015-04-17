@@ -1,4 +1,5 @@
-body {
+body{
+	overflow: hidden;
 }
 a {
 	text-decoration:none;
@@ -13,7 +14,6 @@ a {
 }
 
 #container {
-	height:100%;
 	width:100%;
 	display:table;
 }
