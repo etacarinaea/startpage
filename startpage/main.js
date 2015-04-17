@@ -49,40 +49,53 @@ $.getJSON("config.json", function(data){
     }
 });
 
+function evenContainerHeight(){
+	if(window.innerHeight % 2 ==0){
+		document.getElementById("container").style.height = window.innerHeight;
+	}else{
+		document.getElementById("container").style.height = window.innerHeight - 1;
+	}
+}
+
+window.onresize = function(){
+	evenContainerHeight();
+}
+
 window.onload = function(){
+	evenContainerHeight();
     document.getElementById("searchinput").addEventListener("keypress", function search(a){
         var key = a.keyCode;
         if(key == 13){
-            var srstring = this.value;
+            var query = this.value;
             if(!cfg_bool[1]){
-                switch(srstring.substr(0,3)){
+                switch(query.substr(0,3)){
                     case "-g ":
-                        srstring = srstring.substr(3);
-                        window.location="https://www.google.com/#q=" + srstring.replaceChars(" ", "+");
+                        query = query.substr(3);
+                        window.location="https://www.google.com/#q=" + query.replaceChars(" ", "+");
                         break;
                     case "-a ":
-                        srstring = srstring.substr(3);
-                        window.location="https://duckduckgo.com/?q=" + srstring.replaceChars(" ", "+");
+                        query = query.substr(3);
+                        window.location="https://duckduckgo.com/?q=" + query.replaceChars(" ", "+");
                         break;
                     case "-d ":
-                        srstring = srstring.substr(3);
-                        window.location="http://www.donmai.us/posts?tags=" + srstring.replaceChars(" ", "+");
+                        query = query.substr(3);
+                        window.location="http://www.donmai.us/posts?tags=" + query.replaceChars(" ", "+");
                         break;
                     case "-y ":
-                        srstring = srstring.substr(3);
-                        window.location="https://www.youtube.com/results?search_query=" + srstring.replaceChars(" ", "+");
+                        query = query.substr(3);
+                        window.location="https://www.youtube.com/results?search_query=" + query.replaceChars(" ", "+");
                         break;
                     case "-n ":
-                        srstring = srstring.substr(3);
-                        window.location="http://www.nicovideo.jp/search/" + srstring.replaceChars(" ", "%20");
+                        query = query.substr(3);
+                        window.location="http://www.nicovideo.jp/search/" + query.replaceChars(" ", "%20");
                         break;
                     case "-p ":
-                        srstring = srstring.substr(3);
-                        window.location="http://www.pixiv.net/search.php?s_mode=s_tag&word=" + srstring.replaceChars(" ", "%20");
+                        query = query.substr(3);
+                        window.location="http://www.pixiv.net/search.php?s_mode=s_tag&word=" + query.replaceChars(" ", "%20");
                         break;
                 }
             }else{
-                window.location="https://www.google.com/#q=" + srstring.replaceChars(" ", "+");
+                window.location="https://www.google.com/#q=" + query.replaceChars(" ", "+");
             }
         }
     });
@@ -148,8 +161,8 @@ String.prototype.replaceChars = function(character, replacement){
     var str = this;
     var a;
     var b;
-    for(var i=0; i < this.length; i++){
-        if(this.charAt(i) == character){
+    for(var i=0; i < str.length; i++){
+        if(str.charAt(i) == character){
             a = str.substr(0, i) + replacement;
             b = str.substr(i + 1);
             str = a + b;
