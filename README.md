@@ -1,12 +1,14 @@
 startpage
 ====
 
-![example screenshot (140524)](http://puu.sh/8ZnKk.png)
+![example screenshot (150418)](http://i.imgur.com/yHSJnF2.png)
+![example screenshot expanded (150418)](http://i.imgur.com/Y74QvsV.png)
+
 
 <br>
 
 ##### Usage
-The easiest way to make changes to the startpage is by editing __config.json__ and __index.html__.
+The easiest way to make changes is by editing __config.json__ and __index.html__.
 
 <br>
 ###### JSON
@@ -18,12 +20,11 @@ The easiest way to make changes to the startpage is by editing __config.json__ a
 | mascot       | enables image in the bottom right hand corner        |
 
 The other attributes should explain themselves.
-Don't make mistakes while editing the .json, otherwise the page won't react.
 
 <br>
 ###### HTML
 To add/remove a square just add/remove a _div .sqr_ within _div #cell_.<br>
-The structure should always stay like this:
+Keep the structure like this:
 ```
 <div class="sqr">
     <span>HEADING</span>
