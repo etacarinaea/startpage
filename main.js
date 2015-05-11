@@ -79,7 +79,7 @@ window.onload = function(){
                         break;
                     case "-d ":
                         query = query.substr(3);
-                        window.location="http://www.donmai.us/posts?tags=" + query.replaceChars(" ", "+");
+                        window.location="http://danbooru.donmai.us/posts?tags=" + query.replaceChars(" ", "+");
                         break;
                     case "-y ":
                         query = query.substr(3);
