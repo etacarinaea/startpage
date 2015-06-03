@@ -15,11 +15,10 @@ The easiest way to make changes is by editing __config.json__ and __index.html__
 | attribute    | if true                                              |
 | ------------ | :--------------------------------------------------: |
 | borders      | enables borders on top and bottom                    |
-| simplesearch | only use Google for searching (removes search prefix)|
 | alwaysopen   | makes all squares open on load                       |
 | mascot       | enables image in the bottom right hand corner        |
 
-The other attributes should explain themselves.
+__ref__ can take either an URL or the path to a local image.
 
 <br>
 ###### HTML
@@ -38,15 +37,17 @@ Keep the structure like this:
 ```
 
 <br>
-###### advanced search
+###### search
 ```
--g      Google
+-h      Show this list
+-g      Google (default)
 -a      DuckDuckGo
 -d      danbooru
 -y      YouTube
 -n      niconicodouga
 -p      pixiv
 ```
-The following example will search for _github_ using _Google_.<br>
--g github<br>
+The following example will search for _github_ using _DuckDuckGo_:<br>
+-a github<br>
+If an invalid search option or none at all is specified, Google is used.
 For danbooru, use underscores (_) for tags with more than one word and separate multiple tags with space (e.g.: school_uniform 1girl).

@@ -53,3 +53,16 @@ span {
     padding:0 10px;
     border:none;
 }
+
+#popup {
+    position: absolute;
+    z-index: 100;
+    bottom: -200px;
+    right: 15px;
+    padding: 25px;
+    -moz-transition:all .25s ease-in-out;
+    -webkit-transition:all .25s ease-in-out;
+    -o-transition:all .25s ease-in-out;
+    transition:all .25s ease-in-out;
+    text-align:left;
+}
