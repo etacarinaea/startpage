@@ -53,14 +53,9 @@ $.getJSON("config.json", function(data){
     }
 });
 
-function evenContainerHeight(){
-	if(window.innerHeight % 2 ==0){
-		document.getElementById("container").style.height =
-            window.innerHeight;
-	}else{
-		document.getElementById("container").style.height =
-            window.innerHeight - 1;
-	}
+function fixJitter(){
+    container = document.getElementById("container");
+    container.style.height = window.innerHeight - 0.5;
 }
 
 
@@ -74,11 +69,11 @@ function popup(obj, msg, visibility){
 }
 
 window.onresize = function(){
-	evenContainerHeight();
+    fixJitter();
 }
 
 window.onload = function(){
-	evenContainerHeight();
+    fixJitter();
     var HelpVisibility = false;
     popupDiv = document.getElementById("popup");
     // search
@@ -181,7 +176,7 @@ window.onload = function(){
 
 // expanding and contracting squares
 function expand(){
-	var acount = this.getElementsByTagName("a").length;
+    var acount = this.getElementsByTagName("a").length;
     var icount = this.getElementsByTagName("input").length;
     if(icount >= 1){
         this.style.height=300+37*icount+"px";
@@ -194,9 +189,9 @@ function expand(){
     }
 }
 function contract(){
-	this.style.height="150px";
-	this.style.borderTop="0 solid" + cfg[8];
-	this.style.borderBottom="0 solid" + cfg[8];
+    this.style.height="150px";
+    this.style.borderTop="0 solid" + cfg[8];
+    this.style.borderBottom="0 solid" + cfg[8];
 }
 
 // string replacement
