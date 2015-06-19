@@ -1,14 +1,14 @@
 startpage
 ====
 
-![example screenshot (150418)](http://i.imgur.com/yHSJnF2.png)
-![example screenshot expanded (150418)](http://i.imgur.com/Y74QvsV.png)
+![example screenshot (150619)](http://i.imgur.com/GSwXf57.png)
+![example screenshot expanded (150619)](http://i.imgur.com/cA1teIS.png)
 
 
 <br>
 
 ##### Usage
-The easiest way to make changes is by editing __config.json__ and __index.html__.
+The easiest way to make changes is by editing _config.json_ and _index.html_.
 
 <br>
 ###### JSON
@@ -18,7 +18,7 @@ The easiest way to make changes is by editing __config.json__ and __index.html__
 | alwaysopen   | makes all squares open on load                       |
 | mascot       | enables image in the bottom right hand corner        |
 
-__ref__ can take either an URL or the path to a local image.
+_ref_ can take either an URL or the path to a local image.
 
 <br>
 ###### HTML
