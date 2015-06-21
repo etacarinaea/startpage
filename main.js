@@ -55,7 +55,7 @@ $.getJSON("config.json", function(data){
 
 function fixJitter(){
     container = document.getElementById("container");
-    container.style.height = window.innerHeight - 0.5;
+    container.style.height = window.innerHeight - 0.5 + "px";
 }
 
 
