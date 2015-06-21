@@ -1,49 +1,50 @@
 body{
-	overflow: hidden;
+    overflow: hidden;
 }
 a {
-	text-decoration:none;
+    text-decoration:none;
     line-height:25px;
 }
 
 #bgimg {
-	z-index:-10;
-	position:fixed;
+    z-index:-10;
+    position:fixed;
     background-size:cover;
     background-repeat:no-repeat;
 }
 
 #container {
-	width:100%;
-	display:table;
+    height:100vh;
+    width:100vw;
+    display:table;
 }
 #cell {
-	display:table-cell;
-	vertical-align:middle;
-	text-align:center;
+    display:table-cell;
+    vertical-align:middle;
+    text-align:center;
 }
 
 .sqr {
-	display:inline-block;
-	width:150px;
-	height:150px;
-	margin:3px 1px;
-	overflow:hidden;
+    display:inline-block;
+    width:150px;
+    height:150px;
+    margin:3px 1px;
+    overflow:hidden;
     -moz-transition:all .25s ease-in-out;
-	-webkit-transition:all .25s ease-in-out;
-	-o-transition:all .25s ease-in-out;
-	transition:all .25s ease-in-out;
-	vertical-align:middle;
+    -webkit-transition:all .25s ease-in-out;
+    -o-transition:all .25s ease-in-out;
+    transition:all .25s ease-in-out;
+    vertical-align:middle;
 }
 .content {
-	margin:0 10px 0;
-	line-height:25px;
+    margin:0 10px 0;
+    line-height:25px;
 }
 span {
-	width:inherit;
-	height:inherit;
-	line-height:150px;
-	text-transform:uppercase;
+    width:inherit;
+    height:inherit;
+    line-height:150px;
+    text-transform:uppercase;
 }
 
 #searchinput {
