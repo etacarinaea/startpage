@@ -39,8 +39,10 @@ $.getJSON("config.json", function(data){
     $(".sqr").css("borderTop", "0 solid " + cfg[8]);
     $(".sqr").css("borderBottom", "0 solid " + cfg[8]);
     $("#popup").css("borderTop", cfg[9] + " solid " + cfg[8]);
-    $("#searchinput").css("color", cfg[10]);
-    $("#searchinput").css("backgroundColor", cfg[11]);
+    if(!!document.getElementById("searchinput")){
+        $("#searchinput").css("color", cfg[10]);
+        $("#searchinput").css("backgroundColor", cfg[11]);
+    }
     if(cfg_bool[2]){
         $("#bgimg").css("backgroundImage", "url('" +  cfg[12] + "')");
         $("#bgimg").css("bottom", cfg[13]);
@@ -53,11 +55,11 @@ $.getJSON("config.json", function(data){
     }
 });
 
+
 function fixJitter(){
     container = document.getElementById("container");
     container.style.height = window.innerHeight - 0.5 + "px";
 }
-
 
 function popup(obj, msg, visibility){
     if(!visibility){
@@ -68,65 +70,74 @@ function popup(obj, msg, visibility){
     }
 }
 
+function search(query){
+    console.log(query);
+    switch(query.substr(0,2)){
+        case "-h":
+            popup(popupDiv,
+                    "-h Shows this list<br>-g Google (default)<br>-a DuckDuckGo<br>-d Danbooru<br>-y YouTube<br>-n niconico<br>-p pixiv",
+                    HelpVisibility);
+            HelpVisibility = !HelpVisibility;
+            break;
+        case "-g":
+            query = query.substr(3);
+            window.location = "https://www.google.com/#q=" +
+                query.replaceChars(" ", "+");
+            break;
+        case "-a":
+            query = query.substr(3);
+            window.location = "https://duckduckgo.com/?q=" +
+                query.replaceChars(" ", "+");
+            break;
+        case "-d":
+            query = query.substr(3);
+            window.location = "http://danbooru.donmai.us/posts?tags=" +
+                query.replaceChars(" ", "+");
+            break;
+        case "-y":
+            query = query.substr(3);
+            window.location =
+                "https://www.youtube.com/results?search_query=" +
+                query.replaceChars(" ", "+");
+            break;
+        case "-n":
+            query = query.substr(3);
+            window.location = "http://www.nicovideo.jp/search/" +
+                query.replaceChars(" ", "%20");
+            break;
+        case "-p":
+            query = query.substr(3);
+            window.location =
+                "http://www.pixiv.net/search.php?s_mode=s_tag&word=" +
+                query.replaceChars(" ", "%20");
+            break;
+        default:
+            window.location="https://www.google.com/#q=" +
+                query.replaceChars(" ", "+");
+    }
+}
+
+
 window.onresize = function(){
     fixJitter();
 }
 
 window.onload = function(){
     fixJitter();
-    var HelpVisibility = false;
+    HelpVisibility = false;
     popupDiv = document.getElementById("popup");
     // search
     searchinput = document.getElementById("searchinput");
-    searchinput.addEventListener("keypress", function search(a){
-        var key = a.keyCode;
-        if(key == 13){
-            var query = this.value;
-            switch(query.substr(0,2)){
-                case "-h":
-                    popup(popupDiv,
-                            "-h Shows this list<br>-g Google (default)<br>-a DuckDuckGo<br>-d Danbooru<br>-y YouTube<br>-n niconico<br>-p pixiv",
-                            HelpVisibility);
-                    HelpVisibility = !HelpVisibility;
-                    break;
-                case "-g":
-                    query = query.substr(3);
-                    window.location = "https://www.google.com/#q=" +
-                        query.replaceChars(" ", "+");
-                    break;
-                case "-a":
-                    query = query.substr(3);
-                    window.location = "https://duckduckgo.com/?q=" +
-                        query.replaceChars(" ", "+");
-                    break;
-                case "-d":
-                    query = query.substr(3);
-                    window.location = "http://danbooru.donmai.us/posts?tags=" +
-                        query.replaceChars(" ", "+");
-                    break;
-                case "-y":
-                    query = query.substr(3);
-                    window.location =
-                        "https://www.youtube.com/results?search_query=" +
-                        query.replaceChars(" ", "+");
-                    break;
-                case "-n":
-                    query = query.substr(3);
-                    window.location = "http://www.nicovideo.jp/search/" +
-                        query.replaceChars(" ", "%20");
-                    break;
-                case "-p":
-                    query = query.substr(3);
-                    window.location =
-                        "http://www.pixiv.net/search.php?s_mode=s_tag&word=" +
-                        query.replaceChars(" ", "%20");
-                    break;
-                default:
-                    window.location="https://www.google.com/#q=" +
-                        query.replaceChars(" ", "+");
+    if(!!searchinput){
+        searchinput.addEventListener("keypress", function(a){
+            var key = a.keyCode;
+            if(key == 13){
+                var query = this.value;
+                console.log(query);
+                search(query);
             }
-        }
-    });
+        });
+    }
     
     // jump to search when tab is pressed
     document.addEventListener("keypress", function(a){
