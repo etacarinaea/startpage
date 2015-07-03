@@ -56,10 +56,12 @@ $.getJSON("config.json", function(data){
 });
 
 
+
 function fixJitter(){
     container = document.getElementById("container");
     container.style.height = window.innerHeight - 0.5 + "px";
 }
+
 
 function popup(obj, msg, visibility){
     if(!visibility){
@@ -70,12 +72,53 @@ function popup(obj, msg, visibility){
     }
 }
 
+
+// expanding and contracting squares
+function expand(){
+    var acount = this.getElementsByTagName("a").length;
+    var icount = this.getElementsByTagName("input").length;
+    if(icount >= 1){
+        this.style.height = 300 + 37*icount + "px";
+    }else{
+        this.style.height = 300 + 25*acount + "px";
+    }
+    if(cfg_bool[0]){
+        this.style.borderTop = cfg[9] + " solid " + cfg[8];
+        this.style.borderBottom = cfg[9] + " solid " + cfg[8];
+    }
+}
+
+
+function contract(){
+    this.style.height = "150px";
+    this.style.borderTop = "0 solid" + cfg[8];
+    this.style.borderBottom = "0 solid" + cfg[8];
+}
+
+
+// string replacement
+String.prototype.replaceChars = function(character, replacement){
+    var str = this;
+    var a;
+    var b;
+    for(var i=0; i < str.length; i++){
+        if(str.charAt(i) == character){
+            a = str.substr(0, i) + replacement;
+            b = str.substr(i + 1);
+            str = a + b;
+        }
+    }
+    return str;
+}
+
+
 function search(query){
     console.log(query);
-    switch(query.substr(0,2)){
+    switch(query.substr(0, 2)){
         case "-h":
             popup(popupDiv,
-                    "-h Shows this list<br>-g Google (default)<br>-a DuckDuckGo<br>-d Danbooru<br>-y YouTube<br>-n niconico<br>-p pixiv",
+                    "-h Shows this list<br>-g Google (default)<br>-a DuckDuckGo\
+                    <br>-d Danbooru<br>-y YouTube<br>-n niconico<br>-p pixiv",
                     HelpVisibility);
             HelpVisibility = !HelpVisibility;
             break;
@@ -118,9 +161,11 @@ function search(query){
 }
 
 
+
 window.onresize = function(){
     fixJitter();
 }
+
 
 window.onload = function(){
     fixJitter();
@@ -144,9 +189,9 @@ window.onload = function(){
         var key = a.keyCode;
         if(key == 9){
             var search_sqr = document.getElementById("search_sqr")
-            search_sqr.style.height=300+37+"px";
-            search_sqr.style.borderTop= cfg[9] + " solid " + cfg[8];
-            search_sqr.style.borderBottom= cfg[9] + " solid " + cfg[8];
+            search_sqr.style.height = 300 + 37 + "px";
+            search_sqr.style.borderTop = cfg[9] + " solid " + cfg[8];
+            search_sqr.style.borderBottom = cfg[9] + " solid " + cfg[8];
             document.getElementById("searchinput").focus();
         }
     
@@ -172,56 +217,23 @@ window.onload = function(){
         for(var i = 0; i < sqr.length; ++i){
             var a = 0;
             for(var x = 0; x < sqr.length; ++x){
-                if(a<sqr[x].getElementsByTagName("a").length){
+                if(a < sqr[x].getElementsByTagName("a").length){
                     a = sqr[x].getElementsByTagName("a").length;
                 }
             }
-            sqr[i].style.height=225+25*a+"px";
+            sqr[i].style.height = 225 + 25*a + "px";
             if(cfg_bool[0]){
-                sqr[i].style.borderTop= cfg[9] + " solid " + cfg[8];
-                sqr[i].style.borderBottom= cfg[9] + " solid " + cfg[8];
+                sqr[i].style.borderTop = cfg[9] + " solid " + cfg[8];
+                sqr[i].style.borderBottom = cfg[9] + " solid " + cfg[8];
             }
         }
     }
 }
 
-// expanding and contracting squares
-function expand(){
-    var acount = this.getElementsByTagName("a").length;
-    var icount = this.getElementsByTagName("input").length;
-    if(icount >= 1){
-        this.style.height=300+37*icount+"px";
-    }else{
-        this.style.height=300+25*acount+"px";
-    }
-    if(cfg_bool[0]){
-        this.style.borderTop= cfg[9] + " solid " + cfg[8];
-        this.style.borderBottom= cfg[9] + " solid " + cfg[8];
-    }
-}
-function contract(){
-    this.style.height="150px";
-    this.style.borderTop="0 solid" + cfg[8];
-    this.style.borderBottom="0 solid" + cfg[8];
-}
-
-// string replacement
-String.prototype.replaceChars = function(character, replacement){
-    var str = this;
-    var a;
-    var b;
-    for(var i=0; i < str.length; i++){
-        if(str.charAt(i) == character){
-            a = str.substr(0, i) + replacement;
-            b = str.substr(i + 1);
-            str = a + b;
-        }
-    }
-    return str;
-}
 
 // cleanup
 window.onunload = function(){
     delete window.cfg;
     delete window.cfg_bool;
 }
+
