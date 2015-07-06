@@ -1,5 +1,5 @@
 $.getJSON("config.json", function(data){
-    window.cfg = [
+    cfg = [
         data.style.heading_font,
         data.style.link_font,
         data.style.heading_font_size,
@@ -19,39 +19,45 @@ $.getJSON("config.json", function(data){
         data.ext.width,
         data.ext.opacity
     ];
-    window.cfg_bool = [
+    cfg_bool = [
         data.bool.borders,
         data.bool.alwaysopen,
         data.bool.mascot
     ];
-    $("span").css("fontFamily", cfg[0]);
-    $("a").css("fontFamily", cfg[1]);
-    $("#popup").css("fontFamily", cfg[1]);
-    $("span").css("fontSize", cfg[2]);
-    $("a").css("fontSize", cfg[3]);
-    $("#popup").css("fontSize", cfg[3]);
+    var span = $("span");
+    var a = $("a");
+    var popup = $("#popup");
+    var sqr = $(".sqr");
+    span.css("fontFamily", cfg[0]);
+    a.css("fontFamily", cfg[1]);
+    popup.css("fontFamily", cfg[1]);
+    span.css("fontSize", cfg[2]);
+    a.css("fontSize", cfg[3]);
+    popup.css("fontSize", cfg[3]);
     $("body").css("backgroundColor", cfg[4]);
-    $(".sqr").css("backgroundColor", cfg[5]);
-    $("#popup").css("backgroundColor", cfg[5]);
-    $("span").css("color", cfg[6]);
-    $("a").css("color", cfg[7]);
-    $("#popup").css("color", cfg[7]);
-    $(".sqr").css("borderTop", "0 solid " + cfg[8]);
-    $(".sqr").css("borderBottom", "0 solid " + cfg[8]);
-    $("#popup").css("borderTop", cfg[9] + " solid " + cfg[8]);
-    if(!!document.getElementById("searchinput")){
-        $("#searchinput").css("color", cfg[10]);
-        $("#searchinput").css("backgroundColor", cfg[11]);
+    sqr.css("backgroundColor", cfg[5]);
+    popup.css("backgroundColor", cfg[5]);
+    span.css("color", cfg[6]);
+    a.css("color", cfg[7]);
+    popup.css("color", cfg[7]);
+    sqr.css("borderTop", "0 solid " + cfg[8]);
+    sqr.css("borderBottom", "0 solid " + cfg[8]);
+    popup.css("borderTop", cfg[9] + " solid " + cfg[8]);
+    var searchinput = $("#searchinput");
+    if(!!searchinput){
+        searchinput.css("color", cfg[10]);
+        searchinput.css("backgroundColor", cfg[11]);
     }
+    var bgimg = $("#bgimg");
     if(cfg_bool[2]){
-        $("#bgimg").css("backgroundImage", "url('" +  cfg[12] + "')");
-        $("#bgimg").css("bottom", cfg[13]);
-        $("#bgimg").css("right", cfg[14]);
-        $("#bgimg").css("height", cfg[15]);
-        $("#bgimg").css("width", cfg[16]);
-        $("#bgimg").css("opacity", cfg[17]);
+        bgimg.css("backgroundImage", "url('" +  cfg[12] + "')");
+        bgimg.css("bottom", cfg[13]);
+        bgimg.css("right", cfg[14]);
+        bgimg.css("height", cfg[15]);
+        bgimg.css("width", cfg[16]);
+        bgimg.css("opacity", cfg[17]);
     }else{
-        $("#bgimg").css("backgroundImage", "");
+        bgimg.css("backgroundImage", "");
     }
 });
 
@@ -71,9 +77,11 @@ function popup(obj, msg, visibility){
     }
 }
 
+
 Object.prototype.anchorCount = function(){
     return this.getElementsByTagName("a").length;
 }
+
 
 // expanding and contracting squares
 function expand(){
@@ -113,7 +121,6 @@ String.prototype.replaceChars = function(character, replacement){
 
 
 function search(query){
-    console.log(query);
     switch(query.substr(0, 2)){
         case "-h":
             popup(popupDiv,
@@ -179,12 +186,11 @@ window.onload = function(){
             var key = a.keyCode;
             if(key == 13){
                 var query = this.value;
-                console.log(query);
                 search(query);
             }
         });
     }
-    
+
     // jump to search when tab is pressed
     var search_sqr = document.getElementById("search_sqr");
     document.addEventListener("keypress", function(a){
@@ -230,12 +236,5 @@ window.onload = function(){
             }
         }
     }
-}
-
-
-// cleanup
-window.onunload = function(){
-    delete window.cfg;
-    delete window.cfg_bool;
 }
 
