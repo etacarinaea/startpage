@@ -68,13 +68,20 @@ function fixJitter(container){
 }
 
 
-function popup(obj, msg, visibility){
+function popup(obj, msg){
+    var popuphandler = function(){
+        popup(this, msg);
+    }
+    // add event listener when it's going to be visible
     if(!visibility){
+        obj.addEventListener("click", popuphandler);
         obj.innerHTML = msg;
         obj.style.bottom = "-" + cfg[9];
     }else{
+        obj.removeEventListener("click", popuphandler);
         obj.style.bottom = "-200px";
     }
+    visibility = !visibility;
 }
 
 
@@ -125,9 +132,7 @@ function search(query){
         case "-h":
             popup(popupDiv,
                     "-h Shows this list<br>-g Google (default)<br>-a DuckDuckGo\
-                    <br>-d Danbooru<br>-y YouTube<br>-n niconico<br>-p pixiv",
-                    HelpVisibility);
-            HelpVisibility = !HelpVisibility;
+                    <br>-d Danbooru<br>-y YouTube<br>-n niconico<br>-p pixiv");
             break;
         case "-g":
             query = query.substr(3);
@@ -175,9 +180,9 @@ window.onresize = function(){
 
 
 window.onload = function(){
+    visibility = false;
     container = document.getElementById("container");
     fixJitter(container);
-    HelpVisibility = false;
     popupDiv = document.getElementById("popup");
     // search
     searchinput = document.getElementById("searchinput");
@@ -205,12 +210,6 @@ window.onload = function(){
         if([9].indexOf(key) > -1) {
             a.preventDefault();
         }
-    });
-
-    // close popup when clicked
-    popupDiv.addEventListener("click", function(){
-        popup(this, "", HelpVisibility);
-        HelpVisibility = !HelpVisibility;
     });
 
     // adding event listeners to squares or expanding them onload
