@@ -44,7 +44,7 @@ $.getJSON("config.json", function(data){
     sqr.css("borderBottom", "0 solid " + cfg[8]);
     popup.css("borderTop", cfg[9] + " solid " + cfg[8]);
     var searchinput = $("#searchinput");
-    if(!!searchinput){
+    if(searchinput.length){
         searchinput.css("color", cfg[10]);
         searchinput.css("backgroundColor", cfg[11]);
     }
