@@ -18,7 +18,7 @@ The easiest way to make changes is by editing _config.json_ and _index.html_.
 | alwaysopen   | makes all squares open on load                       |
 | mascot       | enables image in the bottom right hand corner        |
 
-_ref_ can take either an URL or the path to a local image.
+The _images_ array is a list of all mascot images to be used. If you want to use only one image just create an array with one item.
 
 <br>
 ###### HTML
