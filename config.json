@@ -21,7 +21,9 @@
     },
     
     "ext": {
-        "ref":                  "file://",
+        "images":[              "image1.png",
+                                "image2.png",
+                                "image3.png"],
         "bottom":               "0",
         "right":                "0",
         "height":               "500px",
