@@ -12,7 +12,7 @@ $.getJSON("config.json", function(data){
         data.style.border_width,
         data.style.search_color,
         data.style.search_bg_color,
-        data.ext.ref,
+        data.ext.images,
         data.ext.bottom,
         data.ext.right,
         data.ext.height,
@@ -50,7 +50,7 @@ $.getJSON("config.json", function(data){
     }
     var bgimg = $("#bgimg");
     if(cfg_bool[2]){
-        bgimg.css("backgroundImage", "url('" +  cfg[12] + "')");
+        bgimg.css("backgroundImage", "url('" +  cfg[12][Math.floor(Math.random()*cfg[12].length)] + "')");
         bgimg.css("bottom", cfg[13]);
         bgimg.css("right", cfg[14]);
         bgimg.css("height", cfg[15]);
