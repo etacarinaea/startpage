@@ -12,11 +12,14 @@ The easiest way to make changes is by editing _config.json_ and _index.html_.
 
 <br>
 ###### JSON
-| attribute    | if true                                              |
-| ------------ | :--------------------------------------------------: |
-| borders      | enables borders on top and bottom                    |
-| alwaysopen   | makes all squares open on load                       |
-| mascot       | enables image in the bottom right hand corner        |
+| attribute         | if true                                          |
+| ----------------- | ------------------------------------------------ |
+| borders           | enables borders on top and bottom                |
+| alwaysopen        | makes all squares open on load                   |
+| mascot            | enables image in the bottom right hand corner    |
+| allowVersionCheck | allows to check for the latest Version on github |
+
+The version is only checked for if the help popup shows up.
 
 The _images_ array is a list of all mascot images to be used. If you want to use only one image just create an array with one item.
 

@@ -1,3 +1,5 @@
+VERSION = "v2.1.0";
+
 $.getJSON("config.json", function(data){
     cfg = [
         data.style.heading_font,
@@ -22,7 +24,8 @@ $.getJSON("config.json", function(data){
     cfg_bool = [
         data.bool.borders,
         data.bool.alwaysopen,
-        data.bool.mascot
+        data.bool.mascot,
+        data.bool.allowVersionCheck
     ];
     var span = $("span");
     var a = $("a");
@@ -63,12 +66,38 @@ $.getJSON("config.json", function(data){
 
 
 
+
+function version(msg){
+    var responseobj;
+    var request = new XMLHttpRequest();
+
+    request.onload = function(){
+        responseobj = JSON.parse(this.responseText);
+        if(responseobj.tag_name != VERSION){
+            msg = "<u><a href='https://github.com/yukisuki/\
+                        startpage/releases'>" + responseobj.tag_name +
+                        " is available!</a></u><br>" + HelpText;
+        }
+    };
+
+    request.open("get", "http://api.github.com/repos/yukisuki/startpage/releases/latest", false);
+    request.send();
+
+    return msg;
+}
+
+
+
 function fixJitter(container){
     container.style.height = window.innerHeight - 0.5 + "px";
 }
 
 
 function popup(obj, msg){
+    if(cfg_bool[3]){
+        msg = version(msg);
+    }
+
     var popuphandler = function(){
         popup(this, msg);
     }
@@ -130,9 +159,7 @@ String.prototype.replaceChars = function(character, replacement){
 function search(query){
     switch(query.substr(0, 2)){
         case "-h":
-            popup(popupDiv,
-                    "-h Shows this list<br>-g Google (default)<br>-a DuckDuckGo\
-                    <br>-d Danbooru<br>-y YouTube<br>-n niconico<br>-p pixiv");
+            popup(popupDiv, HelpText);
             break;
         case "-g":
             query = query.substr(3);
@@ -180,6 +207,8 @@ window.onresize = function(){
 
 
 window.onload = function(){
+    HelpText = "-h Shows this list<br>-g Google (default)<br>-a DuckDuckGo\
+                <br>-d Danbooru<br>-y YouTube<br>-n niconico<br>-p pixiv";
     visibility = false;
     container = document.getElementById("container");
     fixJitter(container);
