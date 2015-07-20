@@ -76,7 +76,7 @@ function version(msg){
         if(responseobj.tag_name != VERSION){
             msg = "<u><a href='https://github.com/yukisuki/\
                         startpage/releases'>" + responseobj.tag_name +
-                        " is available!</a></u><br>" + HelpText;
+                        " is available!</a></u><br>" + msg;
         }
     };
 
