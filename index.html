@@ -3,6 +3,7 @@
     <head>
         <title>startpage</title>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="configmenu.js"></script>
         <script src="main.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
@@ -51,5 +52,24 @@
             </div>
         </div>
         <div id="popup"></div>
+        <div id="configmenu_container">
+            <div id="configmenu">
+                <div id="heading">
+                    Config-Menu
+                    <div id="done">&#x2713;</div>
+                </div>
+                <div id="content">
+                    <div id="boolwrapper">
+                    </div>
+                    <div id="stylewrapper">
+                        <div class="wrapperheading">General</div>
+                    </div>
+                    <div id="extwrapper">
+                        <label><div class="wrapperheading">Mascot</div>
+                        <input id="mcb" type="checkbox" name="mascot"</label>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
