@@ -1,7 +1,5 @@
 VERSION = "v2.2.0";
 
-configmenuInit(main);
-
 
 function version(msg){
     var responseobj;
@@ -141,66 +139,67 @@ window.onresize = function(){
 
 
 function main(){
-    window.onload = function(){
-        HelpText = "-h Shows this list<br>-g Google (default)<br>-a DuckDuckGo\
-                    <br>-d Danbooru<br>-y YouTube<br>-n niconico<br>-p pixiv";
-        visibility = false;
-        container = document.getElementById("container");
-        fixJitter(container);
-        popupDiv = document.getElementById("popup");
-        // search
-        var searchinput = document.getElementById("searchinput");
-        if(!!searchinput){
-            searchinput.addEventListener("keypress", function(a){
-                var key = a.keyCode;
-                if(key == 13){
-                    var query = this.value;
-                    search(query);
-                }
-            });
-        }
-
-        // jump to search when tab is pressed
-        var search_sqr = document.getElementById("search_sqr");
-        document.addEventListener("keypress", function(a){
+    HelpText = "-h Shows this list<br>-g Google (default)<br>-a DuckDuckGo\
+                <br>-d Danbooru<br>-y YouTube<br>-n niconico<br>-p pixiv";
+    visibility = false;
+    container = document.getElementById("container");
+    fixJitter(container);
+    popupDiv = document.getElementById("popup");
+    // search
+    var searchinput = document.getElementById("searchinput");
+    if(!!searchinput){
+        searchinput.addEventListener("keypress", function(a){
             var key = a.keyCode;
-            if(key == 9){
-                search_sqr.style.height = "337px";
-                search_sqr.style.borderTop = cfg[9] + " solid " + cfg[8];
-                search_sqr.style.borderBottom = cfg[9] + " solid " + cfg[8];
-                document.getElementById("searchinput").focus();
-            }
-        
-            if([9].indexOf(key) > -1) {
-                a.preventDefault();
+            if(key == 13){
+                var query = this.value;
+                search(query);
             }
         });
+    }
 
-        // adding event listeners to squares or expanding them onload
-        var sqr = document.querySelectorAll(".sqr");
-        if(!cfg_bool[1]){
-            for(var i = 0; i < sqr.length; ++i){
-                sqr[i].acount = sqr[i].getElementsByTagName("a").length;
-                sqr[i].addEventListener("mouseover", expand, false);
-                sqr[i].addEventListener("mouseout", contract, false);
+    // jump to search when tab is pressed
+    var search_sqr = document.getElementById("search_sqr");
+    document.addEventListener("keypress", function(a){
+        var key = a.keyCode;
+        if(key == 9){
+            search_sqr.style.height = "337px";
+            search_sqr.style.borderTop = cfg[9] + " solid " + cfg[8];
+            search_sqr.style.borderBottom = cfg[9] + " solid " + cfg[8];
+            document.getElementById("searchinput").focus();
+        }
+    
+        if([9].indexOf(key) > -1) {
+            a.preventDefault();
+        }
+    });
+
+    // adding event listeners to squares or expanding them onload
+    var sqr = document.querySelectorAll(".sqr");
+    console.log(sqr);
+    if(!cfg_bool[1]){
+        for(var i = 0; i < sqr.length; ++i){
+            sqr[i].acount = sqr[i].getElementsByTagName("a").length;
+            sqr[i].addEventListener("mouseover", expand, false);
+            sqr[i].addEventListener("mouseout", contract, false);
+        }
+    }else{
+        for(var i = 0; i < sqr.length; ++i){
+            var a = 0;
+            for(var x = 0; x < sqr.length; ++x){
+                if(a < sqr[x].getElementsByTagName("a").length){
+                    a = sqr[x].getElementsByTagName("a").length;
+                }
             }
-        }else{
-            for(var i = 0; i < sqr.length; ++i){
-                var a = 0;
-                for(var x = 0; x < sqr.length; ++x){
-                    if(a < sqr[x].getElementsByTagName("a").length){
-                        a = sqr[x].getElementsByTagName("a").length;
-                    }
-                }
-                sqr[i].style.height = 225 + 25*a + "px";
-                if(cfg_bool[0]){
-                    sqr[i].style.borderTop = cfg[9] + " solid " + cfg[8];
-                    sqr[i].style.borderBottom = cfg[9] + " solid " + cfg[8];
-                }
+            sqr[i].style.height = 225 + 25*a + "px";
+            if(cfg_bool[0]){
+                sqr[i].style.borderTop = cfg[9] + " solid " + cfg[8];
+                sqr[i].style.borderBottom = cfg[9] + " solid " + cfg[8];
             }
         }
     }
 }
 
+
+$("document").ready(function(){configmenuInit(main);});
 
 
