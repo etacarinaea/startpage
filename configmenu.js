@@ -1,3 +1,5 @@
+useJSONFile = false;
+
 function ConfigObject(items){
     for(var i in items){
         this[i] = {name: items[i]};
@@ -44,14 +46,17 @@ function configmenuInit(callback){
     
     if(localStorage.config == undefined || callback == undefined){
         configmenuContainer.style.display = "block";
-        createMenu();
-    }else{
+        createMenu(callback);
+    }else if(useJSONFile){
         $.getJSON("config.json", function(data){loadConfig(data, callback)});
-	}
+    }else{
+        window.onload = loadConfig(JSON.parse(localStorage.config), callback);
+    }
 }
 
 
-function createMenu(){
+function createMenu(callback){
+	var configmenuContainer = document.getElementById("configmenu_container");
     var boolwrapper = document.getElementById("boolwrapper");
     var stylewrapper = document.getElementById("stylewrapper");
     var extwrapper = document.getElementById("extwrapper");
@@ -165,7 +170,6 @@ function loadConfig(data, callback){
         data.ext.width,
         data.ext.opacity
     ];
-	// data.bool are strings because of json, want actual boolean
     cfg_bool = [
         data.bool.borders,
         data.bool.alwaysopen,
