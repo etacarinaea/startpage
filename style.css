@@ -1,11 +1,13 @@
 body{
     overflow: hidden;
 }
+
 a {
     color:inherit;
     text-decoration:none;
     line-height:25px;
 }
+
 
 #bgimg {
     z-index:-10;
@@ -14,16 +16,19 @@ a {
     background-repeat:no-repeat;
 }
 
+
 #container {
     height:100vh;
     width:100vw;
     display:table;
 }
+
 #cell {
     display:table-cell;
     vertical-align:middle;
     text-align:center;
 }
+
 
 .sqr {
     display:inline-block;
@@ -37,16 +42,19 @@ a {
     transition:all .25s ease-in-out;
     vertical-align:middle;
 }
+
 .content {
     margin:0 10px 0;
     line-height:25px;
 }
+
 span {
     width:inherit;
     height:inherit;
     line-height:150px;
     text-transform:uppercase;
 }
+
 
 #searchinput {
     width:130px;
@@ -55,6 +63,7 @@ span {
     padding:0 10px;
     border:none;
 }
+
 
 #popup {
     position: absolute;
