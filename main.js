@@ -119,6 +119,7 @@ Object.prototype.anchorCount = function(){
 }
 
 
+
 // expanding and contracting squares
 function expand(){
     if(this.acount > 0){
@@ -140,7 +141,7 @@ function contract(){
 }
 
 
-// string replacement
+
 String.prototype.replaceChars = function(character, replacement){
     var str = this;
     var a;
@@ -236,7 +237,7 @@ window.onload = function(){
             document.getElementById("searchinput").focus();
         }
     
-        if([9].indexOf(key) > -1) {
+        if([9].indexOf(key) > -1){
             a.preventDefault();
         }
     });
@@ -244,7 +245,7 @@ window.onload = function(){
     // adding event listeners to squares or expanding them onload
     var sqr = document.querySelectorAll(".sqr");
     if(!cfg_bool[1]){
-        for(var i = 0; i < sqr.length; ++i) {
+        for(var i = 0; i < sqr.length; ++i){
             sqr[i].acount = sqr[i].anchorCount();
             sqr[i].addEventListener("mouseover", expand, false);
             sqr[i].addEventListener("mouseout", contract, false);
