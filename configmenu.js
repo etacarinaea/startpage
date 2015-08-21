@@ -1,5 +1,3 @@
-useJSONFile = false;
-
 function ConfigObject(items){
     for(var i in items){
         this[i] = {name: items[i]};
@@ -9,7 +7,8 @@ function ConfigObject(items){
 var bi = {
     borders: "Borders",
     alwaysopen: "keep all squares open",
-    allow_version_check: "allow checking for new versions"
+    allow_version_check: "allow checking for new versions",
+    use_json_file: "use config.json instead of this menu"
 }
 var bool = new ConfigObject(bi);
 
@@ -42,32 +41,47 @@ var ext = new ConfigObject(ei);
 
 
 function configmenuInit(callback){
-	var configmenuContainer = document.getElementById("configmenu_container");
-    
-    if(localStorage.config == undefined || callback == undefined){
-        configmenuContainer.style.display = "block";
-        createMenu(callback);
-    }else if(useJSONFile){
-        $.getJSON("config.json", function(data){loadConfig(data, callback)});
+    // load config data
+    if(localStorage.use_json_file == "true" || localStorage.config == undefined){
+        $.getJSON("config.json", function(data){
+            pipe(data, callback);
+        });
     }else{
-        window.onload = loadConfig(JSON.parse(localStorage.config), callback);
+        pipe(JSON.parse(localStorage.config), callback);
     }
 }
 
+// separate function so it wont execute before jQuery.getJSON has finished
+function pipe(data, callback){
+	var configmenuContainer = document.getElementById("configmenu_container");
 
-function createMenu(callback){
+    // create the menu or load config on window load
+    if(localStorage.config == undefined || callback == undefined){
+        configmenuContainer.style.display = "block";
+        createMenu(data, callback);
+    }else{
+        loadConfig(data, callback);
+    }
+}
+
+function createMenu(data, callback){
 	var configmenuContainer = document.getElementById("configmenu_container");
     var boolwrapper = document.getElementById("boolwrapper");
     var stylewrapper = document.getElementById("stylewrapper");
     var extwrapper = document.getElementById("extwrapper");
+
+    if(!data){
+        var data = {bool:"",style:"",ext:""};
+    }
+
     for(var key in bool){
-        appendOption(boolwrapper, bool[key], key, 0);
+        appendOption(boolwrapper, bool[key], key, 0, callback, data.bool[key]);
     }
     for(var key in style){
-        appendOption(stylewrapper, style[key], key, 1);
+        appendOption(stylewrapper, style[key], key, 1, callback, data.style[key]);
     }
     for(var key in ext){
-        appendOption(extwrapper, ext[key], key, 1);
+        appendOption(extwrapper, ext[key], key, 1, callback, data.ext[key]);
     }
 
 	mascotCheckbox = document.getElementById("mcb");
@@ -77,13 +91,14 @@ function createMenu(callback){
     var doneButton = document.getElementById("done");
     doneButton.addEventListener("click", function(){
         saveConfig(callback);
-        document.body.removeChild(configmenuContainer);
+        location.reload();
     });
 }
 
 
 // type == 0: checkbox, else: text
-function appendOption(parentElement, obj, key, type){
+// value: HTML element value
+function appendOption(parentElement, obj, key, type, callback, value){
     var div = document.createElement("div");
     var label = document.createElement("label");
     var text = document.createTextNode(obj.name);
@@ -94,8 +109,14 @@ function appendOption(parentElement, obj, key, type){
 
     if(type == 0){
         input.setAttribute("type", "checkbox");
+        if(!callback){
+            input.checked = value;
+        }
     }else{
         input.setAttribute("type", "text");
+        if(!callback){
+            input.setAttribute("value", value);
+        }
     }
 
     label.appendChild(text);
@@ -128,6 +149,7 @@ function saveConfig(callback){
         bool[key].value = elem.checked;
         json.bool[key] = elem.checked;
     }
+    localStorage.use_json_file = document.querySelector("input[name='use_json_file'").checked;
     for(var key in style){
         var elem = document.querySelector(
                 "#stylewrapper input[name='" + key + "'");
