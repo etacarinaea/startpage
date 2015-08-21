@@ -2,7 +2,8 @@ startpage
 ====
 
 ###### TODO
-- [ ] fill options with placeholders if no callback is defined
+- [x] fill options with placeholders if no callback is defined
+- [ ] fix flash on load
 - [ ] add export/import function and buttons
 
 <br>
