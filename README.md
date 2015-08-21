@@ -1,14 +1,9 @@
 startpage
 ====
 
-![example screenshot (150619)](http://i.imgur.com/GSwXf57.png)
-![example screenshot expanded (150619)](http://i.imgur.com/cA1teIS.png)
-
-
-<br>
-
-##### Usage
-The easiest way to make changes is by editing _config.json_ and _index.html_.
+###### TODO
+- [ ] fill options with placeholders if no callback is defined
+- [ ] add export/import function and buttons
 
 <br>
 ###### JSON
