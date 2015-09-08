@@ -167,9 +167,14 @@ function search(query){
             window.location = "https://www.google.com/#q=" +
                 query.replaceChars(" ", "+");
             break;
+        case "-w":
+            query = query.substr(3);
+            window.location = "https://en.wikipedia.org/w/index.php?search=" +
+                query.replaceChars(" ", "+");
+            break;
         case "-a":
             query = query.substr(3);
-            window.location = "https://duckduckgo.com/?q=" +
+            window.location = "https://wiki.archlinux.org/index.php?search=" +
                 query.replaceChars(" ", "+");
             break;
         case "-d":
@@ -208,8 +213,9 @@ window.onresize = function(){
 
 
 window.onload = function(){
-    HelpText = "-h Shows this list<br>-g Google (default)<br>-a DuckDuckGo\
-                <br>-d Danbooru<br>-y YouTube<br>-n niconico<br>-p pixiv";
+    HelpText = "-h Shows this list<br>-g Google (default)<br>-w Wikipedia<br>\
+                -a ArchWiki<br>-d Danbooru<br>-y YouTube<br>-n niconico<br>\
+                -p pixiv";
     visibility = false;
     container = document.getElementById("container");
     fixJitter(container);
