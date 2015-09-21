@@ -157,51 +157,39 @@ String.prototype.replaceChars = function(character, replacement){
 }
 
 
+function searchCase(url, query, replacement){
+    query = query.substr(3);
+    window.location = url + query.replaceChars(" ", replacement);
+}
+
 function search(query){
     switch(query.substr(0, 2)){
         case "-h":
             popup(popupDiv, HelpText);
             break;
         case "-g":
-            query = query.substr(3);
-            window.location = "https://www.google.com/#q=" +
-                query.replaceChars(" ", "+");
+            searchCase("https://www.google.com/#q=", query, "+");
             break;
         case "-w":
-            query = query.substr(3);
-            window.location = "https://en.wikipedia.org/w/index.php?search=" +
-                query.replaceChars(" ", "+");
+            searchCase("https://en.wikipedia.org/w/index.php?search=", query, "+");
             break;
         case "-a":
-            query = query.substr(3);
-            window.location = "https://wiki.archlinux.org/index.php?search=" +
-                query.replaceChars(" ", "+");
+            searchCase("https://wiki.archlinux.org/index.php?search=", query, "+");
             break;
         case "-d":
-            query = query.substr(3);
-            window.location = "http://danbooru.donmai.us/posts?tags=" +
-                query.replaceChars(" ", "+");
+            searchCase("http://danbooru.donmai.us/posts?tags=", query, "+");
             break;
         case "-y":
-            query = query.substr(3);
-            window.location =
-                "https://www.youtube.com/results?search_query=" +
-                query.replaceChars(" ", "+");
+            searchCase("https://www.youtube.com/results?search_query=", query, "+");
             break;
         case "-n":
-            query = query.substr(3);
-            window.location = "http://www.nicovideo.jp/search/" +
-                query.replaceChars(" ", "%20");
+            searchCase("http://www.nicovideo.jp/search/", query, "%20");
             break;
         case "-p":
-            query = query.substr(3);
-            window.location =
-                "http://www.pixiv.net/search.php?s_mode=s_tag&word=" +
-                query.replaceChars(" ", "%20");
+            searchCase("http://www.pixiv.net/search.php?s_mode=s_tag&word=", query, "%20");
             break;
         default:
-            window.location="https://www.google.com/#q=" +
-                query.replaceChars(" ", "+");
+            window.location = "https://www.google.com/#q=" + query.replaceChars(" ", "+");
     }
 }
 
