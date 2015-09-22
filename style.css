@@ -102,9 +102,9 @@ span {
 }
 
 #heading {
-    line-height:20px;
+    line-height:40px;
     font-size:20px;
-    padding:10px;
+    padding-left:10px;
 
     background-color:#f0f0f0;
 }
@@ -133,6 +133,7 @@ span {
 #configmenu input[type="text"] {
     width:60%;
     margin:4px 40px 0 0;
+    padding:0 0 0 5px;
     border-radius:0;
     border:none;
     background-color:#dfdfdf;
@@ -157,20 +158,34 @@ span {
     font-size:20px;
 }
 
-#done {
+.button {
     width:40px;
     height:40px;
-
-    margin:-10px;
 
     float:right;
 
     line-height:40px;
-    padding-left:15px;
-
-    background-color:#368d20;
+    text-align:center;
 }
-#done:hover {
-    background-color:#76fd40;
+.button:hover {
+    opacity:0.7;
+}
+
+#import {
+    background-image:url("import.png");
+    background-color:#bb9999;
+}
+#importinput {
+    display:none;
+}
+
+#export {
+    background-image:url("export.png");
+    background-color:#9999bb;
+}
+
+#done {
+    background-image:url("done.png");
+    background-color:#99bb99;
 }
 
