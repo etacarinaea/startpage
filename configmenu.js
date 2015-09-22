@@ -4,15 +4,15 @@ function ConfigObject(items){
     }
 }
 
-var bi = {
+var boolItems = {
     borders: "Borders",
     alwaysopen: "keep all squares open",
     allow_version_check: "allow checking for new versions",
     use_json_file: "use config.json instead of this menu"
 }
-var bool = new ConfigObject(bi);
+var bool = new ConfigObject(boolItems);
 
-var si = {
+var styleItems = {
     heading_font: "Heading Font",
     link_font: "Link Font",
     heading_font_size: "Heading Font Size",
@@ -26,9 +26,9 @@ var si = {
     search_color: "Search Color",
     search_bg_color: "Search Background Color"
 };
-var style = new ConfigObject(si);
+var style = new ConfigObject(styleItems);
 
-var ei = {
+var extItems = {
     images: "Images",
     bottom: "Bottom",
     right: "Right",
@@ -36,7 +36,7 @@ var ei = {
     width: "Width",
     opacity: "Opacity"
 };
-var ext = new ConfigObject(ei);
+var ext = new ConfigObject(extItems);
 
 
 
@@ -141,8 +141,8 @@ function checkboxHandler(){
 
 function saveConfig(callback){
     json = {bool:{}, style:{}, ext:{}};
-    // because mascot is not an attribute of bi, create a local obj w/ mascot:
-    var bool = new ConfigObject(bi);
+    // because mascot is not an attribute of boolItems, create a local obj w/ mascot:
+    var bool = new ConfigObject(boolItems);
     bool.mascot = {};
     for(var key in bool){
         var elem = document.querySelector("input[name='" + key + "'");
