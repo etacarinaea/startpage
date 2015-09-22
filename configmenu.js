@@ -88,6 +88,14 @@ function createMenu(data, callback){
     checkboxHandler();
     mascotCheckbox.addEventListener("click", checkboxHandler);
 
+    var importButton = document.getElementById("import");
+    importButton.addEventListener("click", function(){
+        importConfig(callback);
+    });
+    var exportButton = document.getElementById("export");
+    exportButton.addEventListener("click", function(){
+        exportConfig();
+    });
     var doneButton = document.getElementById("done");
     doneButton.addEventListener("click", function(){
         saveConfig(callback);
@@ -138,6 +146,15 @@ function checkboxHandler(){
     }
 }
 
+
+function importConfig(callback){
+    var importinput = document.getElementById("importinput");
+    importinput.click();
+}
+
+function exportConfig(){
+    alert("export");
+}
 
 function saveConfig(callback){
     json = {bool:{}, style:{}, ext:{}};
