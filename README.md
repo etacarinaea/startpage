@@ -1,10 +1,14 @@
 startpage
 ====
+Menu to configure the look of the page.
+Will show up the first time the page is loaded or when the user inputs "-c" into the search field.
 
+<br>
 ###### TODO
 - [x] fill options with placeholders if no callback is defined
 - [x] fix flash on load
 - [ ] add export/import function and buttons
+- [ ] Maybe add an option to display the config menu manually without needing the search field
 
 <br>
 ###### JSON
@@ -38,6 +42,7 @@ Keep the structure like this:
 <br>
 ###### search
 ```
+-c      Opens the configuration menu
 -h      Show this list
 -g      Google (default)
 -a      DuckDuckGo
