@@ -199,5 +199,7 @@ function main(){
 }
 
 
-configmenuInit(main);
+$("document").ready(function(){
+    configmenuInit(main)
+});
 
