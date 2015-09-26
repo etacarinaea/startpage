@@ -73,7 +73,7 @@ span {
 /* CONFIGMENU */
 
 #configmenu_container {
-	position:absolute;
+    position:absolute;
     display:none;
     z-index:120;
     top:0;
