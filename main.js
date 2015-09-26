@@ -200,6 +200,6 @@ function main(){
 
 
 $("document").ready(function(){
-    configmenuInit(main)
+    configmenuInit(main);
 });
 
