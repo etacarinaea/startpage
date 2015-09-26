@@ -47,7 +47,9 @@ function configmenuInit(callback){
             pipe(data, callback);
         });
     }else{
-        pipe(JSON.parse(localStorage.config), callback);
+        $("document").ready(function(){
+            pipe(JSON.parse(localStorage.config), callback);
+        });
     }
 }
 
