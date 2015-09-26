@@ -99,7 +99,6 @@ function createMenu(data, callback){
     var doneButton = document.getElementById("done");
     doneButton.addEventListener("click", function(){
         saveConfig(callback);
-        location.reload();
     });
 }
 
@@ -149,11 +148,26 @@ function checkboxHandler(){
 
 function importConfig(callback){
     var importinput = document.getElementById("importinput");
+
+    importinput.addEventListener("change", function(e){
+        var file = importinput.files[0];
+        console.log(file);
+
+        var reader = new FileReader();
+        reader.readAsText(file);
+
+        reader.onload = function(e){
+            console.log(reader.result);
+            localStorage.config = reader.result;
+            location.reload();
+        }
+    });
+
     importinput.click();
 }
 
 function exportConfig(){
-    alert("export");
+    window.open("data:application/octet-stream;base64," + btoa(localStorage.config));
 }
 
 function saveConfig(callback){
@@ -185,6 +199,7 @@ function saveConfig(callback){
 
     localStorage.config = json;
     loadConfig(JSON.parse(json), callback);
+    location.reload();
 }
 
 
