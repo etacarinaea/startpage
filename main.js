@@ -90,9 +90,9 @@ function search(query){
         case "-h":
             popup(popupDiv, HelpText);
             break;
-		case "-c":
-			configmenuInit(undefined);
-			break;
+        case "-c":
+            configmenuInit(undefined);
+            break;
         case "-g":
             query = query.substr(3);
             window.location = "https://www.google.com/#q=" +

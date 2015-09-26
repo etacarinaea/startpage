@@ -53,7 +53,7 @@ function configmenuInit(callback){
 
 // separate function so it wont execute before jQuery.getJSON has finished
 function pipe(data, callback){
-	var configmenuContainer = document.getElementById("configmenu_container");
+    var configmenuContainer = document.getElementById("configmenu_container");
 
     // create the menu or load config on window load
     if(localStorage.config == undefined || callback == undefined){
@@ -65,7 +65,7 @@ function pipe(data, callback){
 }
 
 function createMenu(data, callback){
-	var configmenuContainer = document.getElementById("configmenu_container");
+    var configmenuContainer = document.getElementById("configmenu_container");
     var boolwrapper = document.getElementById("boolwrapper");
     var stylewrapper = document.getElementById("stylewrapper");
     var extwrapper = document.getElementById("extwrapper");
@@ -84,7 +84,7 @@ function createMenu(data, callback){
         appendOption(extwrapper, ext[key], key, 1, callback, data.ext[key]);
     }
 
-	mascotCheckbox = document.getElementById("mcb");
+    mascotCheckbox = document.getElementById("mcb");
     checkboxHandler();
     mascotCheckbox.addEventListener("click", checkboxHandler);
 
@@ -215,7 +215,7 @@ function loadConfig(data, callback){
         data.bool.mascot,
         data.bool.allow_version_check
     ];
-	localStorage.cfg = cfg, localStorage.cfg_bool = cfg_bool;
+    localStorage.cfg = cfg, localStorage.cfg_bool = cfg_bool;
     var span = $("span");
     var a = $("a");
     var popup = $("#popup");
