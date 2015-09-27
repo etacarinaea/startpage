@@ -6,7 +6,7 @@ Will show up the first time the page is loaded or when the user inputs "-c" into
 <br>
 ###### TODO
 - [x] fill options with placeholders if no callback is defined
-- [ ] fix flash on load
+- [x] fix flash on load
 - [ ] add export/import function and buttons
 - [ ] Maybe add an option to display the config menu manually without needing the search field
 
