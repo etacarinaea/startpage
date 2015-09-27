@@ -41,16 +41,13 @@ var ext = new ConfigObject(extItems);
 
 
 function configmenuInit(callback){
-    // load config data
-    if(localStorage.use_json_file == "true" || localStorage.config == undefined){
-        $.getJSON("config.json", function(data){
+    $.getJSON("config.json", function(data){
+        if(localStorage.use_json_file == "true" || localStorage.config == undefined){
             pipe(data, callback);
-        });
-    }else{
-        $("document").ready(function(){
+        }else{
             pipe(JSON.parse(localStorage.config), callback);
-        });
-    }
+        }
+    });
 }
 
 // separate function so it wont execute before jQuery.getJSON has finished
