@@ -184,7 +184,7 @@ span {
 }
 
 #import {
-    background-image:url("import.png");
+    background-image:url("../img/import.png");
     background-color:#bb9999;
 }
 #importinput {
@@ -192,12 +192,12 @@ span {
 }
 
 #export {
-    background-image:url("export.png");
+    background-image:url("../img/export.png");
     background-color:#9999bb;
 }
 
 #done {
-    background-image:url("done.png");
+    background-image:url("../img/done.png");
     background-color:#99bb99;
 }
 
