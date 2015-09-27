@@ -1,7 +1,9 @@
 startpage
 ====
 Menu to configure the look of the page.
+
 Will show up the first time the page is loaded or when the user inputs "-c" into the search field.
+
 The menu can also be opened by inputting ```search("-c")``` into the console.
 
 <br>
