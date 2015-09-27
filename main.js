@@ -48,6 +48,12 @@ function popup(obj, msg){
 }
 
 
+Object.prototype.anchorCount = function(){
+    return this.getElementsByTagName("a").length;
+}
+
+
+
 // expanding and contracting squares
 function expand(){
     if(this.acount > 0){
@@ -69,7 +75,7 @@ function contract(){
 }
 
 
-// string replacement
+
 String.prototype.replaceChars = function(character, replacement){
     var str = this;
     var a;
@@ -85,6 +91,11 @@ String.prototype.replaceChars = function(character, replacement){
 }
 
 
+function searchCase(url, query, replacement){
+    query = query.substr(3);
+    window.location = url + query.replaceChars(" ", replacement);
+}
+
 function search(query){
     switch(query.substr(0, 2)){
         case "-h":
@@ -94,40 +105,28 @@ function search(query){
             configmenuInit(undefined);
             break;
         case "-g":
-            query = query.substr(3);
-            window.location = "https://www.google.com/#q=" +
-                query.replaceChars(" ", "+");
+            searchCase("https://www.google.com/#q=", query, "+");
+            break;
+        case "-w":
+            searchCase("https://en.wikipedia.org/w/index.php?search=", query, "+");
             break;
         case "-a":
-            query = query.substr(3);
-            window.location = "https://duckduckgo.com/?q=" +
-                query.replaceChars(" ", "+");
+            searchCase("https://wiki.archlinux.org/index.php?search=", query, "+");
             break;
         case "-d":
-            query = query.substr(3);
-            window.location = "http://danbooru.donmai.us/posts?tags=" +
-                query.replaceChars(" ", "+");
+            searchCase("http://danbooru.donmai.us/posts?tags=", query, "+");
             break;
         case "-y":
-            query = query.substr(3);
-            window.location =
-                "https://www.youtube.com/results?search_query=" +
-                query.replaceChars(" ", "+");
+            searchCase("https://www.youtube.com/results?search_query=", query, "+");
             break;
         case "-n":
-            query = query.substr(3);
-            window.location = "http://www.nicovideo.jp/search/" +
-                query.replaceChars(" ", "%20");
+            searchCase("http://www.nicovideo.jp/search/", query, "%20");
             break;
         case "-p":
-            query = query.substr(3);
-            window.location =
-                "http://www.pixiv.net/search.php?s_mode=s_tag&word=" +
-                query.replaceChars(" ", "%20");
+            searchCase("http://www.pixiv.net/search.php?s_mode=s_tag&word=", query, "%20");
             break;
         default:
-            window.location="https://www.google.com/#q=" +
-                query.replaceChars(" ", "+");
+            window.location = "https://www.google.com/#q=" + query.replaceChars(" ", "+");
     }
 }
 
@@ -138,9 +137,10 @@ window.onresize = function(){
 }
 
 
-function main(){
-    HelpText = "-h Shows this list<br>-g Google (default)<br>-a DuckDuckGo\
-                <br>-d Danbooru<br>-y YouTube<br>-n niconico<br>-p pixiv";
+window.onload = function(){
+    HelpText = "-h Shows this list<br>-g Google (default)<br>-w Wikipedia<br>\
+                -a ArchWiki<br>-d Danbooru<br>-y YouTube<br>-n niconico<br>\
+                -p pixiv";
     visibility = false;
     container = document.getElementById("container");
     fixJitter(container);
@@ -168,7 +168,7 @@ function main(){
             document.getElementById("searchinput").focus();
         }
     
-        if([9].indexOf(key) > -1) {
+        if([9].indexOf(key) > -1){
             a.preventDefault();
         }
     });
@@ -177,7 +177,7 @@ function main(){
     var sqr = document.querySelectorAll(".sqr");
     if(!cfg_bool[1]){
         for(var i = 0; i < sqr.length; ++i){
-            sqr[i].acount = sqr[i].getElementsByTagName("a").length;
+            sqr[i].acount = sqr[i].anchorCount();
             sqr[i].addEventListener("mouseover", expand, false);
             sqr[i].addEventListener("mouseout", contract, false);
         }
