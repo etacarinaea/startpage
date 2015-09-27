@@ -137,7 +137,7 @@ window.onresize = function(){
 }
 
 
-window.onload = function(){
+function main(){
     HelpText = "-h Shows this list<br>-g Google (default)<br>-w Wikipedia<br>\
                 -a ArchWiki<br>-d Danbooru<br>-y YouTube<br>-n niconico<br>\
                 -p pixiv";
