@@ -48,12 +48,6 @@ function popup(obj, msg){
 }
 
 
-Object.prototype.anchorCount = function(){
-    return this.getElementsByTagName("a").length;
-}
-
-
-
 // expanding and contracting squares
 function expand(){
     if(this.acount > 0){
@@ -177,7 +171,7 @@ function main(){
     var sqr = document.querySelectorAll(".sqr");
     if(!cfg_bool[1]){
         for(var i = 0; i < sqr.length; ++i){
-            sqr[i].acount = sqr[i].anchorCount();
+            sqr[i].acount = sqr[i].getElementsByTagName("a").length;
             sqr[i].addEventListener("mouseover", expand, false);
             sqr[i].addEventListener("mouseout", contract, false);
         }
