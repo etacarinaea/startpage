@@ -6,6 +6,11 @@ startpage
 
 
 <br>
+###### Configuration Menu
+The menu will be displayed the first time the page is loaded. It can be opened anytime by entering ```-c``` into the search field.
+If you have removed the search field from the html file you can still open it by entering ```search("-c")``` into the browser's console.
+
+<br>
 ###### JSON
 | attribute         | if true                                          |
 | ----------------- | ------------------------------------------------ |
@@ -37,6 +42,7 @@ Keep the structure like this:
 <br>
 ###### search
 ```
+-c      Opens the configuration menu
 -h      Show this list
 -g      Google (default)
 -w      Wikipedia
