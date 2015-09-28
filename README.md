@@ -1,16 +1,14 @@
 startpage
 ====
-Menu to configure the look of the page.
 
-Will show up the first time the page is loaded or when the user inputs "-c" into the search field.
+![example screenshot (150619)](http://i.imgur.com/GSwXf57.png)
+![example screenshot expanded (150619)](http://i.imgur.com/cA1teIS.png)
 
-The menu can also be opened by inputting ```search("-c")``` into the console.
 
 <br>
-###### TODO
-- [x] fill options with placeholders if no callback is defined
-- [x] fix flash on load
-- [x] add export/import function and buttons
+###### Configuration Menu
+The menu will be displayed the first time the page is loaded. It can be opened anytime by entering ```-c``` into the search field.
+If you have removed the search field from the html file you can still open it by entering ```search("-c")``` into the browser's console.
 
 <br>
 ###### JSON
