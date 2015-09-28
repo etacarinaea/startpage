@@ -1,4 +1,4 @@
-VERSION = "v2.2.0";
+VERSION = "v1.3.0";
 
 
 function version(msg){
