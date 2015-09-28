@@ -4,8 +4,9 @@
         <meta charset="UTF-8">
         <title>startpage</title>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="main.js"></script>
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="js/configmenu.js"></script>
+        <script src="js/main.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
         <div id="bgimg"></div>
@@ -53,5 +54,27 @@
             </div>
         </div>
         <div id="popup"></div>
+        <div id="configmenu_container">
+            <div id="configmenu">
+                <div id="heading">
+                    Config-Menu
+                    <div id="done" class="button"></div>
+                    <div id="export" class="button"></div>
+                    <div id="import" class="button"></div>
+                    <input id="importinput" type="file" name="importinput">
+                </div>
+                <div id="content">
+                    <div id="boolwrapper">
+                    </div>
+                    <div id="stylewrapper">
+                        <div class="wrapperheading">General</div>
+                    </div>
+                    <div id="extwrapper">
+                        <label><div class="wrapperheading">Mascot</div>
+                        <input id="mcb" type="checkbox" name="mascot"</label>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
