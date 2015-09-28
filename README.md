@@ -6,11 +6,6 @@ startpage
 
 
 <br>
-
-##### Usage
-The easiest way to make changes is by editing _config.json_ and _index.html_.
-
-<br>
 ###### JSON
 | attribute         | if true                                          |
 | ----------------- | ------------------------------------------------ |
@@ -44,7 +39,8 @@ Keep the structure like this:
 ```
 -h      Show this list
 -g      Google (default)
--a      DuckDuckGo
+-w      Wikipedia
+-a      ArchWiki
 -d      danbooru
 -y      YouTube
 -n      niconicodouga
