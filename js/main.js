@@ -79,6 +79,9 @@ String.prototype.replaceChars = function(character, replacement){
             a = str.substr(0, i) + replacement;
             b = str.substr(i + 1);
             str = a + b;
+            if(replacement == ""){
+                i--;
+            }
         }
     }
     return str;
