@@ -52,11 +52,8 @@ function configmenuInit(callback){
 
 // separate function so it wont execute before jQuery.getJSON has finished
 function pipe(data, callback){
-    var configmenuContainer = document.getElementById("configmenu_container");
-
     // create the menu or load config on window load
     if(localStorage.config == undefined || callback == undefined){
-        configmenuContainer.style.display = "block";
         createMenu(data, callback);
     }else{
         loadConfig(data, callback);
@@ -64,23 +61,23 @@ function pipe(data, callback){
 }
 
 function createMenu(data, callback){
-    var configmenuContainer = document.getElementById("configmenu_container");
-    var boolwrapper = document.getElementById("boolwrapper");
-    var stylewrapper = document.getElementById("stylewrapper");
-    var extwrapper = document.getElementById("extwrapper");
+    configmenu = new Menu("Config-Menu", 0, 110, 110);
+    var boolcategory = configmenu.appendCategory("bool", 0, false);
+    var stylecategory = configmenu.appendCategory("style", 0, true);
+    var extcategory = configmenu.appendCategory("ext", 1, true);
 
     if(!data){
         var data = {bool:"",style:"",ext:""};
     }
 
     for(var key in bool){
-        appendOption(boolwrapper, bool[key], key, 0, callback, data.bool[key]);
+        configmenu.categories[0].appendOption(bool[key].name, key, 0, callback, data.bool[key]);
     }
     for(var key in style){
-        appendOption(stylewrapper, style[key], key, 1, callback, data.style[key]);
+        configmenu.categories[1].appendOption(style[key].name, key, 1, callback, data.style[key]);
     }
     for(var key in ext){
-        appendOption(extwrapper, ext[key], key, 1, callback, data.ext[key]);
+        configmenu.categories[2].appendOption(ext[key].name, key, 1, callback, data.ext[key]);
     }
 
     mascotCheckbox = document.getElementById("mcb");
@@ -99,36 +96,6 @@ function createMenu(data, callback){
     doneButton.addEventListener("click", function(){
         saveConfig(callback);
     });
-}
-
-
-// type == 0: checkbox, else: text
-// value: HTML element value
-function appendOption(parentElement, obj, key, type, callback, value){
-    var div = document.createElement("div");
-    var label = document.createElement("label");
-    var text = document.createTextNode(obj.name);
-    var input = document.createElement("input");
-
-    div.setAttribute("class", "option");
-    input.setAttribute("name", key);
-
-    if(type == 0){
-        input.setAttribute("type", "checkbox");
-        if(!callback){
-            input.checked = value;
-        }
-    }else{
-        input.setAttribute("type", "text");
-        if(!callback){
-            input.setAttribute("value", value);
-        }
-    }
-
-    label.appendChild(text);
-    label.appendChild(input);
-    div.appendChild(label);
-    parentElement.appendChild(div);
 }
 
 
