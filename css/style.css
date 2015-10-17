@@ -84,9 +84,8 @@ span {
 
 /* CONFIGMENU */
 
-#configmenu_container {
+.menuContainer {
     position:absolute;
-    display:none;
     z-index:120;
     top:0;
     left:0;
@@ -94,38 +93,31 @@ span {
     width:100vw;
     height:100vh;
 
-    padding:110px;
+    font-family:Arial;
+    font-size:14px;
 
     background-color:rgba(255,255,255,0.2);
     box-sizing:border-box;
 }
-#configmenu_container *:not(.wrapperheading):not(#heading) {
-    box-sizing:border-box;
-    font-family:Arial;
-    font-size:14px;
-}
 
-#configmenu {
-    width:100%;
-    height:100%;
-
-    background-color:#fffafa;
+.menu {
+    background-color:#ffffff;
     box-shadow:0 0 15px rgba(0,0,0,0.5);
 }
 
-#heading {
+.menuHeading {
     line-height:40px;
     font-size:20px;
     padding-left:10px;
 
-    background-color:#ddd;
-    border-bottom:1px solid #ccc;
+    background-color:#fbfbfb;
+    border-bottom:1px solid #ddd;
 }
 
-#content {
-    margin-top: -1px;
+.menuContent {
+    margin-top:-1px;
     height:calc(100% - 40px);
-    overflow-y: auto;
+    overflow-y:auto;
 }
 
 .option {
@@ -134,40 +126,33 @@ span {
     height:25px;
 
     line-height:25px;
-    padding-left:40px;
-}
-#boolwrapper .option {
-    width:50%;
 }
 
-#boolwrapper input[type="checkbox"] {
-    margin:4px 20px 0 0;
+.menu input[type="checkbox"] {
+    margin-top:4px;
     float:left;
 }
-#configmenu input[type="text"] {
+.menu input[type="text"] {
     width:60%;
-    margin:4px 40px 0 0;
+    margin-top:4px;
     line-height:19px;
     padding:0 0 0 5px;
     border-radius:0;
-    border:1px solid #ccc;
+    border:1px solid #ddd;
+    background-color:#fbfbfb;
+    font-family:inherit;
+    font-size:inherit;
     float:right;
 }
 
 
-#boolwrapper {
-    margin:40px 0;
-}
-#stylewrapper {
-    margin:40px 0;
-}
-#extwrapper {
+.category {
+    padding:0 40px;
     margin:40px 0;
 }
 
-.wrapperheading {
+.categoryHeading {
     display:inline-block;
-    margin-left:40px;
     margin-bottom:10px;
     font-size:20px;
 }
