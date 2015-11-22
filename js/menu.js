@@ -1,5 +1,5 @@
-// if type==0: percentual size > x: left/right padding; y: top/bottom padding
-// if type==1: static size     > x: width; y: height
+// type==0: percentual size ; x: left/right padding; y: top/bottom padding
+// type==1: static size     ; x: width; y: height
 function Menu(name, type, x, y){
     this.type = type;
     this.name = name;
@@ -19,7 +19,6 @@ function Menu(name, type, x, y){
     this.heading.setAttribute("class", "menuHeading");
     this.content.setAttribute("class", "menuContent");
 
-
     // set styles for different types
     if(this.type==0){
         this.width = "100%";
@@ -36,7 +35,7 @@ function Menu(name, type, x, y){
     this.menu.style.width = this.width;
     this.menu.style.height = this.height;
 
-
+    // append nodes
     this.menu.appendChild(this.heading);
     this.menu.appendChild(this.content);
     
@@ -46,28 +45,36 @@ function Menu(name, type, x, y){
 }
 
 
-function Category(name, type, hasHeading){
+function Category(name, type, heading){
     this.name = name;
     this.type = type;
-    this.hasHeading = hasHeading;
+    this.heading = heading;
+    this.options = [];
 
     this.element = document.createElement("div");
     this.element.setAttribute("id", name.replaceChars(" ", ""));
     this.element.setAttribute("class", "category");
 
-    if(this.hasHeading){
-        this.heading = document.createElement("div");
-        this.heading.setAttribute("class", "categoryHeading");
-        this.heading.appendChild(document.createTextNode(name));
-        this.element.appendChild(this.heading);
+    if(this.heading){
+        this.headingElem = document.createElement("div");
+        this.headingElem.setAttribute("class", "categoryHeading");
+        this.headingElem.appendChild(document.createTextNode(this.heading));
+        this.element.appendChild(this.headingElem);
     }
 }
 
 
 
+Menu.prototype.appendButton = function(name, color){
+    var button = document.createElement("div");
+    button.setAttribute("class", "button");
+    button.setAttribute("id", name);
+    button.setAttribute("title", name);
+    button.style.backgroundColor = color;
 
-Menu.prototype.appendButton = function(name, img, color, func){
-
+    this.heading.appendChild(button);
+    
+    return button;
 }
 
 // type == 0: normal, else: toggle
@@ -91,6 +98,9 @@ Category.prototype.appendOption = function(name, key, type, callback, value){
     var label = document.createElement("label");
     var text = document.createTextNode(name);
     var input = document.createElement("input");
+
+    // add to category option list
+    this.options.push(option);
 
     option.setAttribute("class", "option");
     input.setAttribute("name", key);
