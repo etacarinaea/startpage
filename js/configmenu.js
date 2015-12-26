@@ -52,8 +52,23 @@ function configmenuInit(callback){
 
 // separate function so it wont execute before jQuery.getJSON has finished
 function pipe(data, callback){
-    // create the menu or load config on window load
-    if(localStorage.config == undefined || callback == undefined){
+    // create initial menu, config menu or load config on window load =========================================
+    if(localStorage.config == undefined){
+        initmenu = new Menu("Init-Menu", 1, 550, 350);
+        var initbuttons = initmenu.split(
+                ["Use files.",
+                 "Use configuration menu."],
+                ["Use the config.json file located in the startpage's root directory.",
+                 "Use a GUI to easily configure the startpage's style. Has import/export function."]);
+        initbuttons[0].addEventListener("click", function(){
+            loadConfig(data, callback);
+            initmenu.kill();
+        });
+        initbuttons[1].addEventListener("click", function(){
+            createMenu(data, callback);
+            initmenu.kill();
+        });
+    }else if(callback == undefined){
         createMenu(data, callback);
     }else{
         loadConfig(data, callback);
@@ -146,16 +161,13 @@ function saveConfig(callback){
         json.ext[key] = String(elem.value);
     }
 
-    // to json for import/export + backwards compatibility
-    json = JSON.stringify(json, undefined, 4);
-
-    localStorage.config = json;
-    loadConfig(JSON.parse(json), callback);
+    loadConfig(json, callback);
     location.reload();
 }
 
 
 function loadConfig(data, callback){
+    localStorage.config = JSON.stringify(data, undefined, 4);
     cfg = [
         data.style.heading_font,
         data.style.link_font,
