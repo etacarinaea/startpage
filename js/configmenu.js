@@ -100,6 +100,7 @@ function createMenu(data, callback){
     var saveButton = configmenu.appendButton("save", "#99bb99");
     saveButton.addEventListener("click", function(){
         saveConfig(callback);
+        configmenu.kill();
     });
     var exportButton = configmenu.appendButton("export", "#9999bb");
     exportButton.addEventListener("click", function(){
@@ -121,15 +122,13 @@ function importConfig(callback){
 
     importinput.addEventListener("change", function(e){
         var file = importinput.files[0];
-        console.log(file);
 
         var reader = new FileReader();
         reader.readAsText(file);
 
         reader.onload = function(e){
-            console.log(reader.result);
-            localStorage.config = reader.result;
-            location.reload();
+            loadConfig(JSON.parse(reader.result), callback);
+            configmenu.kill();
         }
     });
 
@@ -137,6 +136,7 @@ function importConfig(callback){
 }
 
 function exportConfig(){
+    saveConfig();
     window.open("data:application/octet-stream;base64," + btoa(localStorage.config));
 }
 
@@ -162,7 +162,6 @@ function saveConfig(callback){
     }
 
     loadConfig(json, callback);
-    location.reload();
 }
 
 
