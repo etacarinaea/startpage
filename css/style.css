@@ -2,7 +2,7 @@ body{
     overflow: hidden;
 }
 
-a {
+#container a {
     color:inherit;
     text-decoration:none;
     line-height:25px;
@@ -51,7 +51,7 @@ a {
     line-height:25px;
 }
 
-span {
+#container span {
     width:inherit;
     height:inherit;
     line-height:150px;
@@ -165,6 +165,8 @@ span {
 
     line-height:40px;
     text-align:center;
+
+    cursor:pointer;
 }
 .button:hover {
     opacity:0.7;
@@ -183,5 +185,69 @@ span {
 
 #save {
     background-image:url("../img/save.png");
+}
+
+
+.splitbutton {
+    position:relative;
+
+    --margin:18px;
+
+    display:inline-block;
+    height:calc(100% - var(--margin) * 2);
+    width:calc(50% - (var(--margin) + var(--margin) / 2));
+    margin:var(--margin) 0 0 var(--margin);
+    
+    font-size:14px;
+
+    background-color:#fbfbfb;
+
+    border:solid 1px #dddddd;
+    box-sizing:border-box;
+
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    cursor:pointer;
+}
+.splitbutton_nametable {
+    display:table;
+    height:100%;
+    width:100%;
+
+    text-align:center;
+
+    transition:height .1s ease-in-out;
+}
+.splitbutton_namecell {
+    display:table-cell;
+
+    vertical-align:middle;
+
+    background-color:inherit;
+}
+.splitbutton_description {
+    position:absolute;
+    bottom:0;
+    left:0;
+
+    overflow:hidden;
+
+    height:0;
+    width:100%;
+
+    padding:20px 10px 0 10px;
+    box-sizing:border-box;
+    
+    background:linear-gradient(#dddddd, #f4f4f4 5%);
+
+    transition:height .1s ease-in-out;
+}
+
+.splitbutton:hover .splitbutton_description {
+    height:calc(100% - 100px);
+}
+.splitbutton:hover .splitbutton_nametable {
+    height:100px;
 }
 
