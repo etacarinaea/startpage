@@ -65,6 +65,9 @@ function Category(name, type, heading){
 
 
 
+Menu.prototype.kill = function(){
+    document.body.removeChild(this.container);
+}
 Menu.prototype.appendButton = function(name, color){
     var button = document.createElement("div");
     button.setAttribute("class", "button");
@@ -90,6 +93,42 @@ Menu.prototype.appendCategory = function(name, type, hasHeading){
 
     return category;
 }
+
+// arrays of button names and their descriptions
+// returns array of button elements
+Menu.prototype.split = function(name, description){
+    var buttondiv = [];
+    var nametable = [];
+    var namecell = [];
+    var descriptiondiv = [];
+
+    for(var i=0; i < name.length; i++){
+        buttondiv[i] = document.createElement("div");
+        buttondiv[i].setAttribute("class", "splitbutton");
+
+        nametable[i] = document.createElement("div");
+        nametable[i].setAttribute("class", "splitbutton_nametable");
+
+        namecell[i] = document.createElement("div");
+        namecell[i].setAttribute("class", "splitbutton_namecell");
+
+        descriptiondiv[i] = document.createElement("div");
+        descriptiondiv[i].setAttribute("class", "splitbutton_description");
+
+        namecell[i].appendChild(document.createTextNode(name[i]));
+        descriptiondiv[i].appendChild(document.createTextNode(description[i]));
+
+        nametable[i].appendChild(namecell[i]);
+
+        buttondiv[i].appendChild(nametable[i]);
+        buttondiv[i].appendChild(descriptiondiv[i]);
+
+        this.content.appendChild(buttondiv[i]);
+    }
+
+    return buttondiv;
+}
+
 
 // type == 0: checkbox, else: text
 // value: HTML element value
