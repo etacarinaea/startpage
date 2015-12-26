@@ -52,7 +52,7 @@ function configmenuInit(callback){
 
 // separate function so it wont execute before jQuery.getJSON has finished
 function pipe(data, callback){
-    // create initial menu, config menu or load config on window load =========================================
+    // create initial menu, config menu or load config on window load
     if(localStorage.config == undefined){
         initmenu = new Menu("Init-Menu", 1, 550, 350);
         var initbuttons = initmenu.split(
