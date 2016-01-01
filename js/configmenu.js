@@ -38,69 +38,17 @@ var extItems = {
 };
 var ext = new ConfigObject(extItems);
 
-
-
 function configmenuInit(callback){
     $.getJSON("config.json", function(data){
-        if(localStorage.use_json_file == "true" || localStorage.config == undefined){
-            pipe(data, callback);
-        }else{
-            pipe(JSON.parse(localStorage.config), callback);
-        }
+        pipe(data, callback);
     });
 }
 
 // separate function so it wont execute before jQuery.getJSON has finished
 function pipe(data, callback){
     var configmenuContainer = document.getElementById("configmenu_container");
-
-    // create the menu or load config on window load
-    if(localStorage.config == undefined || callback == undefined){
-        configmenuContainer.style.display = "block";
-        createMenu(data, callback);
-    }else{
-        loadConfig(data, callback);
-    }
+    loadConfig(data, callback);
 }
-
-function createMenu(data, callback){
-    var configmenuContainer = document.getElementById("configmenu_container");
-    var boolwrapper = document.getElementById("boolwrapper");
-    var stylewrapper = document.getElementById("stylewrapper");
-    var extwrapper = document.getElementById("extwrapper");
-
-    if(!data){
-        var data = {bool:"",style:"",ext:""};
-    }
-
-    for(var key in bool){
-        appendOption(boolwrapper, bool[key], key, 0, callback, data.bool[key]);
-    }
-    for(var key in style){
-        appendOption(stylewrapper, style[key], key, 1, callback, data.style[key]);
-    }
-    for(var key in ext){
-        appendOption(extwrapper, ext[key], key, 1, callback, data.ext[key]);
-    }
-
-    mascotCheckbox = document.getElementById("mcb");
-    checkboxHandler();
-    mascotCheckbox.addEventListener("click", checkboxHandler);
-
-    var importButton = document.getElementById("import");
-    importButton.addEventListener("click", function(){
-        importConfig(callback);
-    });
-    var exportButton = document.getElementById("export");
-    exportButton.addEventListener("click", function(){
-        exportConfig();
-    });
-    var doneButton = document.getElementById("done");
-    doneButton.addEventListener("click", function(){
-        saveConfig(callback);
-    });
-}
-
 
 // type == 0: checkbox, else: text
 // value: HTML element value
