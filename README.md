@@ -56,3 +56,7 @@ The following example will search for _github_ using _DuckDuckGo_:<br>
 -a github<br>
 If an invalid search option or none at all is specified, Google is used.
 For danbooru, use underscores (_) for tags with more than one word and separate multiple tags with space (e.g.: school_uniform 1girl).
+
+<br>
+###### private mode
+If you're using private mode you can use [this workaround by Mattudw](https://github.com/fuyuneko/startpage/pull/4) which will always load config.json instead of trying to load from the localStorage object.
