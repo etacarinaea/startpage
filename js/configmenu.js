@@ -42,7 +42,9 @@ var ext = new ConfigObject(extItems);
 
 function configmenuInit(callback){
     $.getJSON("config.json", function(data){
-        if(localStorage.use_json_file == "true" || localStorage.config == undefined){
+        if(data.bool.privateMode == true){
+            loadConfig(data, callback);
+        }else if(localStorage.use_json_file == "true" || localStorage.config == undefined){
             pipe(data, callback);
         }else{
             pipe(JSON.parse(localStorage.config), callback);
