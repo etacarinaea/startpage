@@ -69,16 +69,30 @@ body{
 
 
 #popup {
-    position: absolute;
-    z-index: 100;
-    bottom: -200px;
-    right: 15px;
-    padding: 25px;
+    z-index:101;
+    position:absolute;
+    bottom:-200px;
+    right:15px;
+    padding:25px;
     -moz-transition:all .25s ease-in-out;
     -webkit-transition:all .25s ease-in-out;
     -o-transition:all .25s ease-in-out;
     transition:all .25s ease-in-out;
     text-align:left;
+}
+
+
+#version {
+    z-index:100;
+    position:absolute;
+    bottom:5px;
+    right:5px;
+}
+
+#version a {
+    font-size:14px;
+    color:#fafafa;
+    text-shadow:0 -1px #000, 1px 0 #000, 0 1px #000, -1px 0 #000;
 }
 
 

@@ -169,6 +169,7 @@ function saveConfig(callback){
 
 function loadConfig(data, callback){
     localStorage.config = JSON.stringify(data, undefined, 4);
+    console.log(data);
     cfg = [
         data.style.heading_font,
         data.style.link_font,
