@@ -9,12 +9,14 @@ function version(msg){
         responseobj = JSON.parse(this.responseText);
         if(responseobj.tag_name != VERSION && this.status == 200){
             msg = "<u><a href='https://github.com/fuyuneko/" +
-                        "startpage/releases'>" + responseobj.tag_name +
-                        " is available!</a></u><br>" + msg;
+                  "startpage/releases'>" + responseobj.tag_name +
+                  " is available!</a></u><br>" + msg;
         }
     };
 
-    request.open("get", "http://api.github.com/repos/fuyuneko/startpage/releases/latest", false);
+    request.open("get",
+            "http://api.github.com/repos/fuyuneko/startpage/releases/latest",
+            false);
     request.send();
 
     return msg;
