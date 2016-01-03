@@ -2,7 +2,7 @@ body{
     overflow: hidden;
 }
 
-a {
+#container a {
     color:inherit;
     text-decoration:none;
     line-height:100%;
@@ -51,7 +51,7 @@ a {
     line-height:25px;
 }
 
-span {
+#container span {
     width:inherit;
     height:inherit;
     line-height:150px;
@@ -84,9 +84,8 @@ span {
 
 /* CONFIGMENU */
 
-#configmenu_container {
+.menuContainer {
     position:absolute;
-    display:none;
     z-index:120;
     top:0;
     left:0;
@@ -94,38 +93,31 @@ span {
     width:100vw;
     height:100vh;
 
-    padding:110px;
+    font-family:Arial;
+    font-size:14px;
 
     background-color:rgba(255,255,255,0.2);
     box-sizing:border-box;
 }
-#configmenu_container *:not(.wrapperheading):not(#heading) {
-    box-sizing:border-box;
-    font-family:Arial;
-    font-size:14px;
-}
 
-#configmenu {
-    width:100%;
-    height:100%;
-
-    background-color:#fffafa;
+.menu {
+    background-color:#ffffff;
     box-shadow:0 0 15px rgba(0,0,0,0.5);
 }
 
-#heading {
+.menuHeading {
     line-height:40px;
     font-size:20px;
     padding-left:10px;
 
-    background-color:#ddd;
-    border-bottom:1px solid #ccc;
+    background-color:#fbfbfb;
+    border-bottom:1px solid #ddd;
 }
 
-#content {
-    margin-top: -1px;
+.menuContent {
+    margin-top:-1px;
     height:calc(100% - 40px);
-    overflow-y: auto;
+    overflow-y:auto;
 }
 
 .option {
@@ -134,40 +126,33 @@ span {
     height:25px;
 
     line-height:25px;
-    padding-left:40px;
-}
-#boolwrapper .option {
-    width:50%;
 }
 
-#boolwrapper input[type="checkbox"] {
-    margin:4px 20px 0 0;
+.menu input[type="checkbox"] {
+    margin-top:4px;
     float:left;
 }
-#configmenu input[type="text"] {
+.menu input[type="text"] {
     width:60%;
-    margin:4px 40px 0 0;
+    margin-top:4px;
     line-height:19px;
     padding:0 0 0 5px;
     border-radius:0;
-    border:1px solid #ccc;
+    border:1px solid #ddd;
+    background-color:#fbfbfb;
+    font-family:inherit;
+    font-size:inherit;
     float:right;
 }
 
 
-#boolwrapper {
-    margin:40px 0;
-}
-#stylewrapper {
-    margin:40px 0;
-}
-#extwrapper {
+.category {
+    padding:0 40px;
     margin:40px 0;
 }
 
-.wrapperheading {
+.categoryHeading {
     display:inline-block;
-    margin-left:40px;
     margin-bottom:10px;
     font-size:20px;
 }
@@ -180,6 +165,8 @@ span {
 
     line-height:40px;
     text-align:center;
+
+    cursor:pointer;
 }
 .button:hover {
     opacity:0.7;
@@ -187,7 +174,6 @@ span {
 
 #import {
     background-image:url("../img/import.png");
-    background-color:#bb9999;
 }
 #importinput {
     display:none;
@@ -195,11 +181,73 @@ span {
 
 #export {
     background-image:url("../img/export.png");
-    background-color:#9999bb;
 }
 
-#done {
-    background-image:url("../img/done.png");
-    background-color:#99bb99;
+#save {
+    background-image:url("../img/save.png");
+}
+
+
+.splitbutton {
+    position:relative;
+
+    --margin:18px;
+
+    display:inline-block;
+    height:calc(100% - var(--margin) * 2);
+    width:calc(50% - (var(--margin) + var(--margin) / 2));
+    margin:var(--margin) 0 0 var(--margin);
+    
+    font-size:14px;
+
+    background-color:#fbfbfb;
+
+    border:solid 1px #dddddd;
+    box-sizing:border-box;
+
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    cursor:pointer;
+}
+.splitbutton_nametable {
+    display:table;
+    height:100%;
+    width:100%;
+
+    text-align:center;
+
+    transition:height .1s ease-in-out;
+}
+.splitbutton_namecell {
+    display:table-cell;
+
+    vertical-align:middle;
+
+    background-color:inherit;
+}
+.splitbutton_description {
+    position:absolute;
+    bottom:0;
+    left:0;
+
+    overflow:hidden;
+
+    height:0;
+    width:100%;
+
+    padding:20px 10px 0 10px;
+    box-sizing:border-box;
+    
+    background:linear-gradient(#dddddd, #f4f4f4 5%);
+
+    transition:height .1s ease-in-out;
+}
+
+.splitbutton:hover .splitbutton_description {
+    height:calc(100% - 100px);
+}
+.splitbutton:hover .splitbutton_nametable {
+    height:100px;
 }
 

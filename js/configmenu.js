@@ -52,11 +52,23 @@ function configmenuInit(callback){
 
 // separate function so it wont execute before jQuery.getJSON has finished
 function pipe(data, callback){
-    var configmenuContainer = document.getElementById("configmenu_container");
-
-    // create the menu or load config on window load
-    if(localStorage.config == undefined || callback == undefined){
-        configmenuContainer.style.display = "block";
+    // create initial menu, config menu or load config on window load
+    if(localStorage.config == undefined){
+        initmenu = new Menu("Init-Menu", 1, 550, 350);
+        var initbuttons = initmenu.split(
+                ["Use files.",
+                 "Use configuration menu."],
+                ["Use the config.json file located in the startpage's root directory.",
+                 "Use a GUI to easily configure the startpage's style. Has import/export function."]);
+        initbuttons[0].addEventListener("click", function(){
+            loadConfig(data, callback);
+            initmenu.kill();
+        });
+        initbuttons[1].addEventListener("click", function(){
+            createMenu(data, callback);
+            initmenu.kill();
+        });
+    }else if(callback == undefined){
         createMenu(data, callback);
     }else{
         loadConfig(data, callback);
@@ -64,101 +76,59 @@ function pipe(data, callback){
 }
 
 function createMenu(data, callback){
-    var configmenuContainer = document.getElementById("configmenu_container");
-    var boolwrapper = document.getElementById("boolwrapper");
-    var stylewrapper = document.getElementById("stylewrapper");
-    var extwrapper = document.getElementById("extwrapper");
+    // create menu and categories
+    configmenu = new Menu("Config-Menu", 0, 110, 110);
+    var boolcategory = configmenu.appendCategory("bool", 0, undefined);
+    var stylecategory = configmenu.appendCategory("style", 0, "General");
+    var extcategory = configmenu.appendCategory("ext", 1, "Mascot");
 
     if(!data){
         var data = {bool:"",style:"",ext:""};
     }
 
+    // append options to categories
     for(var key in bool){
-        appendOption(boolwrapper, bool[key], key, 0, callback, data.bool[key]);
+        configmenu.categories[0].appendOption(bool[key].name, key, 0, callback, data.bool[key]);
     }
     for(var key in style){
-        appendOption(stylewrapper, style[key], key, 1, callback, data.style[key]);
+        configmenu.categories[1].appendOption(style[key].name, key, 1, callback, data.style[key]);
     }
     for(var key in ext){
-        appendOption(extwrapper, ext[key], key, 1, callback, data.ext[key]);
+        configmenu.categories[2].appendOption(ext[key].name, key, 1, callback, data.ext[key]);
     }
 
-    mascotCheckbox = document.getElementById("mcb");
-    checkboxHandler();
-    mascotCheckbox.addEventListener("click", checkboxHandler);
-
-    var importButton = document.getElementById("import");
-    importButton.addEventListener("click", function(){
-        importConfig(callback);
+    var saveButton = configmenu.appendButton("save", "#99bb99");
+    saveButton.addEventListener("click", function(){
+        saveConfig(callback);
+        configmenu.kill();
     });
-    var exportButton = document.getElementById("export");
+    var exportButton = configmenu.appendButton("export", "#9999bb");
     exportButton.addEventListener("click", function(){
         exportConfig();
     });
-    var doneButton = document.getElementById("done");
-    doneButton.addEventListener("click", function(){
-        saveConfig(callback);
+    var importButton = configmenu.appendButton("import", "#bb9999");
+    importButton.addEventListener("click", function(){
+        importConfig(callback);
     });
-}
-
-
-// type == 0: checkbox, else: text
-// value: HTML element value
-function appendOption(parentElement, obj, key, type, callback, value){
-    var div = document.createElement("div");
-    var label = document.createElement("label");
-    var text = document.createTextNode(obj.name);
-    var input = document.createElement("input");
-
-    div.setAttribute("class", "option");
-    input.setAttribute("name", key);
-
-    if(type == 0){
-        input.setAttribute("type", "checkbox");
-        if(!callback){
-            input.checked = value;
-        }
-    }else{
-        input.setAttribute("type", "text");
-        if(!callback){
-            input.setAttribute("value", value);
-        }
-    }
-
-    label.appendChild(text);
-    label.appendChild(input);
-    div.appendChild(label);
-    parentElement.appendChild(div);
-}
-
-
-function checkboxHandler(){
-    if(mascotCheckbox.checked == true){
-        var visibility = "block";
-    }else{
-        var visibility = "none";
-    }
-    var options = document.querySelectorAll("#extwrapper .option");
-    for(var i=0; i < options.length; i++){
-        options[i].style.display = visibility;
-    }
 }
 
 
 function importConfig(callback){
-    var importinput = document.getElementById("importinput");
+    var importinput = document.createElement("input");
+    importinput.setAttribute("type", "file");
+    importinput.setAttribute("name", "importinput");
+
+    configmenu.heading.appendChild(importinput);
 
     importinput.addEventListener("change", function(e){
         var file = importinput.files[0];
-        console.log(file);
 
         var reader = new FileReader();
         reader.readAsText(file);
 
         reader.onload = function(e){
-            console.log(reader.result);
-            localStorage.config = reader.result;
-            location.reload();
+            loadConfig(JSON.parse(reader.result), callback);
+            configmenu.kill();
         }
     });
 
@@ -166,14 +136,12 @@ function importConfig(callback){
 }
 
 function exportConfig(){
+    saveConfig();
     window.open("data:application/octet-stream;base64," + btoa(localStorage.config));
 }
 
 function saveConfig(callback){
     json = {bool:{}, style:{}, ext:{}};
-    // because mascot is not an attribute of boolItems, create a local obj w/ mascot:
-    var bool = new ConfigObject(boolItems);
-    bool.mascot = {};
     for(var key in bool){
         var elem = document.querySelector("input[name='" + key + "'");
         bool[key].value = elem.checked;
@@ -182,27 +150,23 @@ function saveConfig(callback){
     localStorage.use_json_file = document.querySelector("input[name='use_json_file'").checked;
     for(var key in style){
         var elem = document.querySelector(
-                "#stylewrapper input[name='" + key + "'");
+                "#style input[name='" + key + "'");
         style[key].value = elem.value;
         json.style[key] = String(elem.value);
     }
     for(var key in ext){
         var elem = document.querySelector(
-                "#extwrapper input[name='" + key + "'");
+                "#ext input[name='" + key + "'");
         ext[key].value = elem.value;
         json.ext[key] = String(elem.value);
     }
 
-    // to json for import/export + backwards compatibility
-    json = JSON.stringify(json, undefined, 4);
-
-    localStorage.config = json;
-    loadConfig(JSON.parse(json), callback);
-    location.reload();
+    loadConfig(json, callback);
 }
 
 
 function loadConfig(data, callback){
+    localStorage.config = JSON.stringify(data, undefined, 4);
     cfg = [
         data.style.heading_font,
         data.style.link_font,
