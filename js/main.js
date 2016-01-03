@@ -1,4 +1,4 @@
-VERSION = "v1.2.0";
+VERSION = "v1.4.0";
 
 
 function version(){
