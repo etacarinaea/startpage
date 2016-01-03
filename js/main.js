@@ -1,16 +1,15 @@
-VERSION = "v1.3.0";
+VERSION = "v1.2.0";
 
 
-function version(msg){
+function version(){
+    var msg;
     var responseobj;
     var request = new XMLHttpRequest();
 
     request.onload = function(){
         responseobj = JSON.parse(this.responseText);
         if(responseobj.tag_name != VERSION && this.status == 200){
-            msg = "<u><a href='https://github.com/fuyuneko/" +
-                  "startpage/releases'>" + responseobj.tag_name +
-                  " is available!</a></u><br>" + msg;
+            msg = responseobj.tag_name;
         }
     };
 
@@ -30,10 +29,6 @@ function fixJitter(container){
 
 
 function popup(obj, msg){
-    if(cfg_bool[3]){
-        msg = version(msg);
-    }
-
     var popuphandler = function(){
         popup(this, msg);
     }
@@ -137,6 +132,21 @@ window.onresize = function(){
 
 
 function main(){
+    if(cfg_bool[3]){
+        var ver = version();
+        if(ver){
+            var versionDiv =  document.createElement("div");
+            versionDiv.setAttribute("id", "version");
+            
+            var versionAnchor = document.createElement("a");
+            versionAnchor.href = "https://github.com/fuyuneko/startpage/releases";
+            versionAnchor.appendChild(document.createTextNode("A new version is available: " + ver));
+
+            versionDiv.appendChild(versionAnchor);
+            document.body.appendChild(versionDiv);
+        }
+    }
+
     HelpText = "-h Shows this list<br>-g Google (default)<br>-w Wikipedia<br>\
                 -a ArchWiki<br>-d Danbooru<br>-y YouTube<br>-n niconico<br>\
                 -p pixiv";
