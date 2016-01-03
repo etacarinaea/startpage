@@ -3,7 +3,8 @@
         "borders":              true,
         "alwaysopen":           false,
         "mascot":               false,
-        "allowVersionCheck":    true
+        "allowVersionCheck":    true,
+        "privateMode":          false
     },
     
     "style": {

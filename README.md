@@ -18,8 +18,10 @@ If you have removed the search field from the html file you can still open it by
 | alwaysopen        | makes all squares open on load                   |
 | mascot            | enables image in the bottom right hand corner    |
 | allowVersionCheck | allows to check for the latest Version on github |
+| privateMode       | will always load config.json                     |
 
 The version is only checked for if the help popup shows up.
+Set privateMode to ```true``` if you're always using private mode.
 
 The _images_ array is a list of all mascot images to be used. If you want to use only one image just create an array with one item.
 
