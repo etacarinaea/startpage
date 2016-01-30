@@ -17,7 +17,8 @@
         "heading_color":        "#8d2036",
         "link_color":           "#aaaaaa",
         "border_color":         "#8d2036",
-        "border_width":         "2px",
+        "border_width_normal":  "0",
+        "border_width_hovered": "2px 0",
         "search_color":         "#aaaaaa",
         "search_bg_color":      "rgba(110,110,110,0.1)"
     },
