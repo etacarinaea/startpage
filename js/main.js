@@ -53,16 +53,14 @@ function expand(){
         this.style.height = "337px";
     }
     if(cfg_bool[0]){
-        this.style.borderTop = cfg[9] + " solid " + cfg[8];
-        this.style.borderBottom = cfg[9] + " solid " + cfg[8];
+        this.style.borderWidth = cfg[10];
     }
 }
 
 
 function contract(){
     this.style.height = "150px";
-    this.style.borderTop = "0 solid" + cfg[8];
-    this.style.borderBottom = "0 solid" + cfg[8];
+    this.style.borderWidth = cfg[9];
 }
 
 
