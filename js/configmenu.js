@@ -22,7 +22,8 @@ var styleItems = {
     heading_color: "Heading Color",
     link_color: "Link Color",
     border_color: "Border Color",
-    border_width: "Border Width",
+    border_width_normal: "Border Width",
+    border_width_hovered: "Border Width (Hovered)",
     search_color: "Search Color",
     search_bg_color: "Search Background Color"
 };
