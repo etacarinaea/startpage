@@ -181,6 +181,7 @@ function main(){
     });
 
     // adding event listeners to squares or expanding them onload
+    /*
     var sqr = document.querySelectorAll(".sqr");
     if(!cfg_bool[1]){
         for(var i = 0; i < sqr.length; ++i){
@@ -203,6 +204,7 @@ function main(){
             }
         }
     }
+    */
 }
 
 
