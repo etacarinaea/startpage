@@ -1,4 +1,23 @@
 {
+    "squares": [
+        {"name":"4chan", "links": [
+            {"name":"/a/", "url":"http://www.4chan.org/a/"},
+            {"name":"/g/", "url":"http://www.4chan.org/g/"},
+            {"name":"/w/", "url":"http://www.4chan.org/w/"}
+        ]},
+
+        {"name":"images", "links": [
+            {"name":"danbooru", "url":"http://danbooru.donmai.us"}
+        ]},
+
+        {"name":"search", "options": [
+            {"opt":"default", "url":"https://www.google.com/#q="},
+            {"opt":"-a", "url":"https://wiki.archlinux.org/index.php?search="},
+            {"opt":"-y", "url":"https://www.youtube.com/results?search_query="}
+        ]}
+    ],
+
+
     "bool": {
         "borders":              true,
         "alwaysopen":           false,
@@ -12,8 +31,8 @@
         "link_font":            "tewi",
         "heading_font_size":    "10px",
         "link_font_size":       "10px",
-        "background":           "#19191b",
-        "foreground":           "#121212",
+        "background":           "#171722",
+        "foreground":           "#070915",
         "heading_color":        "#8d2036",
         "link_color":           "#aaaaaa",
         "border_color":         "#8d2036",

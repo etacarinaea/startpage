@@ -41,7 +41,10 @@ var ext = new ConfigObject(extItems);
 
 
 
+
 function configmenuInit(callback){
+
+
     $.getJSON("config.json", function(data){
         if(data.bool.privateMode == true){
             loadConfig(data, callback);
@@ -198,6 +201,13 @@ function loadConfig(data, callback){
         data.bool.allow_version_check
     ];
     localStorage.cfg = cfg, localStorage.cfg_bool = cfg_bool;
+    // ------------------------
+    test = new Square(squareConfObj[0].name, squareConfObj[0].links, 0);
+    console.log(test);
+    test2 = new Square(squareConfObj[1].name, squareConfObj[1].links, 0);
+    console.log(test2);
+
+    // ------------------------
     var span = $("span");
     var a = $("a");
     var popup = $("#popup");
