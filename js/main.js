@@ -44,13 +44,16 @@ function popup(obj, msg){
     visibility = !visibility;
 }
 
-
 // expanding and contracting squares
 function expand(){
     if(this.acount > 0){
-        this.style.height = 300 + 25*this.acount + "px";
+        this.style.width = "225px";
+        this.style.height = "225px";
+	this.style.lineHeight = "40px";
     }else{
-        this.style.height = "337px";
+        this.style.width = "225px";
+	this.style.height = "225px";
+	this.style.lineHeight = "40px";
     }
     if(cfg_bool[0]){
         this.style.borderWidth = cfg[10];
@@ -59,9 +62,11 @@ function expand(){
 
 
 function contract(){
+    this.style.width = "150px";
     this.style.height = "150px";
     this.style.borderWidth = cfg[9];
 }
+
 
 
 
@@ -105,20 +110,11 @@ function search(query){
         case "-a":
             searchCase("https://wiki.archlinux.org/index.php?search=", query, "+");
             break;
-        case "-d":
-            searchCase("http://danbooru.donmai.us/posts?tags=", query, "+");
-            break;
         case "-y":
             searchCase("https://www.youtube.com/results?search_query=", query, "+");
             break;
-        case "-n":
-            searchCase("http://www.nicovideo.jp/search/", query, "%20");
-            break;
-        case "-p":
-            searchCase("http://www.pixiv.net/search.php?s_mode=s_tag&word=", query, "%20");
-            break;
         default:
-            window.location = "https://www.google.com/#q=" + query.replaceChars(" ", "+");
+            window.location = "https://duckduckgo.com/?q=" + query.replaceChars(" ", "+");
     }
 }
 
@@ -169,7 +165,8 @@ function main(){
     document.addEventListener("keypress", function(a){
         var key = a.keyCode;
         if(key == 9){
-            search_sqr.style.height = "337px";
+            search_sqr.style.height = "225px";
+            search_sqr.style.width = "225px";
             search_sqr.style.borderTop = cfg[9] + " solid " + cfg[8];
             search_sqr.style.borderBottom = cfg[9] + " solid " + cfg[8];
             document.getElementById("searchinput").focus();

@@ -2,49 +2,61 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>startpage</title>
+        <title>Will's Start Page</title>
+	<link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="js/configmenu.js"></script>
         <script src="js/menu.js"></script>
         <script src="js/main.js"></script>
+	<script type="text/javascript">
+		var div = document.getElementByClassName("sqr");
+		function expand(){
+    			if(this.acount > 0){
+        		this.style.width = "225px";
+		        this.style.height = "225px";
+			div.style.lineHeight = "40px";
+		    }else{
+		        this.style.width = "225px";
+			this.style.height = "225px";
+			div.style.lineHeight = "40px";
+		    }
+		    if(cfg_bool[0]){
+		        this.style.borderWidth = cfg[10];
+		    }
+		}
+
+
+		function contract(){
+	    		this.style.width = "150px";
+	    		this.style.height = "150px";
+	    		this.style.borderWidth = cfg[9];
+		}
+	</script>
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
         <div id="bgimg"></div>
         <div id="container">
             <div id="cell">
+                <div class="sqr"> <span>My Pages</span>
+                    <div class="content">
+                        <a href="http://www.lgfl.net/services/Pages/pupil-email.aspx">Email</a><br>
+                        <a href="http://www.suttongrammar.sutton.sch.uk/">SGS</a><br>
+                        <a href="http://moodle.suttongrammar.sutton.sch.uk/">Moodle</a><br>
+                        <a href="https://files.tanuj.co/">SeaFile</a>
+                    </div>
+                </div>
+		<br>
                 <div class="sqr">
-                    <span>4chan</span>
+                    <span>Wiki</span>
                     <div class="content">
-                        <a href="http://boards.4chan.org/a/">/a/</a><br>
-                        <a href="http://boards.4chan.org/jp/">/jp/</a><br>
-                        <a href="http://boards.4chan.org/w/">/w/</a><br>
-                        <a href="http://boards.4chan.org/ic/">/ic/</a><br>
-                        <a href="http://boards.4chan.org/g/">/g/</a><br>
-                        <a href="http://boards.4chan.org/vg/">/vg/</a>
+                        <a href="http://starwars.wikia.com/wiki/Main_Page">Wookieepedia</a><br>
+                        <a href="http://terraria.wikia.com/wiki/Terraria_Wiki">Terraria Wiki</a><br>
+                        <a href="https://wiki.ubuntu.com/">Ubuntu Wiki</a><br>
+                        <a href="https://wiki.archlinux.org/">Arch Wiki</a>
                     </div>
                 </div>
-                <div class="sqr"> <span>images</span>
-                    <div class="content">
-                        <a href="http://danbooru.donmai.us/">danbooru</a><br>
-                        <a href="http://www.konachan.com">konachan</a><br>
-                        <a href="http://yande.re/">yande.re</a><br>
-                        <a href="http://vector.booru.org/">vectorbooru</a><br>
-                        <a href="http://zerochan.net/">zerochan</a><br>
-                        <a href="http://www.pixiv.net/">pixiv</a>
-                    </div>
-                </div>
-                <div class="sqr">
-                    <span>anime</span>
-                    <div class="content">
-                        <a href="http://horriblesubs.info/">horriblesubs</a><br>
-                        <a href="http://myanimelist.net/">myanimelist</a><br>
-                        <a href="http://anichart.net/">anichart</a><br>
-                        <a href="http://anidb.net/">anidb</a><br>
-                        <a href="http://nyaa.se/">nyaa.se</a><br>
-                        <a href="http://bakabt.me/">bakabt</a>
-                    </div>
-                </div>
+		&nbsp;&nbsp;&nbsp;
                 <div class="sqr" id="search_sqr">
                     <span>search</span>
                     <div class="content">

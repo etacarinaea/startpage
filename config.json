@@ -4,21 +4,21 @@
         "alwaysopen":           false,
         "mascot":               false,
         "allowVersionCheck":    true,
-        "privateMode":          false
+        "privateMode":          true
     },
     
     "style": {
-        "heading_font":         "tewi",
-        "link_font":            "tewi",
-        "heading_font_size":    "10px",
+        "heading_font":         "Ubuntu",
+        "link_font":            "Ubuntu",
+        "heading_font_size":    "14px",
         "link_font_size":       "10px",
-        "background":           "#19191b",
-        "foreground":           "#121212",
-        "heading_color":        "#8d2036",
+        "background":           "#666666",
+        "foreground":           "#e5e5e5",
+        "heading_color":        "#000000",
         "link_color":           "#aaaaaa",
-        "border_color":         "#8d2036",
+        "border_color":         "#FFFFFF",
         "border_width_normal":  "0",
-        "border_width_hovered": "2px 0",
+        "border_width_hovered": "0",
         "search_color":         "#aaaaaa",
         "search_bg_color":      "rgba(110,110,110,0.1)"
     },
