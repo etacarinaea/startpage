@@ -6,12 +6,31 @@ startpage
 
 
 <br>
-###### Configuration Menu
-The menu will be displayed the first time the page is loaded. It can be opened anytime by entering ```-c``` into the search field.
-If you have removed the search field from the html file you can still open it by entering ```search("-c")``` into the browser's console.
+### Configuration
+Configuration can be done using the configuration menu or by editing 
+```config.json``` in the startpage's directory.
 
 <br>
-###### JSON
+##### Configuration Menu
+A menu to configure the startpage  will be displayed the first time the page
+is loaded. It can be opened anytime by entering ```-config``` into the search
+field. If you don't have a search square you can still access the menu by
+entering ```search("-config")``` into the browser's console.
+
+##### Squares
+When editing ```config.json``` a normal square can be added by adding another
+object to the ```squares``` array. The order in which they are defined in the
+file will be the same one used to display them.
+
+Example:
+```
+{"name":"NAME", "links": [
+    {"name": "LINK1", "url": "http://www.example.com"},
+    {"name": "LINK2", "url": "http://www.example.com"}
+]},
+```
+
+##### Appearance
 | attribute         | if true                                          |
 | ----------------- | ------------------------------------------------ |
 | borders           | enables borders on top and bottom                |
@@ -21,40 +40,20 @@ If you have removed the search field from the html file you can still open it by
 | privateMode       | will always load config.json                     |
 
 The version is only checked for if the help popup shows up.
-Set privateMode to ```true``` if you're always using private mode.
+Set privateMode to ```true``` if you're always using your browser's private mode.
 
-The _images_ array is a list of all mascot images to be used. If you want to use only one image just create an array with one item.
+The _images_ array is a list of all mascot images to be used. If you want to
+use only one image just create an array with one item.
 
-<br>
-###### HTML
-To add/remove a square just add/remove a _div .sqr_ within _div #cell_.<br>
-Keep the structure like this:
+##### Search
 ```
-<div class="sqr">
-    <span>HEADING</span>
-    <div class="content">
-        <a href="URL">LINK TITLE</a><br>
-        <a href="URL">LINK TITLE</a><br>
-        ...
-        <a href="URL">LINK TITLE</a>
-    </div>
-</div>
+{"name":"search", "prefix":"-", "options": [
+    {"opt": "default", "url": "https://www.google.com/#q=", "space":"+"},
+    {"opt": "w", "url": "https://en.wikipedia.org/w/index.php?search=", "space":"+"}
+]}
 ```
+Prefix: The prefix used to identify an option.
+Options: Default will be used if no option is given. ```opt``` is the character
+you'll type after the prefix. ```url``` is the URL to use with that option.
+```space``` is the character that should be used to replace space. Usually "+".
 
-<br>
-###### search
-```
--c      Opens the configuration menu
--h      Show this list
--g      Google (default)
--w      Wikipedia
--a      ArchWiki
--d      danbooru
--y      YouTube
--n      niconicodouga
--p      pixiv
-```
-The following example will search for _github_ using _DuckDuckGo_:<br>
--a github<br>
-If an invalid search option or none at all is specified, Google is used.
-For danbooru, use underscores (_) for tags with more than one word and separate multiple tags with space (e.g.: school_uniform 1girl).
