@@ -43,8 +43,6 @@ var ext = new ConfigObject(extItems);
 
 
 function configmenuInit(callback){
-
-
     $.getJSON("config.json", function(data){
         if(data.bool.privateMode == true){
             loadConfig(data, callback);
@@ -171,6 +169,7 @@ function saveConfig(callback){
 }
 
 
+// load and aplly
 function loadConfig(data, callback){
     localStorage.config = JSON.stringify(data, undefined, 4);
     cfg = [
@@ -201,13 +200,19 @@ function loadConfig(data, callback){
         data.bool.allow_version_check
     ];
     localStorage.cfg = cfg, localStorage.cfg_bool = cfg_bool;
-    // ------------------------
-    test = new Square(squareConfObj[0].name, squareConfObj[0].links, 0);
-    console.log(test);
-    test2 = new Square(squareConfObj[1].name, squareConfObj[1].links, 0);
-    console.log(test2);
 
-    // ------------------------
+    // squares
+    for(var i=0; i<data.squares.length; i++){
+        if(data.squares[i].links){
+            new Square(data.squares[i].name, data.squares[i].links, false);
+        }else{
+            // otherwise expect this to be a search square
+            searchsquare = new Square(data.squares[i].name, data.squares[i].options, true);
+            searchsquare.prefix = data.squares[i].prefix;
+        }
+    }
+
+    // style
     var span = $("span");
     var a = $("a");
     var popup = $("#popup");

@@ -37,7 +37,7 @@ body{
     display:inline-block;
     width:150px;
     height:150px;
-    margin:3px 1px;
+    margin:3px 3px;
     border:0 solid #000000;
     overflow:hidden;
     -moz-transition:all .25s ease-in-out;

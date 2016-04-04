@@ -83,42 +83,24 @@ String.prototype.replaceChars = function(character, replacement){
 }
 
 
-function searchCase(url, query, replacement){
-    query = query.substr(3);
-    window.location = url + query.replaceChars(" ", replacement);
-}
-
 function search(query){
-    switch(query.substr(0, 2)){
-        case "-h":
+    if(query[0] == searchsquare.prefix){
+        if(query.substr(1) == "help"){
             popup(popupDiv, HelpText);
-            break;
-        case "-c":
+        }else if(query.substr(1) == "config"){
             configmenuInit(undefined);
-            break;
-        case "-g":
-            searchCase("https://www.google.com/#q=", query, "+");
-            break;
-        case "-w":
-            searchCase("https://en.wikipedia.org/w/index.php?search=", query, "+");
-            break;
-        case "-a":
-            searchCase("https://wiki.archlinux.org/index.php?search=", query, "+");
-            break;
-        case "-d":
-            searchCase("http://danbooru.donmai.us/posts?tags=", query, "+");
-            break;
-        case "-y":
-            searchCase("https://www.youtube.com/results?search_query=", query, "+");
-            break;
-        case "-n":
-            searchCase("http://www.nicovideo.jp/search/", query, "%20");
-            break;
-        case "-p":
-            searchCase("http://www.pixiv.net/search.php?s_mode=s_tag&word=", query, "%20");
-            break;
-        default:
-            window.location = "https://www.google.com/#q=" + query.replaceChars(" ", "+");
+        }else{
+            for(var i=1; i < searchsquare.links.length; i++){
+                if(query[1] == searchsquare.links[i].opt){
+                    query = query.substr(3);
+                    window.location = searchsquare.links[i].url +
+                            query.replaceChars(" ", searchsquare.links[i].space);
+                }
+            }
+        }
+    }else{
+        window.location = searchsquare.links[0].url +
+                query.replaceChars(" ", searchsquare.links[0].space);
     }
 }
 
