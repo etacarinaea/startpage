@@ -1,19 +1,35 @@
 {
     "squares": [
         {"name":"4chan", "links": [
-            {"name":"/a/", "url":"http://www.4chan.org/a/"},
-            {"name":"/g/", "url":"http://www.4chan.org/g/"},
-            {"name":"/w/", "url":"http://www.4chan.org/w/"}
+            {"name": "/a/",  "url": "http://www.4chan.org/a/"},
+            {"name": "/jp/", "url": "http://www.4chan.org/jp/"},
+            {"name": "/w/",  "url": "http://www.4chan.org/w/"},
+            {"name": "/ic/", "url": "http://www.4chan.org/ic/"},
+            {"name": "/g/",  "url": "http://www.4chan.org/g/"}
         ]},
 
         {"name":"images", "links": [
-            {"name":"danbooru", "url":"http://danbooru.donmai.us"}
+            {"name": "danbooru", "url": "http://danbooru.donmai.us/"},
+            {"name": "pixiv",    "url": "http://www.pixiv.net/"},
+            {"name": "imgur",    "url": "http://imgur.com/"}
         ]},
 
-        {"name":"search", "options": [
-            {"opt":"default", "url":"https://www.google.com/#q="},
-            {"opt":"-a", "url":"https://wiki.archlinux.org/index.php?search="},
-            {"opt":"-y", "url":"https://www.youtube.com/results?search_query="}
+        {"name":"anime", "links": [
+            {"name": "horriblesubs", "url": "http://horriblesubs.info/"},
+            {"name": "myanimelist",  "url": "http://myanimelist.net/"},
+            {"name": "anichart",     "url": "http://anichart.net/"},
+            {"name": "anidb",        "url": "http://anidb.net/"},
+            {"name": "nyaa.se",      "url": "http://nyaa.se/"},
+            {"name": "bakabt",       "url": "http://bakabt.me/"}
+        ]},
+
+        {"name":"search", "prefix":"-", "options": [
+            {"opt": "default", "url": "https://www.google.com/#q=",                   "space":"+"},
+            {"opt": "a", "url": "https://wiki.archlinux.org/index.php?search=",       "space":"+"},
+            {"opt": "d", "url": "http://danbooru.donmai.us/posts?tags=",              "space":"+"},
+            {"opt": "p", "url": "http://www.pixiv.net/search.php?s_mode=s_tag&word=", "space":"%20"},
+            {"opt": "w", "url": "https://en.wikipedia.org/w/index.php?search=",       "space":"+"},
+            {"opt": "y", "url": "https://www.youtube.com/results?search_query=",      "space":"+"}
         ]}
     ],
 
