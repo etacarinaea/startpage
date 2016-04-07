@@ -9,7 +9,7 @@ var boolItems = {
     alwaysopen: "keep all squares open",
     allow_version_check: "allow checking for new versions",
     use_json_file: "use config.json instead of this menu"
-}
+};
 var bool = new ConfigObject(boolItems);
 
 var styleItems = {
@@ -44,9 +44,9 @@ var ext = new ConfigObject(extItems);
 
 function configmenuInit(callback){
     $.getJSON("config.json", function(data){
-        if(data.bool.privateMode == true){
+        if(data.bool.privateMode === true){
             loadConfig(data, callback);
-        }else if(localStorage.use_json_file == "true" || localStorage.config == undefined){
+        }else if(localStorage.use_json_file == "true" || localStorage.config === undefined){
             pipe(data, callback);
         }else{
             pipe(JSON.parse(localStorage.config), callback);
@@ -57,7 +57,7 @@ function configmenuInit(callback){
 // separate function so it wont execute before jQuery.getJSON has finished
 function pipe(data, callback){
     // create initial menu, config menu or load config on window load
-    if(localStorage.config == undefined){
+    if(localStorage.config === undefined){
         initmenu = new Menu("Init-Menu", 1, 550, 350);
         var initbuttons = initmenu.split(
                 ["Use files.",
@@ -72,7 +72,7 @@ function pipe(data, callback){
             createMenu(data, callback);
             initmenu.kill();
         });
-    }else if(callback == undefined){
+    }else if(callback === undefined){
         createMenu(data, callback);
     }else{
         loadConfig(data, callback);
@@ -133,7 +133,7 @@ function importConfig(callback){
         reader.onload = function(e){
             loadConfig(JSON.parse(reader.result), callback);
             configmenu.kill();
-        }
+        };
     });
 
     importinput.click();
@@ -199,7 +199,8 @@ function loadConfig(data, callback){
         data.bool.mascot,
         data.bool.allow_version_check
     ];
-    localStorage.cfg = cfg, localStorage.cfg_bool = cfg_bool;
+    localStorage.cfg = cfg;
+    localStorage.cfg_bool = cfg_bool;
 
     // squares
     for(var i=0; i<data.squares.length; i++){
