@@ -95,6 +95,7 @@ function search(query){
                     query = query.substr(3);
                     window.location = searchsquare.links[i].url +
                             query.replaceChars(" ", searchsquare.links[i].space);
+                    break;
                 }
             }
         }
