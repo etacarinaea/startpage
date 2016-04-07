@@ -10,8 +10,8 @@ function Square(heading, links, search){
     this.squareElement.setAttribute("class", "sqr");
 
     this.headingElement = document.createElement("span");
-    var textnode = document.createTextNode(this.heading);
-    this.headingElement.appendChild(textnode);
+    var headingTextnode = document.createTextNode(this.heading);
+    this.headingElement.appendChild(headingTextnode);
 
     this.contentElement = document.createElement("div");
     this.contentElement.setAttribute("class", "content");
@@ -23,7 +23,7 @@ function Square(heading, links, search){
             linkElements[i] = document.createElement("a");
             linkElements[i].setAttribute("href", this.links[i].url);
 
-            var textnode = document.createTextNode(this.links[i].name)
+            var textnode = document.createTextNode(this.links[i].name);
             linkElements[i].appendChild(textnode);
             this.contentElement.appendChild(linkElements[i]);
             this.contentElement.appendChild(document.createElement("br"));
@@ -64,10 +64,10 @@ Square.prototype.expand = function(){
     if(cfg_bool[0]){
         this.style.borderWidth = cfg[10];
     }
-}
+};
 
 Square.prototype.contract = function(){
     // replace hardcoeded div height (300)
     this.style.height = 150 + "px";
     this.style.borderWidth = cfg[9];
-}
+};

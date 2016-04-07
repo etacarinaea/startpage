@@ -31,7 +31,7 @@ function fixJitter(container){
 function popup(obj, msg){
     var popuphandler = function(){
         popup(this, msg);
-    }
+    };
     // add event listener when it's going to be visible
     if(!visibility){
         obj.addEventListener("click", popuphandler);
@@ -74,13 +74,13 @@ String.prototype.replaceChars = function(character, replacement){
             a = str.substr(0, i) + replacement;
             b = str.substr(i + 1);
             str = a + b;
-            if(replacement == ""){
+            if(replacement === ""){
                 i--;
             }
         }
     }
     return str;
-}
+};
 
 
 function search(query){
@@ -109,7 +109,7 @@ function search(query){
 
 window.onresize = function(){
     fixJitter(container);
-}
+};
 
 
 function main(){
@@ -118,7 +118,7 @@ function main(){
         if(ver){
             var versionDiv =  document.createElement("div");
             versionDiv.setAttribute("id", "version");
-            
+
             var versionAnchor = document.createElement("a");
             versionAnchor.href = "https://github.com/fuyuneko/startpage/releases";
             versionAnchor.appendChild(document.createTextNode("A new version is available: " + ver));
@@ -128,9 +128,9 @@ function main(){
         }
     }
 
-    HelpText = "-h Shows this list<br>-g Google (default)<br>-w Wikipedia<br>\
-                -a ArchWiki<br>-d Danbooru<br>-y YouTube<br>-n niconico<br>\
-                -p pixiv";
+    HelpText = "-h Shows this list<br>-g Google (default)<br>-w Wikipedia<br>"+
+               "-a ArchWiki<br>-d Danbooru<br>-y YouTube<br>-n niconico<br>"+
+               "-p pixiv";
     visibility = false;
     container = document.getElementById("container");
     fixJitter(container);
@@ -157,7 +157,7 @@ function main(){
             search_sqr.style.borderBottom = cfg[9] + " solid " + cfg[8];
             document.getElementById("searchinput").focus();
         }
-    
+
         if([9].indexOf(key) > -1){
             a.preventDefault();
         }

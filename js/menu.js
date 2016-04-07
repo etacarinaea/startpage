@@ -20,7 +20,7 @@ function Menu(name, type, x, y){
     this.content.setAttribute("class", "menuContent");
 
     // set styles for different types
-    if(this.type==0){
+    if(this.type === 0){
         this.width = "100%";
         this.height = "100%";
         this.container.style.padding = y + "px " + x + "px";
@@ -67,7 +67,7 @@ function Category(name, type, heading){
 
 Menu.prototype.kill = function(){
     document.body.removeChild(this.container);
-}
+};
 Menu.prototype.appendButton = function(name, color){
     var button = document.createElement("div");
     button.setAttribute("class", "button");
@@ -78,7 +78,7 @@ Menu.prototype.appendButton = function(name, color){
     this.heading.appendChild(button);
     
     return button;
-}
+};
 
 // type == 0: normal, else: toggle
 // hasHeading: boolean
@@ -92,7 +92,7 @@ Menu.prototype.appendCategory = function(name, type, hasHeading){
     this.content.appendChild(category.element);
 
     return category;
-}
+};
 
 // arrays of button names and their descriptions
 // returns array of button elements
@@ -127,7 +127,7 @@ Menu.prototype.split = function(name, description){
     }
 
     return buttondiv;
-}
+};
 
 
 // type == 0: checkbox, else: text
@@ -144,7 +144,7 @@ Category.prototype.appendOption = function(name, key, type, callback, value){
     option.setAttribute("class", "option");
     input.setAttribute("name", key);
 
-    if(type == 0){
+    if(type === 0){
         option.style.width = "50%";
         input.setAttribute("type", "checkbox");
         if(!callback){
@@ -163,5 +163,5 @@ Category.prototype.appendOption = function(name, key, type, callback, value){
     this.element.appendChild(option);
 
     return option;
-}
+};
 
