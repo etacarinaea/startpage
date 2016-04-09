@@ -38,7 +38,7 @@ function Menu(name, type, x, y){
     // append nodes
     this.menu.appendChild(this.heading);
     this.menu.appendChild(this.content);
-    
+
     this.container.appendChild(this.menu);
     document.body.appendChild(this.container);
 
@@ -76,7 +76,7 @@ Menu.prototype.appendButton = function(name, color){
     button.style.backgroundColor = color;
 
     this.heading.appendChild(button);
-    
+
     return button;
 };
 
