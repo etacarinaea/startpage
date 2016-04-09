@@ -212,7 +212,7 @@ body{
     height:calc(100% - var(--margin) * 2);
     width:calc(50% - (var(--margin) + var(--margin) / 2));
     margin:var(--margin) 0 0 var(--margin);
-    
+
     font-size:14px;
 
     background-color:#fbfbfb;
@@ -254,7 +254,7 @@ body{
 
     padding:20px 10px 0 10px;
     box-sizing:border-box;
-    
+
     background:linear-gradient(#dddddd, #f4f4f4 5%);
 
     transition:height .1s ease-in-out;

@@ -41,7 +41,7 @@
         "allowVersionCheck":    true,
         "privateMode":          false
     },
-    
+
     "style": {
         "heading_font":         "tewi",
         "link_font":            "tewi",
@@ -57,7 +57,7 @@
         "search_color":         "#aaaaaa",
         "search_bg_color":      "rgba(110,110,110,0.1)"
     },
-    
+
     "ext": {
         "images":[              "image1.png",
                                 "image2.png",
