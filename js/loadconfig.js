@@ -58,7 +58,7 @@ function configmenuInit(callback){
 function pipe(data, callback){
     // create initial menu, config menu or load config on window load
     if(localStorage.config === undefined){
-        initmenu = new Menu("Init-Menu", 1, 550, 350);
+        initmenu = new Menu("Init-Menu", true, 550, 350);
         var initbuttons = initmenu.split(
                 ["Use files.",
                  "Use configuration menu."],
@@ -81,24 +81,42 @@ function pipe(data, callback){
 
 function createMenu(data, callback){
     // create menu and categories
-    configmenu = new Menu("Config-Menu", 0, 110, 110);
-    var boolcategory = configmenu.appendCategory("bool", 0, undefined);
-    var stylecategory = configmenu.appendCategory("style", 0, "General");
-    var extcategory = configmenu.appendCategory("ext", 1, "Mascot");
+    configmenu = new Menu("Config-Menu", false, 110, 110);
+    configmenu.appendTab("Squares");
+    configmenu.appendTab("Style");
+    configmenu.makeTabActive(0);
+
+    configmenu.tabs[0].node.addEventListener("click", function(){
+        configmenu.makeTabActive(0);
+    });
+    configmenu.tabs[1].node.addEventListener("click", function(){
+        configmenu.makeTabActive(1);
+    });
+
+    // squares
+    var normalcategory = configmenu.appendCategory("normal", undefined, 0);
+
+    // needs a new class/method
+    configmenu.tabs[0].categories[0].appendOption("-", undefined, 1, undefined, undefined);
+
+
+    // style
+    var boolcategory = configmenu.appendCategory("bool", undefined, 1);
+    var stylecategory = configmenu.appendCategory("style", "General", 1);
+    var extcategory = configmenu.appendCategory("ext", "Mascot", 1);
 
     if(!data){
         var data = {bool:"",style:"",ext:""};
     }
 
-    // append options to categories
     for(var key in bool){
-        configmenu.categories[0].appendOption(bool[key].name, key, 0, callback, data.bool[key]);
+        configmenu.tabs[1].categories[0].appendOption(bool[key].name, key, 0, callback, data.bool[key]);
     }
     for(var key in style){
-        configmenu.categories[1].appendOption(style[key].name, key, 1, callback, data.style[key]);
+        configmenu.tabs[1].categories[1].appendOption(style[key].name, key, 1, callback, data.style[key]);
     }
     for(var key in ext){
-        configmenu.categories[2].appendOption(ext[key].name, key, 1, callback, data.ext[key]);
+        configmenu.tabs[1].categories[2].appendOption(ext[key].name, key, 1, callback, data.ext[key]);
     }
 
     var saveButton = configmenu.appendButton("save", "#99bb99");

@@ -1,26 +1,28 @@
-// type==0: percentual size ; x: left/right padding; y: top/bottom padding
-// type==1: static size     ; x: width; y: height
-function Menu(name, type, x, y){
-    this.type = type;
+// percentual size ; x: left/right padding; y: top/bottom padding
+// static size     ; x: width; y: height
+function Menu(name, staticSize, x, y){
+    this.staticSize = staticSize;
     this.name = name;
-    this.categories = [];
+    this.tabs = [];
+    this.buttons = [];
 
     // create DOM nodes
     this.container = document.createElement("div");
     this.menu = document.createElement("div");
-    this.heading = document.createElement("div");
-    this.heading.appendChild(document.createTextNode(this.name));
+    this.menuBar = document.createElement("div");
+    this.tabBar = document.createElement("div");
     this.content = document.createElement("div");
 
     // set classes/ids
     this.container.setAttribute("class", "menuContainer");
     this.container.setAttribute("id", this.name.replaceChars(" ", ""));
     this.menu.setAttribute("class", "menu");
-    this.heading.setAttribute("class", "menuHeading");
+    this.menuBar.setAttribute("class", "menuBar");
+    this.tabBar.setAttribute("class", "tabBar");
     this.content.setAttribute("class", "menuContent");
 
     // set styles for different types
-    if(this.type === 0){
+if(!this.staticSize){
         this.width = "100%";
         this.height = "100%";
         this.container.style.padding = y + "px " + x + "px";
@@ -36,29 +38,68 @@ function Menu(name, type, x, y){
     this.menu.style.height = this.height;
 
     // append nodes
-    this.menu.appendChild(this.heading);
+    this.menuBar.appendChild(this.tabBar);
+    this.menu.appendChild(this.menuBar);
     this.menu.appendChild(this.content);
 
     this.container.appendChild(this.menu);
     document.body.appendChild(this.container);
-
 }
 
 
-function Category(name, type, heading){
+function Tab(name){
     this.name = name;
-    this.type = type;
-    this.heading = heading;
+    this.categories = [];
+
+    this.node = document.createElement("div");
+    this.node.setAttribute("class", "tab");
+    this.node.appendChild(document.createTextNode(name));
+
+    this.content = document.createElement("div");
+
+    this.content.setAttribute("class", "tabContent");
+}
+
+Menu.prototype.appendTab = function(name){
+    var tab = new Tab(name);
+    this.tabs.push(tab);
+
+    this.tabBar.appendChild(tab.node);
+    this.content.appendChild(tab.content);
+};
+
+Tab.prototype.show = function(){
+    this.content.style.display = "initial";
+};
+Tab.prototype.hide = function(){
+    this.content.style.display = "none";
+};
+Menu.prototype.makeTabActive = function(tabIndex){
+    for(var i=0; i < this.tabs.length; i++){
+        if(i === tabIndex){
+            this.tabs[i].show();
+            this.tabs[i].node.setAttribute("id", "activeTab");
+        }else{
+            this.tabs[i].hide();
+            this.tabs[i].node.removeAttribute("id");
+        }
+    }
+};
+
+
+function Category(name, hasHeading){
+    this.name = name;
+    this.hasHeading = hasHeading;
     this.options = [];
 
     this.element = document.createElement("div");
     this.element.setAttribute("id", name.replaceChars(" ", ""));
     this.element.setAttribute("class", "category");
 
-    if(this.heading){
+    if(this.hasHeading){
         this.headingElem = document.createElement("div");
         this.headingElem.setAttribute("class", "categoryHeading");
-        this.headingElem.appendChild(document.createTextNode(this.heading));
+        this.headingElem.appendChild(document.createTextNode(this.name));
         this.element.appendChild(this.headingElem);
     }
 }
@@ -70,26 +111,31 @@ Menu.prototype.kill = function(){
 };
 Menu.prototype.appendButton = function(name, color){
     var button = document.createElement("div");
+    this.buttons.push(button);
     button.setAttribute("class", "button");
     button.setAttribute("id", name);
     button.setAttribute("title", name);
     button.style.backgroundColor = color;
 
-    this.heading.appendChild(button);
+    this.menuBar.appendChild(button);
+
+    this.tabBar.style.width = "calc(100% - " + 40 * this.buttons.length + "px";
 
     return button;
 };
 
 // type == 0: normal, else: toggle
 // hasHeading: boolean
-Menu.prototype.appendCategory = function(name, type, hasHeading){
-    var category = new Category(name, type, hasHeading);
+Menu.prototype.appendCategory = function(name, hasHeading, tabIndex){
+    var category = new Category(name, hasHeading);
 
-    // add to menu category list
-    this.categories.push(category);
-
-
-    this.content.appendChild(category.element);
+    if(this.tabs.length < 1){
+        this.tabs[0].content.appendChild(category.element);
+        this.tabs[0].categories.push(category);
+    }else{
+        this.tabs[tabIndex].content.appendChild(category.element);
+        this.tabs[tabIndex].categories.push(category);
+    }
 
     return category;
 };
