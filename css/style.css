@@ -120,19 +120,66 @@ body{
     box-shadow:0 0 15px rgba(0,0,0,0.5);
 }
 
-.menuHeading {
-    line-height:40px;
+.menuBar {
+    height:40px;
     font-size:20px;
-    padding-left:10px;
 
     background-color:#fbfbfb;
-    border-bottom:1px solid #ddd;
+}
+
+.tabBar {
+    display:inline-table;
+    table-layout:fixed;
+    height:100%;
+}
+
+.tab {
+    display:table-cell;
+    line-height:38px;
+    height:auto;
+    width:100%;
+
+    padding-left:10px;
+    border-width:0 0 2px 2px;
+    border-style:solid;
+    border-color:#ccc;
+
+    background-color:#eee;
+
+    opacity:0.5;
+
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    cursor:pointer;
+}
+.tab:first-child {
+    border-left-width:0;
+}
+.tab:last-child {
+    border-right-width:0;
+}
+.tab:hover {
+    background-color:#ccc;
+}
+#activeTab {
+    background-color:#fff;
+    border-bottom:none;
+    border-color:#e5e5e5;
+    opacity:1;
 }
 
 .menuContent {
-    margin-top:-1px;
+    position:relative;
     height:calc(100% - 40px);
     overflow-y:auto;
+}
+
+.tabContent {
+    position:absolute;
+    top:0;
+    left:0;
 }
 
 .option {
@@ -189,6 +236,7 @@ body{
 
 #import {
     background-image:url("../img/import.png");
+    background-size:contain;
 }
 #importinput {
     display:none;
@@ -196,10 +244,12 @@ body{
 
 #export {
     background-image:url("../img/export.png");
+    background-size:contain;
 }
 
 #save {
     background-image:url("../img/save.png");
+    background-size:contain;
 }
 
 
