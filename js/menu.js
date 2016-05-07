@@ -234,7 +234,7 @@ Category.prototype.appendSquareDiv = function(name){
     return div;
 };
 
-function TextField(name, key, cssClass, value, amount, parentObject, index){
+function TextField(name, key, cssClass, value, amount, parentObject, index, parentCategoryObject){
     this.name = name;
     this.key = key;
     this.cssClass = cssClass;
@@ -242,6 +242,7 @@ function TextField(name, key, cssClass, value, amount, parentObject, index){
     this.amount = amount;
     this.parentObject = parentObject;
     this.index = index;
+    this.parentCategoryObject = parentCategoryObject;
 
     this.node = document.createElement("div");
     this.node.setAttribute("class", cssClass);
@@ -273,25 +274,44 @@ function TextField(name, key, cssClass, value, amount, parentObject, index){
 // add === true : add a new option ; else remove the option
 TextField.prototype.addEvent = function(add){
     var parentObject = this.parentObject;
+    var parentCategoryObject = this.parentCategoryObject;
     var node = this.node;
+    var cssClass = this.cssClass;
     var index = this.index;
-    var parentElement = node.parentElement;
+    var textfieldDiv = node.parentElement;
+
     if(add){
         this.addNode.addEventListener("click", function(){
-            parentElement.removeChild(node);
-            parentObject.appendTextField("link" + index, [index, "url"],
-                                         "squareURL", ["name", "url"], 2);
-            parentElement.appendChild(node);
+            if(cssClass == "squareURL"){
+                textfieldDiv.removeChild(node);
+                parentObject.appendTextField("link" + index, [index, "url"],
+                                             "squareURL", ["name", "url"], 2);
+                textfieldDiv.appendChild(node);
+            }else{
+                parentCategoryObject.element.removeChild(parentObject.node);
+                var sqr = parentCategoryObject.appendSquareDiv("new square");
+                sqr.appendTextField("heading" + index, index,
+                                    "squareHeading", "new square", 1, index);
+                sqr.appendTextField("link" + index, [index, "url"],
+                        "squareURL", ["name", "url"], 2);
+                sqr.appendTextField("link" + index, undefined,"squareURL",
+                                    undefined, 0, index);
+                parentCategoryObject.element.appendChild(parentObject.node);
+            }
         });
     }else{
         this.removeNode.addEventListener("click", function(){
-            parentElement.removeChild(node);
+            if(cssClass == "squareURL"){
+                textfieldDiv.removeChild(node);
+            }else{
+                textfieldDiv.parentElement.removeChild(textfieldDiv);
+            }
         });
     }
 };
 
-ConfigSquareDiv.prototype.appendTextField = function(name, key, cssClass, value, amount, index){
-    var textfield = new TextField(name, key, cssClass, value, amount, this, index);
+ConfigSquareDiv.prototype.appendTextField = function(name, key, cssClass, value, amount, index, parentCategoryObject){
+    var textfield = new TextField(name, key, cssClass, value, amount, this, index, parentCategoryObject);
 
     this.node.appendChild(textfield.node);
     this.urls.push(textfield.node);

@@ -205,7 +205,11 @@ input {
 
 .squareHeading img {
     display:inline-block;
+    opacity:0.5;
     cursor:pointer;
+}
+.squareHeading img:hover {
+    opacity:1;
 }
 .squareHeading input {
     display:inline-block;
@@ -224,7 +228,11 @@ input {
 
 .squareURL img {
     display:inline-block;
+    opacity:0.5;
     cursor:pointer;
+}
+.squareURL img:hover {
+    opacity:1;
 }
 .squareURL input {
     display:inline-block;

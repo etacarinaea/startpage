@@ -111,7 +111,7 @@ function createMenu(data, callback){
                       .categories[0]
                       .options[i]
                       .appendTextField("heading" + i, i, "squareHeading",
-                                       squares[i].name, 1, i);
+                                       squares[i].name, 1, i, cat);
             for(var a=0; a < squares[i].links.length; a++){
                 var tf = configmenu.tabs[0]
                             .categories[0]
@@ -126,12 +126,11 @@ function createMenu(data, callback){
                                 .appendTextField("link" + i, undefined,
                                                  "squareURL", undefined, 0, i);
         }
-        var newDiv = configmenu.tabs[0]
-                               .categories[0]
-                               .appendSquareDiv();
+        var cat = configmenu.tabs[0].categories[0];
+        var newDiv = cat.appendSquareDiv();
         var opts = configmenu.tabs[0].categories[0].options;
         opts[opts.length-1].appendTextField("heading" + i, undefined, "squareHeading",
-                                   undefined, 0, i);
+                                   undefined, 0, i, cat);
     }else{
         configmenu.tabs[0].categories[0]
                           .appendTextField("heading" + 0, 0, "squareHeading",
