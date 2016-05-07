@@ -218,6 +218,10 @@ input {
     top:0;
     width:150px;
 }
+.squareHeading input[name="prefix"] {
+    margin-left:165px;
+    width:30px;
+}
 
 
 .squareURL {
