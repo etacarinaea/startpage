@@ -1,3 +1,8 @@
+/*
+ * Not sure if append* functions should automatically create a new object
+ * or append an already existing object passed to it.
+ */
+
 // percentual size ; x: left/right padding; y: top/bottom padding
 // static size     ; x: width; y: height
 function Menu(name, staticSize, x, y){
@@ -109,6 +114,7 @@ function Category(name, hasHeading){
 Menu.prototype.kill = function(){
     document.body.removeChild(this.container);
 };
+
 Menu.prototype.appendButton = function(name, color){
     var button = document.createElement("div");
     this.buttons.push(button);
@@ -178,7 +184,7 @@ Menu.prototype.split = function(name, description){
 
 // type == 0: checkbox, else: text
 // value: HTML element value
-Category.prototype.appendOption = function(name, key, type, callback, value){
+Category.prototype.appendOption = function(name, key, type, value, callback){
     var option = document.createElement("div");
     var label = document.createElement("label");
     var text = document.createTextNode(name);
@@ -209,5 +215,93 @@ Category.prototype.appendOption = function(name, key, type, callback, value){
     this.element.appendChild(option);
 
     return option;
+};
+
+
+function ConfigSquareDiv(name){
+    this.name = name;
+    this.urls = [];
+
+    this.node = document.createElement("div");
+}
+
+
+Category.prototype.appendSquareDiv = function(name){
+    var div = new ConfigSquareDiv(name);
+
+    this.element.appendChild(div.node);
+    this.options.push(div);
+    return div;
+};
+
+function TextField(name, key, cssClass, value, amount, parentObject, index){
+    this.name = name;
+    this.key = key;
+    this.cssClass = cssClass;
+    this.value = value;
+    this.amount = amount;
+    this.parentObject = parentObject;
+    this.index = index;
+
+    this.node = document.createElement("div");
+    this.node.setAttribute("class", cssClass);
+
+    if(amount > 0){
+        this.removeNode = document.createElement("img");
+        this.removeNode.setAttribute("src", "img/remove.png");
+        this.node.appendChild(this.removeNode);
+    }else{
+        this.addNode = document.createElement("img");
+        this.addNode.setAttribute("src", "img/add.png");
+        this.node.appendChild(this.addNode);
+    }
+
+    if(typeof key !== 'object'){
+        key = [key];
+    }
+    if(typeof value !== 'object'){
+        value = [value];
+    }
+    for(var i=0; i < amount; i++){
+        var input = document.createElement("input");
+        input.setAttribute("name", key[i]);
+        input.setAttribute("value", value[i]);
+        this.node.appendChild(input);
+    }
+}
+
+// add === true : add a new option ; else remove the option
+TextField.prototype.addEvent = function(add){
+    var parentObject = this.parentObject;
+    var node = this.node;
+    var index = this.index;
+    var parentElement = node.parentElement;
+    if(add){
+        this.addNode.addEventListener("click", function(){
+            parentElement.removeChild(node);
+            parentObject.appendTextField("link" + index, [index, "url"],
+                                         "squareURL", ["name", "url"], 2);
+            parentElement.appendChild(node);
+        });
+    }else{
+        this.removeNode.addEventListener("click", function(){
+            parentElement.removeChild(node);
+        });
+    }
+};
+
+ConfigSquareDiv.prototype.appendTextField = function(name, key, cssClass, value, amount, index){
+    var textfield = new TextField(name, key, cssClass, value, amount, this, index);
+
+    this.node.appendChild(textfield.node);
+    this.urls.push(textfield.node);
+
+    if(amount > 0){
+        textfield.addEvent(false);
+    }else{
+        textfield.addEvent(true);
+    }
+
+    return textfield;
 };
 

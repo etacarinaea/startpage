@@ -59,6 +59,8 @@ function pipe(data, callback){
     // create initial menu, config menu or load config on window load
     if(localStorage.config === undefined){
         initmenu = new Menu("Init-Menu", true, 550, 350);
+        initmenu.appendTab("Choose an Option:");
+        initmenu.makeTabActive(0);
         var initbuttons = initmenu.split(
                 ["Use files.",
                  "Use configuration menu."],
@@ -80,7 +82,6 @@ function pipe(data, callback){
 }
 
 function createMenu(data, callback){
-    // create menu and categories
     configmenu = new Menu("Config-Menu", false, 110, 110);
     configmenu.appendTab("Squares");
     configmenu.appendTab("Style");
@@ -96,8 +97,46 @@ function createMenu(data, callback){
     // squares
     var normalcategory = configmenu.appendCategory("normal", undefined, 0);
 
-    // needs a new class/method
-    configmenu.tabs[0].categories[0].appendOption("-", undefined, 1, undefined, undefined);
+    if(localStorage.squares){
+        var squares = JSON.parse(localStorage.squares);
+        squares = squares.filter(function(e){
+            return e.options === undefined;
+        });
+
+        for(var i=0; i < squares.length; i++){
+            var div = configmenu.tabs[0]
+                                .categories[0]
+                                .appendSquareDiv(squares[i].name);
+            configmenu.tabs[0]
+                      .categories[0]
+                      .options[i]
+                      .appendTextField("heading" + i, i, "squareHeading",
+                                       squares[i].name, 1, i);
+            for(var a=0; a < squares[i].links.length; a++){
+                var tf = configmenu.tabs[0]
+                            .categories[0]
+                            .options[i]
+                            .appendTextField("link" + i, [i, "url"], "squareURL",
+                                             [squares[i].links[a].name,
+                                              squares[i].links[a].url], 2, i);
+            }
+            var add = configmenu.tabs[0]
+                                .categories[0]
+                                .options[i]
+                                .appendTextField("link" + i, undefined,
+                                                 "squareURL", undefined, 0, i);
+        }
+        var newDiv = configmenu.tabs[0]
+                               .categories[0]
+                               .appendSquareDiv();
+        var opts = configmenu.tabs[0].categories[0].options;
+        opts[opts.length-1].appendTextField("heading" + i, undefined, "squareHeading",
+                                   undefined, 0, i);
+    }else{
+        configmenu.tabs[0].categories[0]
+                          .appendTextField("heading" + 0, 0, "squareHeading",
+                                           "Heading 1");
+    }
 
 
     // style
@@ -110,13 +149,13 @@ function createMenu(data, callback){
     }
 
     for(var key in bool){
-        configmenu.tabs[1].categories[0].appendOption(bool[key].name, key, 0, callback, data.bool[key]);
+        configmenu.tabs[1].categories[0].appendOption(bool[key].name, key, 0, data.bool[key], callback);
     }
     for(var key in style){
-        configmenu.tabs[1].categories[1].appendOption(style[key].name, key, 1, callback, data.style[key]);
+        configmenu.tabs[1].categories[1].appendOption(style[key].name, key, 1, data.style[key], callback);
     }
     for(var key in ext){
-        configmenu.tabs[1].categories[2].appendOption(ext[key].name, key, 1, callback, data.ext[key]);
+        configmenu.tabs[1].categories[2].appendOption(ext[key].name, key, 1, data.ext[key], callback);
     }
 
     var saveButton = configmenu.appendButton("save", "#99bb99");
@@ -189,7 +228,9 @@ function saveConfig(callback){
 
 // load and aplly
 function loadConfig(data, callback){
+    // needs to be stringified because localStorage is limited to strings
     localStorage.config = JSON.stringify(data, undefined, 4);
+    localStorage.squares = JSON.stringify(data.squares, undefined, 4);
     cfg = [
         data.style.heading_font,
         data.style.link_font,
@@ -221,7 +262,7 @@ function loadConfig(data, callback){
     localStorage.cfg_bool = cfg_bool;
 
     // squares
-    for(var i=0; i<data.squares.length; i++){
+    for(var i=0; i < data.squares.length; i++){
         if(data.squares[i].links){
             new Square(data.squares[i].name, data.squares[i].links, false);
         }else{
