@@ -126,8 +126,8 @@ function createMenu(data, callback){
                 configmenu.tabs[0]
                           .categories[0]
                           .options[i]
-                          .appendTextField("heading" + i, i, "squareHeading",
-                                           squares[i].name, 1, i, cat);
+                          .appendTextField("heading" + i, [i, "prefix"], "squareHeading",
+                                           [squares[i].name, squares[i].prefix], 2, i, cat);
                 for(var a=0; a < squares[i].options.length; a++){
                     var tf = configmenu.tabs[0]
                                 .categories[0]
@@ -227,7 +227,38 @@ function exportConfig(){
 }
 
 function saveConfig(callback){
-    json = {bool:{}, style:{}, ext:{}};
+    json = {squares:[], bool:{}, style:{}, ext:{}};
+    // squares
+    var squares = configmenu.tabs[0].categories[0].options;
+    for(var i=0; i < (squares.length - 1); i++){
+        var length;
+        try{
+            length = squares[i].urls[1].childNodes.length;
+        }
+        catch(err){
+            alert(err + "\nA square is probably empty.");
+            throw err;
+        }
+        if(length !== 4){
+            var sqr = {name:squares[i].name, links:[]};
+            for(var a=1; a < squares[i].urls.length; a++){
+                var url = {name:squares[i].urls[a].childNodes[1].value,
+                           url:squares[i].urls[a].childNodes[2].value};
+                sqr.links.push(url);
+            }
+        }else{
+            var sqr = {name:squares[i].name, prefix:squares[i].urls[0].childNodes[2].value, options:[]};
+            for(var a=1; a < squares[i].urls.length; a++){
+                var opt = {opt:squares[i].urls[a].childNodes[1].value,
+                           url:squares[i].urls[a].childNodes[2].value,
+                           space:squares[i].urls[a].childNodes[3].value};
+                sqr.options.push(opt);
+            }
+        }
+        json.squares.push(sqr);
+    }
+
+    // style
     for(var key in bool){
         var elem = document.querySelector("input[name='" + key + "'");
         bool[key].value = elem.checked;
@@ -287,6 +318,13 @@ function loadConfig(data, callback){
     localStorage.cfg_bool = cfg_bool;
 
     // squares
+    /* remove all existing squares, otherwise the old ones will still be
+     * displayed (without a pabe reload)
+     */
+    var cell = document.getElementById("cell");
+    while(cell.firstChild){
+        cell.removeChild(cell.firstChild);
+    }
     for(var i=0; i < data.squares.length; i++){
         if(data.squares[i].links){
             new Square(data.squares[i].name, data.squares[i].links, false);

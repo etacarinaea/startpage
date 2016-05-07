@@ -27,7 +27,7 @@ function Menu(name, staticSize, x, y){
     this.content.setAttribute("class", "menuContent");
 
     // set styles for different types
-if(!this.staticSize){
+    if(!this.staticSize){
         this.width = "100%";
         this.height = "100%";
         this.container.style.padding = y + "px " + x + "px";
@@ -308,6 +308,10 @@ TextField.prototype.addEvent = function(add){
         this.removeNode.addEventListener("click", function(){
             if(cssClass == "squareURL" || cssClass == "squareOption"){
                 textfieldDiv.removeChild(node);
+                var index = parentObject.urls.indexOf(node);
+                if(index > -1){
+                    parentObject.urls.splice(index, 1);
+                }
             }else{
                 textfieldDiv.parentElement.removeChild(textfieldDiv);
             }
@@ -319,10 +323,10 @@ ConfigSquareDiv.prototype.appendTextField = function(name, key, cssClass, value,
     var textfield = new TextField(name, key, cssClass, value, amount, this, index, parentCategoryObject);
 
     this.node.appendChild(textfield.node);
-    this.urls.push(textfield.node);
 
     if(amount > 0){
         textfield.addEvent(false);
+        this.urls.push(textfield.node);
     }else{
         textfield.addEvent(true);
     }
