@@ -287,6 +287,11 @@ TextField.prototype.addEvent = function(add){
                 parentObject.appendTextField("link" + index, [index, "url"],
                                              "squareURL", ["name", "url"], 2);
                 textfieldDiv.appendChild(node);
+            }else if(cssClass == "squareOption"){
+                textfieldDiv.removeChild(node);
+                parentObject.appendTextField("option" + index, ["opt", "url", "space"], "squareOption",
+                                             ["option", "url", "space"], 3, index);
+                textfieldDiv.appendChild(node);
             }else{
                 parentCategoryObject.element.removeChild(parentObject.node);
                 var sqr = parentCategoryObject.appendSquareDiv("new square");
@@ -301,7 +306,7 @@ TextField.prototype.addEvent = function(add){
         });
     }else{
         this.removeNode.addEventListener("click", function(){
-            if(cssClass == "squareURL"){
+            if(cssClass == "squareURL" || cssClass == "squareOption"){
                 textfieldDiv.removeChild(node);
             }else{
                 textfieldDiv.parentElement.removeChild(textfieldDiv);

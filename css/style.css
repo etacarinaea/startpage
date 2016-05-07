@@ -180,6 +180,7 @@ body{
     position:absolute;
     top:0;
     left:0;
+    width:100%;
 }
 
 input {
@@ -203,12 +204,12 @@ input {
     margin:30px 0 10px 0;
 }
 
-.squareHeading img {
+.category img {
     display:inline-block;
     opacity:0.5;
     cursor:pointer;
 }
-.squareHeading img:hover {
+.category img:hover {
     opacity:1;
 }
 .squareHeading input {
@@ -226,14 +227,6 @@ input {
     margin:5px 0 0 50px;
 }
 
-.squareURL img {
-    display:inline-block;
-    opacity:0.5;
-    cursor:pointer;
-}
-.squareURL img:hover {
-    opacity:1;
-}
 .squareURL input {
     display:inline-block;
     position:absolute;
@@ -241,10 +234,34 @@ input {
     width:150px;
 }
 .squareURL input[name="url"] {
-    display:inline-block;
-    width:40vw;
+    width:39vw;
     margin-left:165px;
 }
+
+.squareOption {
+    position:relative;
+    line-height:21px;
+    height:21px;
+    margin:5px 0 0 50px;
+    width:calc(100% - 50px);
+}
+.squareOption input {
+    display:inline-block;
+    position:absolute;
+    top:0;
+}
+.squareOption input[name="opt"] {
+    width:70px;
+}
+.squareOption input[name="url"] {
+    margin-left:85px;
+    width:40.5vw;
+}
+.squareOption input[name="space"] {
+    margin-left:calc(100px + 40.5vw);
+    width:50px;
+}
+
 
 .option {
     display:inline-block;
@@ -266,8 +283,8 @@ input {
 
 
 .category {
-    padding:0 40px;
-    margin:40px 0;
+    margin:40px;
+    overflow:hidden;
 }
 
 .categoryHeading {

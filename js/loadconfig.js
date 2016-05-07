@@ -99,32 +99,58 @@ function createMenu(data, callback){
 
     if(localStorage.squares){
         var squares = JSON.parse(localStorage.squares);
-        squares = squares.filter(function(e){
-            return e.options === undefined;
-        });
 
         for(var i=0; i < squares.length; i++){
-            var div = configmenu.tabs[0]
-                                .categories[0]
-                                .appendSquareDiv(squares[i].name);
-            configmenu.tabs[0]
-                      .categories[0]
-                      .options[i]
-                      .appendTextField("heading" + i, i, "squareHeading",
-                                       squares[i].name, 1, i, cat);
-            for(var a=0; a < squares[i].links.length; a++){
-                var tf = configmenu.tabs[0]
-                            .categories[0]
-                            .options[i]
-                            .appendTextField("link" + i, [i, "url"], "squareURL",
-                                             [squares[i].links[a].name,
-                                              squares[i].links[a].url], 2, i);
-            }
-            var add = configmenu.tabs[0]
+            if(squares[i].options === undefined){
+                var div = configmenu.tabs[0]
+                                    .categories[0]
+                                    .appendSquareDiv(squares[i].name);
+                configmenu.tabs[0]
+                          .categories[0]
+                          .options[i]
+                          .appendTextField("heading" + i, i, "squareHeading",
+                                           squares[i].name, 1, i, cat);
+                for(var a=0; a < squares[i].links.length; a++){
+                    var tf = configmenu.tabs[0]
+                                    .categories[0]
+                                    .options[i]
+                                    .appendTextField("link" + i, [i, "url"], "squareURL",
+                                                     [squares[i].links[a].name,
+                                                      squares[i].links[a].url], 2, i);
+                }
+            }else{
+                // search
+                var div = configmenu.tabs[0]
+                                    .categories[0]
+                                    .appendSquareDiv(squares[i].name);
+                configmenu.tabs[0]
+                          .categories[0]
+                          .options[i]
+                          .appendTextField("heading" + i, i, "squareHeading",
+                                           squares[i].name, 1, i, cat);
+                for(var a=0; a < squares[i].options.length; a++){
+                    var tf = configmenu.tabs[0]
                                 .categories[0]
                                 .options[i]
-                                .appendTextField("link" + i, undefined,
-                                                 "squareURL", undefined, 0, i);
+                                .appendTextField("option" + i, ["opt", "url", "space"], "squareOption",
+                                                 [squares[i].options[a].opt,
+                                                  squares[i].options[a].url,
+                                                  squares[i].options[a].space], 3, i);
+                }
+            }
+            if(squares[i].options === undefined){
+                var add = configmenu.tabs[0]
+                                    .categories[0]
+                                    .options[i]
+                                    .appendTextField("link" + i, undefined,
+                                                     "squareURL", undefined, 0, i);
+            }else{
+                var add = configmenu.tabs[0]
+                                    .categories[0]
+                                    .options[i]
+                                    .appendTextField("option" + i, undefined, "squareOption",
+                                                     undefined, 0, i);
+            }
         }
         var cat = configmenu.tabs[0].categories[0];
         var newDiv = cat.appendSquareDiv();
