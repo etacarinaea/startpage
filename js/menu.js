@@ -294,6 +294,7 @@ TextField.prototype.addEvent = function(add){
                 textfieldDiv.appendChild(node);
             }else{
                 parentCategoryObject.element.removeChild(parentObject.node);
+                var addObject = parentCategoryObject.options.pop();
                 var sqr = parentCategoryObject.appendSquareDiv("new square");
                 sqr.appendTextField("heading" + index, index,
                                     "squareHeading", "new square", 1, index);
@@ -302,6 +303,7 @@ TextField.prototype.addEvent = function(add){
                 sqr.appendTextField("link" + index, undefined,"squareURL",
                                     undefined, 0, index);
                 parentCategoryObject.element.appendChild(parentObject.node);
+                parentCategoryObject.options.push(addObject);
             }
         });
     }else{
@@ -313,6 +315,10 @@ TextField.prototype.addEvent = function(add){
                     parentObject.urls.splice(index, 1);
                 }
             }else{
+                var textfieldDivObjectIndex = parentCategoryObject.options.indexOf(parentObject);
+                if(textfieldDivObjectIndex > -1) {
+                    parentCategoryObject.options.splice(textfieldDivObjectIndex, 1);
+                }
                 textfieldDiv.parentElement.removeChild(textfieldDiv);
             }
         });

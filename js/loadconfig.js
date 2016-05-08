@@ -109,14 +109,14 @@ function createMenu(data, callback){
                           .categories[0]
                           .options[i]
                           .appendTextField("heading" + i, i, "squareHeading",
-                                           squares[i].name, 1, i, cat);
+                                           squares[i].name, 1, i, normalcategory);
                 for(var a=0; a < squares[i].links.length; a++){
                     var tf = configmenu.tabs[0]
                                     .categories[0]
                                     .options[i]
                                     .appendTextField("link" + i, [i, "url"], "squareURL",
                                                      [squares[i].links[a].name,
-                                                      squares[i].links[a].url], 2, i);
+                                                      squares[i].links[a].url], 2, i, normalcategory);
                 }
             }else{
                 // search
@@ -127,7 +127,7 @@ function createMenu(data, callback){
                           .categories[0]
                           .options[i]
                           .appendTextField("heading" + i, [i, "prefix"], "squareHeading",
-                                           [squares[i].name, squares[i].prefix], 2, i, cat);
+                                           [squares[i].name, squares[i].prefix], 2, i, normalcategory);
                 for(var a=0; a < squares[i].options.length; a++){
                     var tf = configmenu.tabs[0]
                                 .categories[0]
@@ -135,7 +135,7 @@ function createMenu(data, callback){
                                 .appendTextField("option" + i, ["opt", "url", "space"], "squareOption",
                                                  [squares[i].options[a].opt,
                                                   squares[i].options[a].url,
-                                                  squares[i].options[a].space], 3, i);
+                                                  squares[i].options[a].space], 3, i, normalcategory);
                 }
             }
             if(squares[i].options === undefined){
@@ -143,20 +143,19 @@ function createMenu(data, callback){
                                     .categories[0]
                                     .options[i]
                                     .appendTextField("link" + i, undefined,
-                                                     "squareURL", undefined, 0, i);
+                                                     "squareURL", undefined, 0, i, normalcategory);
             }else{
                 var add = configmenu.tabs[0]
                                     .categories[0]
                                     .options[i]
                                     .appendTextField("option" + i, undefined, "squareOption",
-                                                     undefined, 0, i);
+                                                     undefined, 0, i, normalcategory);
             }
         }
-        var cat = configmenu.tabs[0].categories[0];
-        var newDiv = cat.appendSquareDiv();
+        var newDiv = normalcategory.appendSquareDiv();
         var opts = configmenu.tabs[0].categories[0].options;
         opts[opts.length-1].appendTextField("heading" + i, undefined, "squareHeading",
-                                   undefined, 0, i, cat);
+                                   undefined, 0, i, normalcategory);
     }else{
         configmenu.tabs[0].categories[0]
                           .appendTextField("heading" + 0, 0, "squareHeading",
