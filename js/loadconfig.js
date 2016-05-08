@@ -240,14 +240,14 @@ function saveConfig(callback){
             throw err;
         }
         if(length !== 4){
-            var sqr = {name:squares[i].name, links:[]};
+            var sqr = {name:squares[i].urls[0].childNodes[1].value, links:[]};
             for(var a=1; a < squares[i].urls.length; a++){
                 var url = {name:squares[i].urls[a].childNodes[1].value,
                            url:squares[i].urls[a].childNodes[2].value};
                 sqr.links.push(url);
             }
         }else{
-            var sqr = {name:squares[i].name, prefix:squares[i].urls[0].childNodes[2].value, options:[]};
+            var sqr = {name:squares[i].urls[0].childNodes[1].value, prefix:squares[i].urls[0].childNodes[2].value, options:[]};
             for(var a=1; a < squares[i].urls.length; a++){
                 var opt = {opt:squares[i].urls[a].childNodes[1].value,
                            url:squares[i].urls[a].childNodes[2].value,
