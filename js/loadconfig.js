@@ -154,12 +154,20 @@ function createMenu(data, callback){
         }
         var newDiv = normalcategory.appendSquareDiv();
         var opts = configmenu.tabs[0].categories[0].options;
-        opts[opts.length-1].appendTextField("heading" + i, undefined, "squareHeading",
+        opts[opts.length-1].appendTextField(undefined, undefined, "squareHeading",
+                                   undefined, 0, i, normalcategory);
+        opts[opts.length-1].appendTextField(undefined, undefined, "squareHeading_addS",
                                    undefined, 0, i, normalcategory);
     }else{
-        configmenu.tabs[0].categories[0]
-                          .appendTextField("heading" + 0, 0, "squareHeading",
-                                           "Heading 1");
+        div = configmenu.tabs[0]
+                        .categories[0]
+                        .appendSquareDiv("default");
+        configmenu.tabs[0].categories[0].options[0]
+                          .appendTextField(undefined, undefined, "squareHeading",
+                                           undefined, 0, undefined, normalcategory);
+        configmenu.tabs[0].categories[0].options[0]
+                          .appendTextField(undefined, undefined, "squareHeading_addS",
+                                           undefined, 0, undefined, normalcategory);
     }
 
 
@@ -203,7 +211,7 @@ function importConfig(callback){
     importinput.setAttribute("type", "file");
     importinput.setAttribute("name", "importinput");
 
-    configmenu.heading.appendChild(importinput);
+    configmenu.menu.appendChild(importinput);
 
     importinput.addEventListener("change", function(e){
         var file = importinput.files[0];
@@ -228,8 +236,20 @@ function exportConfig(){
 function saveConfig(callback){
     json = {squares:[], bool:{}, style:{}, ext:{}};
     // squares
+    var searchSquareCount = 0;
     var squares = configmenu.tabs[0].categories[0].options;
     for(var i=0; i < (squares.length - 1); i++){
+        if(squares[i].urls[1].className == "squareOption"){
+            searchSquareCount += 1;
+        }
+        try{
+            if(searchSquareCount > 1) throw "Too many search squares.";
+        }
+        catch(err){
+            alert(err);
+            throw err;
+        }
+
         var length;
         try{
             length = squares[i].urls[1].childNodes.length;
@@ -238,6 +258,30 @@ function saveConfig(callback){
             alert(err + "\nA square is probably empty.");
             throw err;
         }
+
+        try{
+            if(squares[i].urls[1].className == "squareOption"){
+                for(var a=2; a < squares[i].urls.length; a++){
+                    // dont allow options longer than one character
+                    if(squares[i].urls[a].childNodes[1].value.length > 1){
+                        throw "\"" + squares[i].urls[a].childNodes[1].value + "\"(" + (i+1) + "," + a + ") is too long";
+                    }
+                }
+            }
+        }
+        catch(err){
+            alert(err + "\nOptions can be no longer than one character.");
+            throw err;
+        }
+
+        if(squares[i].urls[1].className == "squareOption"){
+            if(squares[i].urls[1].childNodes[1].value != "default"){
+                alert("\"" + squares[i].urls[1].childNodes[1].value +
+                      "\" will be used as default search option because it's the first one." +
+                      "\nTo get rid of this warning, use default as the first option name.");
+            }
+        }
+
         if(length !== 4){
             var sqr = {name:squares[i].urls[0].childNodes[1].value, links:[]};
             for(var a=1; a < squares[i].urls.length; a++){
@@ -324,13 +368,20 @@ function loadConfig(data, callback){
     while(cell.firstChild){
         cell.removeChild(cell.firstChild);
     }
+    var square;
     for(var i=0; i < data.squares.length; i++){
         if(data.squares[i].links){
-            new Square(data.squares[i].name, data.squares[i].links, false);
+            square = new Square(data.squares[i].name, data.squares[i].links, false);
+            if(cfg_bool[1]){
+                square.expand();
+            }
         }else{
             // otherwise expect this to be a search square
             searchsquare = new Square(data.squares[i].name, data.squares[i].options, true);
             searchsquare.prefix = data.squares[i].prefix;
+            if(cfg_bool[1]){
+                searchsquare.expand();
+            }
         }
     }
 
@@ -352,7 +403,9 @@ function loadConfig(data, callback){
     a.css("color", cfg[7]);
     popup.css("color", cfg[7]);
     sqr.css("borderColor", cfg[8]);
-    sqr.css("borderWidth", cfg[9]);
+    if(!cfg_bool[1]){
+        sqr.css("borderWidth", cfg[9]);
+    }
     popup.css("borderTop", cfg[9] + " solid " + cfg[8]);
     var searchinput = $("#searchinput");
     if(searchinput.length){
@@ -362,7 +415,7 @@ function loadConfig(data, callback){
     var bgimg = $("#bgimg");
     if(cfg_bool[2]){
         bgimg.css("backgroundImage", "url('" +
-                cfg[13][Math.floor(Math.random()*cfg[13].length)] + "')");
+                  cfg[13][Math.floor(Math.random()*cfg[13].length)] + "')");
         bgimg.css("bottom", cfg[14]);
         bgimg.css("right", cfg[15]);
         bgimg.css("height", cfg[16]);

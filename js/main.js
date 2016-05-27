@@ -153,8 +153,7 @@ function main(){
         var key = a.keyCode;
         if(key == 9){
             search_sqr.style.height = "337px";
-            search_sqr.style.borderTop = cfg[9] + " solid " + cfg[8];
-            search_sqr.style.borderBottom = cfg[9] + " solid " + cfg[8];
+            search_sqr.style.borderWidth = cfg[10];
             document.getElementById("searchinput").focus();
         }
 
@@ -162,32 +161,6 @@ function main(){
             a.preventDefault();
         }
     });
-
-    // adding event listeners to squares or expanding them onload
-    /*
-    var sqr = document.querySelectorAll(".sqr");
-    if(!cfg_bool[1]){
-        for(var i = 0; i < sqr.length; ++i){
-            sqr[i].acount = sqr[i].getElementsByTagName("a").length;
-            sqr[i].addEventListener("mouseover", expand, false);
-            sqr[i].addEventListener("mouseout", contract, false);
-        }
-    }else{
-        for(var i = 0; i < sqr.length; ++i){
-            var a = 0;
-            for(var x = 0; x < sqr.length; ++x){
-                if(a < sqr[x].getElementsByTagName("a").length){
-                    a = sqr[x].getElementsByTagName("a").length;
-                }
-            }
-            sqr[i].style.height = 225 + 25*a + "px";
-            if(cfg_bool[0]){
-                sqr[i].style.borderTop = cfg[9] + " solid " + cfg[8];
-                sqr[i].style.borderBottom = cfg[9] + " solid " + cfg[8];
-            }
-        }
-    }
-    */
 }
 
 
