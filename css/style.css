@@ -197,11 +197,22 @@ input {
 }
 
 .squareHeading {
+    display:inline-block;
     position:relative;
     line-height:21px;
     height:21px;
+    width:21px;
 
     margin:30px 0 10px 0;
+}
+.squareHeading_addS {
+    display:inline-block;
+    position:relative;
+    line-height:21px;
+    height:21px;
+    width:21px;
+
+    margin:10px 0;
 }
 
 .category img {

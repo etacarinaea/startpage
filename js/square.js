@@ -46,28 +46,43 @@ function Square(heading, links, search){
     document.getElementById("cell").appendChild(this.squareElement);
 
     if(!cfg_bool[1]){
+        var square = this;
         this.squareElement.addEventListener("mouseover", this.expand, false);
         this.squareElement.addEventListener("mouseout", this.contract, false);
     }
 }
 
 
-
+// cant find a better solution to work with event listeners
 Square.prototype.expand = function(){
+    var obj;
+    if(this.squareElement){
+        obj = this.squareElement;
+    }else{
+        obj = this;
+    }
+
     if(this.acount > 0){
         // replace hardcoeded div height (300) and line height (25)
-        this.style.height = 300 + 25 * this.acount + "px";
+        obj.style.height = 300 + 25 * this.acount + "px";
     }else{
         // replace hardcoded height
-        this.style.height = "337px";
+        obj.style.height = "337px";
     }
     if(cfg_bool[0]){
-        this.style.borderWidth = cfg[10];
+        obj.style.borderWidth = cfg[10];
     }
 };
 
 Square.prototype.contract = function(){
+    var obj;
+    if(this.squareElement){
+        obj = this.squareElement;
+    }else{
+        obj = this;
+    }
+
     // replace hardcoeded div height (300)
-    this.style.height = 150 + "px";
-    this.style.borderWidth = cfg[9];
+    obj.style.height = 150 + "px";
+    obj.style.borderWidth = cfg[9];
 };

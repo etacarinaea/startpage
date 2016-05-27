@@ -251,6 +251,10 @@ function TextField(name, key, cssClass, value, amount, parentObject, index, pare
         this.removeNode = document.createElement("img");
         this.removeNode.setAttribute("src", "img/remove.png");
         this.node.appendChild(this.removeNode);
+    }else if(cssClass == "squareHeading_addS"){
+        this.addNode = document.createElement("img");
+        this.addNode.setAttribute("src", "img/addS.png");
+        this.node.appendChild(this.addNode);
     }else{
         this.addNode = document.createElement("img");
         this.addNode.setAttribute("src", "img/add.png");
@@ -292,7 +296,7 @@ TextField.prototype.addEvent = function(add){
                 parentObject.appendTextField("option" + index, ["opt", "url", "space"], "squareOption",
                                              ["option", "url", "space"], 3, index);
                 textfieldDiv.appendChild(node);
-            }else{
+            }else if(cssClass == "squareHeading"){
                 parentCategoryObject.element.removeChild(parentObject.node);
                 var addObject = parentCategoryObject.options.pop();
                 var sqr = parentCategoryObject.appendSquareDiv("new square");
@@ -301,6 +305,18 @@ TextField.prototype.addEvent = function(add){
                 sqr.appendTextField("link" + index, [index, "url"],
                         "squareURL", ["name", "url"], 2);
                 sqr.appendTextField("link" + index, undefined,"squareURL",
+                                    undefined, 0, index);
+                parentCategoryObject.element.appendChild(parentObject.node);
+                parentCategoryObject.options.push(addObject);
+            }else{
+                parentCategoryObject.element.removeChild(parentObject.node);
+                var addObject = parentCategoryObject.options.pop();
+                var sqr = parentCategoryObject.appendSquareDiv("new search square");
+                sqr.appendTextField("heading" + index, [index, "prefix"],
+                                    "squareHeading", ["new search square", "-"], 2, index, parentCategoryObject);
+                sqr.appendTextField("option" + index, ["opt", "url", "space"],
+                        "squareOption", ["default", "url", "+"], 3);
+                sqr.appendTextField("link" + index, undefined,"squareOption",
                                     undefined, 0, index);
                 parentCategoryObject.element.appendChild(parentObject.node);
                 parentCategoryObject.options.push(addObject);
