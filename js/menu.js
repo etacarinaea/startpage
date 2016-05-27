@@ -297,7 +297,7 @@ TextField.prototype.addEvent = function(add){
                 var addObject = parentCategoryObject.options.pop();
                 var sqr = parentCategoryObject.appendSquareDiv("new square");
                 sqr.appendTextField("heading" + index, index,
-                                    "squareHeading", "new square", 1, index);
+                                    "squareHeading", "new square", 1, index, parentCategoryObject);
                 sqr.appendTextField("link" + index, [index, "url"],
                         "squareURL", ["name", "url"], 2);
                 sqr.appendTextField("link" + index, undefined,"squareURL",
