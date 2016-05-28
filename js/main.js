@@ -84,7 +84,9 @@ String.prototype.replaceChars = function(character, replacement){
 
 
 function search(query){
-    if(query[0] == searchsquare.prefix){
+    if(typeof searchsquare == 'undefined'){
+        configmenuInit(undefined);
+    }else if(query[0] == searchsquare.prefix){
         if(query.substr(1) == "help"){
             popup(popupDiv, HelpText);
         }else if(query.substr(1) == "config"){
@@ -135,32 +137,6 @@ function main(){
     container = document.getElementById("container");
     fixJitter(container);
     popupDiv = document.getElementById("popup");
-    // search
-    var searchinput = document.getElementById("searchinput");
-    if(!!searchinput){
-        searchinput.addEventListener("keypress", function(a){
-            var key = a.keyCode;
-            if(key == 13){
-                var query = this.value;
-                search(query);
-            }
-        });
-    }
-
-    // jump to search when tab is pressed
-    var search_sqr = document.getElementById("search_sqr");
-    document.addEventListener("keypress", function(a){
-        var key = a.keyCode;
-        if(key == 9){
-            search_sqr.style.height = "337px";
-            search_sqr.style.borderWidth = cfg[10];
-            document.getElementById("searchinput").focus();
-        }
-
-        if([9].indexOf(key) > -1){
-            a.preventDefault();
-        }
-    });
 }
 
 

@@ -1,8 +1,8 @@
 // string, array, bool
-function Square(heading, links, search){
+function Square(heading, links, isSearch){
     this.heading = heading;
     this.links = links;
-    this.search = search;
+    this.search = isSearch;
 
     this.height = 150;
 
@@ -16,7 +16,7 @@ function Square(heading, links, search){
     this.contentElement = document.createElement("div");
     this.contentElement.setAttribute("class", "content");
 
-    if(!search){
+    if(!isSearch){
         var linkElements = [];
 
         for (var i = 0; i < links.length; i++){
@@ -32,11 +32,11 @@ function Square(heading, links, search){
         this.squareElement.acount = this.links.length;
     }else{
         this.squareElement.setAttribute("id", "search_sqr");
-        var searchinput = document.createElement("input");
-        searchinput.setAttribute("id", "searchinput");
-        searchinput.setAttribute("autocomplete", "off");
+        this.searchinput = document.createElement("input");
+        this.searchinput.setAttribute("id", "searchinput");
+        this.searchinput.setAttribute("autocomplete", "off");
 
-        this.contentElement.appendChild(searchinput);
+        this.contentElement.appendChild(this.searchinput);
         this.squareElement.acount = 0;
     }
 
@@ -49,6 +49,34 @@ function Square(heading, links, search){
         var square = this;
         this.squareElement.addEventListener("mouseover", this.expand, false);
         this.squareElement.addEventListener("mouseout", this.contract, false);
+    }
+
+    // search
+    var enter = function(a){
+        var key = a.keyCode;
+        if(key == 13){
+            var query = this.value;
+            search(query);
+        }
+    };
+    var squareElement = this.squareElement;
+    var searchinput = this.searchinput;
+    var tab = function(a){
+        var key = a.keyCode;
+        if(key == 9){
+            squareElement.style.height = "337px";
+            squareElement.style.borderWidth = cfg[10];
+            searchinput.focus();
+        }
+
+        if([9].indexOf(key) > -1){
+            a.preventDefault();
+        }
+    };
+    if(isSearch){
+        this.searchinput.addEventListener("keypress", enter);
+        document.removeEventListener("keypress", tab);
+        document.addEventListener("keypress", tab);
     }
 }
 
