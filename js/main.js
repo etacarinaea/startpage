@@ -101,6 +101,8 @@ function search(query){
                 }
             }
         }
+    }else if(query === ""){
+        popup(popupDiv, HelpText);
     }else{
         window.location = searchsquare.links[0].url +
                 query.replaceChars(" ", searchsquare.links[0].space);
@@ -130,9 +132,7 @@ function main(){
         }
     }
 
-    HelpText = "-h Shows this list<br>-g Google (default)<br>-w Wikipedia<br>"+
-               "-a ArchWiki<br>-d Danbooru<br>-y YouTube<br>-n niconico<br>"+
-               "-p pixiv";
+    HelpText = "-help : Shows this help message<br>-config : Opens the config menu";
     visibility = false;
     container = document.getElementById("container");
     fixJitter(container);
