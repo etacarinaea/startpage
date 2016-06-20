@@ -24,7 +24,7 @@
         ]},
 
         {"name":"search", "prefix":"-", "options": [
-            {"opt": "default", "url": "https://www.google.com/#q=",                   "space":"+"},
+            {"opt": "g", "url": "https://www.google.com/#q=",                         "space":"+"},
             {"opt": "a", "url": "https://wiki.archlinux.org/index.php?search=",       "space":"+"},
             {"opt": "d", "url": "http://danbooru.donmai.us/posts?tags=",              "space":"+"},
             {"opt": "p", "url": "http://www.pixiv.net/search.php?s_mode=s_tag&word=", "space":"%20"},
