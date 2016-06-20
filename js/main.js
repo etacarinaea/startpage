@@ -92,7 +92,7 @@ function search(query){
         }else if(query.substr(1) == "config"){
             configmenuInit(undefined);
         }else{
-            for(var i=1; i < searchsquare.links.length; i++){
+            for(var i=0; i < searchsquare.links.length; i++){
                 if(query[1] == searchsquare.links[i].opt){
                     query = query.substr(3);
                     window.location = searchsquare.links[i].url +
