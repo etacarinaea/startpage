@@ -6,9 +6,10 @@ function ConfigObject(items){
 
 var boolItems = {
     borders: "Borders",
-    alwaysopen: "keep all squares open",
-    allow_version_check: "allow checking for new versions",
-    use_json_file: "use config.json instead of this menu"
+    alwaysopen: "Keep all squares open",
+    mascot: "Enable background image/mascot",
+    allow_version_check: "Allow checking for new versions",
+    use_json_file: "Use config.json instead of this menu"
 };
 var bool = new ConfigObject(boolItems);
 
@@ -276,9 +277,9 @@ function saveConfig(callback){
 
         if(squares[i].urls[1].className == "squareOption"){
             if(squares[i].urls[1].childNodes[1].value != "default"){
-                alert("\"" + squares[i].urls[1].childNodes[1].value +
-                      "\" will be used as default search option because it's the first one." +
-                      "\nTo get rid of this warning, use default as the first option name.");
+                alert("Warning:\n" +
+                      "\"" + squares[i].urls[1].childNodes[1].value +
+                      "\" will be used as default search option because it's the first one.");
             }
         }
 

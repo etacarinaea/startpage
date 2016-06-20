@@ -104,7 +104,7 @@ function Category(name, hasHeading){
     if(this.hasHeading){
         this.headingElem = document.createElement("div");
         this.headingElem.setAttribute("class", "categoryHeading");
-        this.headingElem.appendChild(document.createTextNode(this.name));
+        this.headingElem.appendChild(document.createTextNode(this.hasHeading));
         this.element.appendChild(this.headingElem);
     }
 }
