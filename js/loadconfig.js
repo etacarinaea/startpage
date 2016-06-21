@@ -318,8 +318,14 @@ function saveConfig(callback){
     for(var key in ext){
         var elem = document.querySelector(
                 "#ext input[name='" + key + "'");
-        ext[key].value = elem.value;
-        json.ext[key] = String(elem.value);
+        if(elem.getAttribute("name") == "images"){
+            var val = elem.value.replace(/\s+/g, "").split(",");
+            ext[key].value = val;
+            json.ext[key] = val;
+        }else{
+            ext[key].value = elem.value;
+            json.ext[key] = String(elem.value);
+        }
     }
 
     loadConfig(json, callback);
@@ -417,6 +423,10 @@ function loadConfig(data, callback){
     if(cfg_bool[2]){
         bgimg.css("backgroundImage", "url('" +
                   cfg[13][Math.floor(Math.random()*cfg[13].length)] + "')");
+        console.log(cfg[13]);
+        console.log(data.ext.images);
+        console.log(cfg[13][Math.floor(Math.random()*cfg[13].length)]);
+        console.log(Math.floor(Math.random()*cfg[13].length));
         bgimg.css("bottom", cfg[14]);
         bgimg.css("right", cfg[15]);
         bgimg.css("height", cfg[16]);
