@@ -120,6 +120,10 @@ var focusedSquare = -1;
 var focusedLink = 0;
 
 function globalKeyListener(e){
+    if(typeof configmenu !== "undefined" ||
+       searchsquare.searchinput == document.activeElement){
+        return;
+    }
 
     var key = e.keyCode;
     if(key == 9){
@@ -163,7 +167,7 @@ function globalKeyListener(e){
             focusedLink++;
             normalSquares[focusedSquare].focus(focusedLink);
         }
-    }else if(key == 13 && searchsquare.searchinput != document.activeElement){
+    }else if(key == 13 && searchinputActive){
         // enter
         window.location = normalSquares[focusedSquare].links[focusedLink].url;
     }
