@@ -137,11 +137,13 @@ function globalKeyListener(e){
             normalSquares[focusedSquare].expand();
             normalSquares[focusedSquare].focus(focusedLink);
         }
-    }else if(key == 38){
+    }else if(key == 38 && focusedSquare >= 0){
         // up arrow
-        normalSquares[focusedSquare].unfocus(focusedLink);
-        focusedLink--;
-        normalSquares[focusedSquare].focus(focusedLink);
+        if(focusedLink > 0){
+            normalSquares[focusedSquare].unfocus(focusedLink);
+            focusedLink--;
+            normalSquares[focusedSquare].focus(focusedLink);
+        }
     }else if(key == 39){
         // right arrow
         if(focusedSquare < normalSquares.length - 1){
@@ -154,11 +156,16 @@ function globalKeyListener(e){
             normalSquares[focusedSquare].expand();
             normalSquares[focusedSquare].focus(focusedLink);
         }
-    }else if(key == 40){
+    }else if(key == 40 && focusedSquare >= 0){
         // down arrow
-        normalSquares[focusedSquare].unfocus(focusedLink);
-        focusedLink++;
-        normalSquares[focusedSquare].focus(focusedLink);
+        if(focusedLink < normalSquares[focusedSquare].links.length - 1){
+            normalSquares[focusedSquare].unfocus(focusedLink);
+            focusedLink++;
+            normalSquares[focusedSquare].focus(focusedLink);
+        }
+    }else if(key == 13 && searchsquare.searchinput != document.activeElement){
+        // enter
+        window.location = normalSquares[focusedSquare].links[focusedLink].url;
     }
 
     if([9,37,38,39,40].indexOf(key) > -1){
