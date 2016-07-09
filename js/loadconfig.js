@@ -195,6 +195,7 @@ function createMenu(data, callback){
     saveButton.addEventListener("click", function(){
         saveConfig(callback);
         configmenu.kill();
+        configmenu = undefined;
     });
     var exportButton = configmenu.appendButton("export", "#9999bb");
     exportButton.addEventListener("click", function(){
