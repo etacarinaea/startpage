@@ -38,6 +38,16 @@ function Square(heading, links, isSearch){
 
         this.contentElement.appendChild(this.searchinput);
         this.squareElement.acount = 0;
+
+        var enter = function(a){
+            var key = a.keyCode;
+            if(key == 13){
+                var query = this.value;
+                search(query);
+            }
+        };
+        var searchFocused = (this.searchinput == document.activeElement);
+        this.searchinput.addEventListener("keypress", enter);
     }
 
 
@@ -51,33 +61,8 @@ function Square(heading, links, isSearch){
         this.squareElement.addEventListener("mouseout", this.contract, false);
     }
 
-    // search
-    var enter = function(a){
-        var key = a.keyCode;
-        if(key == 13){
-            var query = this.value;
-            search(query);
-        }
-    };
     var squareElement = this.squareElement;
     var searchinput = this.searchinput;
-    var tab = function(a){
-        var key = a.keyCode;
-        if(key == 9){
-            squareElement.style.height = "337px";
-            squareElement.style.borderWidth = cfg[10];
-            searchinput.focus();
-        }
-
-        if([9].indexOf(key) > -1){
-            a.preventDefault();
-        }
-    };
-    if(isSearch){
-        this.searchinput.addEventListener("keypress", enter);
-        document.removeEventListener("keypress", tab);
-        document.addEventListener("keypress", tab);
-    }
 }
 
 
@@ -90,9 +75,9 @@ Square.prototype.expand = function(){
         obj = this;
     }
 
-    if(this.acount > 0){
+    if(obj.acount > 0){
         // replace hardcoeded div height (300) and line height (25)
-        obj.style.height = 300 + 25 * this.acount + "px";
+        obj.style.height = 300 + 25 * obj.acount + "px";
     }else{
         // replace hardcoded height
         obj.style.height = "337px";
@@ -113,4 +98,12 @@ Square.prototype.contract = function(){
     // replace hardcoeded div height (300)
     obj.style.height = 150 + "px";
     obj.style.borderWidth = cfg[9];
+};
+
+Square.prototype.focus = function(index){
+    this.contentElement.childNodes[index*2].style.backgroundColor = "#f00";
+};
+
+Square.prototype.unfocus = function(index){
+    this.contentElement.childNodes[index*2].style.backgroundColor = "initial";
 };
