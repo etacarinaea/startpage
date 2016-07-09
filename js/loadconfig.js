@@ -375,12 +375,12 @@ function loadConfig(data, callback){
     while(cell.firstChild){
         cell.removeChild(cell.firstChild);
     }
-    var square;
+    normalSquares = [];
     for(var i=0; i < data.squares.length; i++){
         if(data.squares[i].links){
-            square = new Square(data.squares[i].name, data.squares[i].links, false);
+            normalSquares[i] = new Square(data.squares[i].name, data.squares[i].links, false);
             if(cfg_bool[1]){
-                square.expand();
+                normalSquares[i].expand();
             }
         }else{
             // otherwise expect this to be a search square
