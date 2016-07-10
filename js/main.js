@@ -167,7 +167,7 @@ function globalKeyListener(e){
             focusedLink++;
             normalSquares[focusedSquare].focus(focusedLink);
         }
-    }else if(key == 13 && searchinputActive){
+    }else if(key == 13){
         // enter
         window.location = normalSquares[focusedSquare].links[focusedLink].url;
     }
