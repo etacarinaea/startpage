@@ -101,9 +101,11 @@ Square.prototype.contract = function(){
 };
 
 Square.prototype.focus = function(index){
-    this.contentElement.childNodes[index*2].style.backgroundColor = "#f00";
+    this.contentElement.childNodes[index*2].style.backgroundColor = data.style.focus_bg_color;
+    this.contentElement.childNodes[index*2].style.color = data.style.focus_color;
 };
 
 Square.prototype.unfocus = function(index){
     this.contentElement.childNodes[index*2].style.backgroundColor = "initial";
+    this.contentElement.childNodes[index*2].style.color = data.style.link_color;
 };
