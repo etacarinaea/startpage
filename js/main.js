@@ -36,7 +36,7 @@ function popup(obj, msg){
     if(!visibility){
         obj.addEventListener("click", popuphandler);
         obj.innerHTML = msg;
-        obj.style.bottom = "-" + cfg[9];
+        obj.style.bottom = "-" + data.style.border_width_normal;
     }else{
         obj.removeEventListener("click", popuphandler);
         obj.style.bottom = "-200px";
@@ -52,15 +52,15 @@ function expand(){
     }else{
         this.style.height = "337px";
     }
-    if(cfg_bool[0]){
-        this.style.borderWidth = cfg[10];
+    if(data.bool.borders){
+        this.style.borderWidth = data.style.border_width_hovered;
     }
 }
 
 
 function contract(){
     this.style.height = "150px";
-    this.style.borderWidth = cfg[9];
+    this.style.borderWidth = data.style.border_width_normal;
 }
 
 
@@ -129,7 +129,7 @@ function globalKeyListener(e){
     if(key == 9){
         // tab
         searchsquare.squareElement.style.height = "337px";
-        searchsquare.squareElement.style.borderWidth = cfg[10];
+        searchsquare.squareElement.style.borderWidth = data.style.border_width_hovered;
         searchsquare.searchinput.focus();
     }else if(key == 37){
         // left arrow
@@ -181,7 +181,7 @@ function globalKeyListener(e){
 
 function main(){
     document.addEventListener("keypress", globalKeyListener);
-    if(cfg_bool[3]){
+    if(data.bool.allow_version_check){
         var ver = version();
         if(ver){
             var versionDiv =  document.createElement("div");
