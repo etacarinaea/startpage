@@ -333,40 +333,12 @@ function saveConfig(callback){
 }
 
 
+var data;
 // load and aplly
-function loadConfig(data, callback){
-    // needs to be stringified because localStorage is limited to strings
+function loadConfig(d, callback){
+    data = d;
     localStorage.config = JSON.stringify(data, undefined, 4);
     localStorage.squares = JSON.stringify(data.squares, undefined, 4);
-    cfg = [
-        data.style.heading_font,
-        data.style.link_font,
-        data.style.heading_font_size,
-        data.style.link_font_size,
-        data.style.background,
-        data.style.foreground,
-        data.style.heading_color,
-        data.style.link_color,
-        data.style.border_color,
-        data.style.border_width_normal,
-        data.style.border_width_hovered,
-        data.style.search_color,
-        data.style.search_bg_color,
-        data.ext.images,
-        data.ext.bottom,
-        data.ext.right,
-        data.ext.height,
-        data.ext.width,
-        data.ext.opacity
-    ];
-    cfg_bool = [
-        data.bool.borders,
-        data.bool.alwaysopen,
-        data.bool.mascot,
-        data.bool.allow_version_check
-    ];
-    localStorage.cfg = cfg;
-    localStorage.cfg_bool = cfg_bool;
 
     // squares
     /* remove all existing squares, otherwise the old ones will still be
@@ -380,14 +352,14 @@ function loadConfig(data, callback){
     for(var i=0; i < data.squares.length; i++){
         if(data.squares[i].links){
             normalSquares[i] = new Square(data.squares[i].name, data.squares[i].links, false);
-            if(cfg_bool[1]){
+            if(data.bool.alwaysopen){
                 normalSquares[i].expand();
             }
         }else{
             // otherwise expect this to be a search square
             searchsquare = new Square(data.squares[i].name, data.squares[i].options, true);
             searchsquare.prefix = data.squares[i].prefix;
-            if(cfg_bool[1]){
+            if(data.bool.alwaysopen){
                 searchsquare.expand();
             }
         }
@@ -398,41 +370,41 @@ function loadConfig(data, callback){
     var a = $("a");
     var popup = $("#popup");
     var sqr = $(".sqr");
-    span.css("fontFamily", cfg[0]);
-    a.css("fontFamily", cfg[1]);
-    popup.css("fontFamily", cfg[1]);
-    span.css("fontSize", cfg[2]);
-    a.css("fontSize", cfg[3]);
-    popup.css("fontSize", cfg[3]);
-    $("body").css("backgroundColor", cfg[4]);
-    sqr.css("backgroundColor", cfg[5]);
-    popup.css("backgroundColor", cfg[5]);
-    span.css("color", cfg[6]);
-    a.css("color", cfg[7]);
-    popup.css("color", cfg[7]);
-    sqr.css("borderColor", cfg[8]);
-    if(!cfg_bool[1]){
-        sqr.css("borderWidth", cfg[9]);
+    span.css("fontFamily", data.style.heading_font);
+    a.css("fontFamily", data.style.link_font);
+    popup.css("fontFamily", data.style.link_font);
+    span.css("fontSize", data.style.heading_font_size);
+    a.css("fontSize", data.style.link_font_size);
+    popup.css("fontSize", data.style.link_font_size);
+    $("body").css("backgroundColor", data.style.background);
+    sqr.css("backgroundColor", data.style.foreground);
+    popup.css("backgroundColor", data.style.foreground);
+    span.css("color", data.style.heading_color);
+    a.css("color", data.style.link_color);
+    popup.css("color", data.style.link_color);
+    sqr.css("borderColor", data.style.border_color);
+    if(!data.bool.alwaysopen){
+        sqr.css("borderWidth", data.style.border_width_normal);
     }
-    popup.css("borderTop", cfg[9] + " solid " + cfg[8]);
+    popup.css("borderTop", data.style.border_width_normal + " solid " + data.style.border_color);
     var searchinput = $("#searchinput");
     if(searchinput.length){
-        searchinput.css("color", cfg[11]);
-        searchinput.css("backgroundColor", cfg[12]);
+        searchinput.css("color", data.style.search_color);
+        searchinput.css("backgroundColor", data.style.search_bg_color);
     }
     var bgimg = $("#bgimg");
-    if(cfg_bool[2]){
+    if(data.bool.mascot){
         bgimg.css("backgroundImage", "url('" +
-                  cfg[13][Math.floor(Math.random()*cfg[13].length)] + "')");
-        console.log(cfg[13]);
+                  data.ext.images[Math.floor(Math.random()*data.ext.images.length)] + "')");
         console.log(data.ext.images);
-        console.log(cfg[13][Math.floor(Math.random()*cfg[13].length)]);
-        console.log(Math.floor(Math.random()*cfg[13].length));
-        bgimg.css("bottom", cfg[14]);
-        bgimg.css("right", cfg[15]);
-        bgimg.css("height", cfg[16]);
-        bgimg.css("width", cfg[17]);
-        bgimg.css("opacity", cfg[18]);
+        console.log(data.ext.images);
+        console.log(data.ext.images[Math.floor(Math.random()*data.ext.images.length)]);
+        console.log(Math.floor(Math.random()*data.ext.images.length));
+        bgimg.css("bottom", data.ext.bottom);
+        bgimg.css("right", data.ext.right);
+        bgimg.css("height", data.ext.height);
+        bgimg.css("width", data.ext.width);
+        bgimg.css("opacity", data.ext.opacity);
     }else{
         bgimg.css("backgroundImage", "");
     }

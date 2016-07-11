@@ -55,7 +55,7 @@ function Square(heading, links, isSearch){
     this.squareElement.appendChild(this.contentElement);
     document.getElementById("cell").appendChild(this.squareElement);
 
-    if(!cfg_bool[1]){
+    if(!data.bool.alwaysopen){
         var square = this;
         this.squareElement.addEventListener("mouseover", this.expand, false);
         this.squareElement.addEventListener("mouseout", this.contract, false);
@@ -82,8 +82,8 @@ Square.prototype.expand = function(){
         // replace hardcoded height
         obj.style.height = "337px";
     }
-    if(cfg_bool[0]){
-        obj.style.borderWidth = cfg[10];
+    if(data.bool.borders){
+        obj.style.borderWidth = data.style.border_width_hovered;
     }
 };
 
@@ -97,7 +97,7 @@ Square.prototype.contract = function(){
 
     // replace hardcoeded div height (300)
     obj.style.height = 150 + "px";
-    obj.style.borderWidth = cfg[9];
+    obj.style.borderWidth = data.style.border_width_normal;
 };
 
 Square.prototype.focus = function(index){
