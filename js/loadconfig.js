@@ -25,6 +25,8 @@ var styleItems = {
     border_color: "Border Color",
     border_width_normal: "Border Width",
     border_width_hovered: "Border Width (Hovered)",
+    focus_color: "Focus Color",
+    focus_bg_color: "Focus Background Color",
     search_color: "Search Color",
     search_bg_color: "Search Background Color"
 };
@@ -334,7 +336,7 @@ function saveConfig(callback){
 
 
 var data;
-// load and aplly
+// load and apply
 function loadConfig(d, callback){
     data = d;
     localStorage.config = JSON.stringify(data, undefined, 4);
