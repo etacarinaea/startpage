@@ -2,7 +2,7 @@
 
 A simple, customisable startpage/homepage.
 
-![example screenshot](/img/screenshots/2016-08-19-open.png?raw=true)
+<img alt="example screenshot" src="/img/screenshots/2016-08-19-open.png?raw=true" width="968">
 
 ## Installation
 
