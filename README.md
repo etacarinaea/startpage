@@ -2,7 +2,7 @@
 
 A simple, customisable startpage/homepage.
 
-![example screenshot](/img/screenshots/2016-08-19-closed.png?raw=true)
+![example screenshot](/img/screenshots/2016-08-19-open.png?raw=true)
 
 ## Installation
 
