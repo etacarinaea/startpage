@@ -2,7 +2,7 @@
 
 A simple, customisable startpage/homepage.
 
-[ INSERT SCREENSHOTS HERE ]
+![example screenshot](/img/screenshots/2016-08-19-closed.png?raw=true)
 
 ## Installation
 
@@ -41,7 +41,7 @@ later.<br>
 
 
 Warning: Because of the way the configuration menu saves data, moving the startpage's directory to a different location
-will result in it not being able to find the data. Moving it back should fix it. You can export the configuration as a
+will result in it not being able to load the config. Moving it back should fix it. You can export the configuration as a
 JSON file in the menu, then move the directory and load the file.
 
 ##### config.json
@@ -49,7 +49,5 @@ This is the file used for configuration.
 
 
 ## Contact
-If you're having problems or have an improvement check if someone already mentioned it
-[here](https://github.com/fuyuneko/startpage/issues?utf8=%E2%9C%93&q=is%3Aissue) and
-create a [new issue](https://github.com/fuyuneko/startpage/issues/new).
+If you're having problems or have an improvement you can create an issue [here](https://github.com/fuyuneko/startpage/issues).
 
