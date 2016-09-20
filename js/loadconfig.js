@@ -46,7 +46,7 @@ var ext = new ConfigObject(extItems);
 
 
 function configmenuInit(callback){
-    $.getJSON("config.json", function(data){
+    $.loadJSON("config.json", function(data){
         if(data.bool.privateMode === true){
             loadConfig(data, callback);
         }else if(localStorage.use_json_file == "true" || localStorage.config === undefined){
@@ -344,7 +344,7 @@ function loadConfig(d, callback){
 
     // squares
     /* remove all existing squares, otherwise the old ones will still be
-     * displayed (without a pabe reload)
+     * displayed (without a page reload)
      */
     var cell = document.getElementById("cell");
     while(cell.firstChild){
@@ -396,8 +396,7 @@ function loadConfig(d, callback){
     }
     var bgimg = $("#bgimg");
     if(data.bool.mascot){
-        bgimg.css("backgroundImage", "url('" +
-                  data.ext.images[Math.floor(Math.random()*data.ext.images.length)] + "')");
+        bgimg.css("backgroundImage", "url('" + data.ext.images[Math.floor(Math.random()*data.ext.images.length)] + "')");
         console.log(data.ext.images);
         console.log(data.ext.images);
         console.log(data.ext.images[Math.floor(Math.random()*data.ext.images.length)]);
