@@ -204,4 +204,6 @@ function main(){
 }
 
 
-configmenuInit(main);
+document.addEventListener("DOMContentLoaded", function(event){
+    configmenuInit(main);
+});
