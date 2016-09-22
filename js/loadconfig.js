@@ -155,6 +155,7 @@ function createMenu(data, callback){
                                                      undefined, 0, i, normalcategory);
             }
         }
+        // square/search add button
         var newDiv = normalcategory.appendSquareDiv();
         var opts = configmenu.tabs[0].categories[0].options;
         opts[opts.length-1].appendTextField(undefined, undefined, "squareHeading",
