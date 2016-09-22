@@ -297,8 +297,15 @@ TextField.prototype.addEvent = function(add){
                                              ["option", "url", "space"], 3, index);
                 textfieldDiv.appendChild(node);
             }else if(cssClass == "squareHeading"){
-                parentCategoryObject.element.removeChild(parentObject.node);
+                // new square
                 var addObject = parentCategoryObject.options.pop();
+                parentCategoryObject.element.removeChild(addObject.node);
+                // insert before search square if one exists
+                var searchObject = parentCategoryObject.options[parentCategoryObject.options.length-1];
+                if(searchObject.urls[1].className == "squareOption"){
+                    searchObject = parentCategoryObject.options.pop();
+                    parentCategoryObject.element.removeChild(searchObject.node);
+                }
                 var sqr = parentCategoryObject.appendSquareDiv("new square");
                 sqr.appendTextField("heading" + index, index,
                                     "squareHeading", "new square", 1, index, parentCategoryObject);
@@ -306,20 +313,30 @@ TextField.prototype.addEvent = function(add){
                         "squareURL", ["name", "url"], 2);
                 sqr.appendTextField("link" + index, undefined,"squareURL",
                                     undefined, 0, index);
-                parentCategoryObject.element.appendChild(parentObject.node);
+                if(searchObject.urls[1].className == "squareOption"){
+                    parentCategoryObject.element.appendChild(searchObject.node);
+                    parentCategoryObject.options.push(searchObject);
+                }
+                parentCategoryObject.element.appendChild(addObject.node);
                 parentCategoryObject.options.push(addObject);
             }else{
-                parentCategoryObject.element.removeChild(parentObject.node);
-                var addObject = parentCategoryObject.options.pop();
-                var sqr = parentCategoryObject.appendSquareDiv("new search square");
-                sqr.appendTextField("heading" + index, [index, "prefix"],
-                                    "squareHeading", ["new search square", "-"], 2, index, parentCategoryObject);
-                sqr.appendTextField("option" + index, ["opt", "url", "space"],
-                        "squareOption", ["default", "url", "+"], 3);
-                sqr.appendTextField("link" + index, undefined,"squareOption",
-                                    undefined, 0, index);
-                parentCategoryObject.element.appendChild(parentObject.node);
-                parentCategoryObject.options.push(addObject);
+                // new search square
+                var searchObject = parentCategoryObject.options[parentCategoryObject.options.length-2];
+                if(searchObject.urls[1].className != "squareOption"){
+                    var addObject = parentCategoryObject.options.pop();
+                    parentCategoryObject.element.removeChild(addObject.node);
+                    var sqr = parentCategoryObject.appendSquareDiv("new search square");
+                    sqr.appendTextField("heading" + index, [index, "prefix"],
+                                        "squareHeading", ["new search square", "-"], 2, index, parentCategoryObject);
+                    sqr.appendTextField("option" + index, ["opt", "url", "space"],
+                            "squareOption", ["default", "url", "+"], 3);
+                    sqr.appendTextField("link" + index, undefined,"squareOption",
+                                        undefined, 0, index);
+                    parentCategoryObject.element.appendChild(parentObject.node);
+                    parentCategoryObject.options.push(addObject);
+                }else{
+                    alert("A search square already exists!");
+                }
             }
         });
     }else{
