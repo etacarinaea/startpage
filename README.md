@@ -1,59 +1,54 @@
-startpage
-====
+# startpage
 
-![example screenshot](/img/screenshots/2015-12-26-closed.png?raw=true)
-![example screenshot open](/img/screenshots/2015-12-26-open.png?raw=true)
+A simple, customisable startpage/homepage.
 
+<p align="center"><img alt="example screenshot"
+                   src="/img/screenshots/2016-08-19-open.png?raw=true"></p>
 
-<br>
-### Configuration
-Configuration can be done using the configuration menu or by editing 
-```config.json``` in the startpage's directory.
+## Installation
 
-<br>
-##### Configuration Menu
-A menu to configure the startpage  will be displayed the first time the page
-is loaded. It can be opened anytime by entering ```-config``` into the search
-field. If you don't have a search square you can still access the menu by
-entering ```search("-config")``` into the browser's console.
+Clone the repository or
+[download](https://github.com/fuyuneko/startpage/archive/master.zip) the zip.
 
-##### Squares
-When editing ```config.json``` a normal square can be added by adding another
-object to the ```squares``` array. The order in which they are defined in the
-file will be the same one used to display them.
+##### Firefox
+Download an extension that lets you change the newtab page, then just add the
+path to `index.html` as the URL, e.g.:
+`file:///home/yuki/startpage/index.html` or
+`file:///c:/startpage/index.html`
 
-Example:
-```
-{"name":"NAME", "links": [
-    {"name": "LINK1", "url": "http://www.example.com"},
-    {"name": "LINK2", "url": "http://www.example.com"}
-]},
-```
+If you're using an older version of Firefox you can simply change
+`browser.newtab.url` in `about:config`.
 
-##### Appearance
-| attribute         | if true                                          |
-| ----------------- | ------------------------------------------------ |
-| borders           | enables borders on top and bottom                |
-| alwaysopen        | makes all squares open on load                   |
-| mascot            | enables image in the bottom right hand corner    |
-| allowVersionCheck | allows to check for the latest Version on github |
-| privateMode       | will always load config.json                     |
+##### Chromium/Chrome
+Download the `.crx file` from the
+[latest release](https://github.com/fuyuneko/startpage/releases/latest) and open
+it with Chrome.<br>
+If a `.crx` file for a release isn't available or you want to use the latest
+version on github you will have to
+[download](https://github.com/fuyuneko/startpage/blob/chromium-patch/manifest.json)
+the manifest.json for the startpage and save it in the same directory as the
+startpage. Go to Chrome's extension menu, enable _developer mode_, click on
+_"load unpacked extension"_ and select the folder you saved the startage in.
 
-The version is only checked for if the help popup shows up.
-Set privateMode to ```true``` if you're always using your browser's private mode.
+## Configuration
+The startpage can be configured by using a configuration file or by using a
+built-in menu.<br>
+If you're using some sort of private/incognito mode in your browser the
+configuration will not be saved and has to be loaded from `config.json`
+every time the page is reloaded. To prevent the configuration menu from
+appearing every time you load the page you will have to set `privateMode`
+to `true` in `config.json`.
 
-The _images_ array is a list of all mascot images to be used. If you want to
-use only one image just create an array with one item.
+When first opening the startpage you can choose to load the configuration from
+the `config.json` file or configure the page by using the configuration
+menu. Choose whatever you like, you will be able to change this later.<br>
 
-##### Search
-```
-{"name":"search", "prefix":"-", "options": [
-    {"opt": "default", "url": "https://www.google.com/#q=", "space":"+"},
-    {"opt": "w", "url": "https://en.wikipedia.org/w/index.php?search=", "space":"+"}
-]}
-```
-Prefix: The prefix used to identify an option.
-Options: Default will be used if no option is given. ```opt``` is the character
-you'll type after the prefix. ```url``` is the URL to use with that option.
-```space``` is the character that should be used to replace space. Usually "+".
+Because of the way the configuration menu saves data, moving the startpage's
+directory to a different location will result in it not being able to load the
+config. Moving it back should fix it. You can export the configuration as a JSON
+file in the menu, then move the directory and load the file.
+
+## Contact
+If you're having problems or have an improvement you can create an issue
+[here](https://github.com/fuyuneko/startpage/issues).
 
