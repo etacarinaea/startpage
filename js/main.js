@@ -181,8 +181,9 @@ function globalKeyListener(e){
 
 function main(){
     document.addEventListener("keypress", globalKeyListener);
-    if(data.bool.allowVersionCheck){
+    if(data.bool.allow_version_check){
         var ver = version();
+        // version() returns undef if version is the same
         if(ver){
             var versionDiv =  document.createElement("div");
             versionDiv.setAttribute("id", "version");
