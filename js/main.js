@@ -1,4 +1,4 @@
-VERSION = "v1.5.0";
+VERSION = "v1.4.0";
 
 
 function version(){
@@ -180,27 +180,42 @@ function globalKeyListener(e){
 
 
 function main(){
-    document.addEventListener("keypress", globalKeyListener);
-    if(data.bool.allowVersionCheck){
-        var ver = version();
-        if(ver){
-            var versionDiv =  document.createElement("div");
-            versionDiv.setAttribute("id", "version");
-
-            var versionAnchor = document.createElement("a");
-            versionAnchor.href = "https://github.com/fuyuneko/startpage/releases";
-            versionAnchor.appendChild(document.createTextNode("A new version is available: " + ver));
-
-            versionDiv.appendChild(versionAnchor);
-            document.body.appendChild(versionDiv);
-        }
-    }
-
-    HelpText = "-help : Shows this help message<br>-config : Opens the config menu";
     visibility = false;
     container = document.getElementById("container");
     fixJitter(container);
     popupDiv = document.getElementById("popup");
+
+    document.addEventListener("keypress", globalKeyListener);
+    if(data.bool.allowVersionCheck){
+        var ver = version();
+        if(ver){
+            var verMsg = "<a href='https://github.com/fuyuneko/startpage/" +
+                         "releases'>A new version is available: " + ver +
+                         "</a>";
+
+            popup(popupDiv, verMsg);
+        }
+    }
+
+    // generate helptext for static options
+    var prefix = data.squares[data.squares.length - 1].prefix;
+    HelpText = "<table><tr><td>" + prefix +
+               "help</td><td>: Shows this help message</td></tr><tr><td>" +
+               prefix + "config</td><td>: Opens the config menu</td></tr></table>";
+
+    // generate helptext for custom options
+    var searchsquareOptions = data.squares[data.squares.length - 1].options;
+    if(searchsquareOptions){
+        HelpText += "<br><table>";
+        for(var i=0; i < searchsquareOptions.length; i++){
+            // remove scheme, path and everything after path from URL
+            var url = searchsquareOptions[i].url.replace(/https?:\/\//, "")
+                                                .replace(/\/.*/, "");
+            HelpText += "<tr><td>" + prefix + searchsquareOptions[i].opt +
+                        "</td><td>: " + url + "</td></tr>";
+        }
+        HelpText += "</table>";
+    }
 }
 
 

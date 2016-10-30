@@ -80,18 +80,19 @@ body{
     text-align:left;
 }
 
+#popup a {
+    font-size:14px;
+    font-family:Arial, Sans-Serif;
+    color:#fafafa;
+    text-shadow:0 -1px #000, 1px 0 #000, 0 1px #000, -1px 0 #000;
+}
+
 
 #version {
     z-index:100;
     position:absolute;
     bottom:5px;
     right:5px;
-}
-
-#version a {
-    font-size:14px;
-    color:#fafafa;
-    text-shadow:0 -1px #000, 1px 0 #000, 0 1px #000, -1px 0 #000;
 }
 
 
