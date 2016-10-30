@@ -2,8 +2,8 @@
 
 A simple, customisable startpage/homepage.
 
-<img align="center" alt="example screenshot"
-     src="/img/screenshots/2016-08-19-open.png?raw=true">
+<p align="center"><img alt="example screenshot"
+                   src="/img/screenshots/2016-08-19-open.png?raw=true"></p>
 
 ## Installation
 
