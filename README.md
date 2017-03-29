@@ -3,8 +3,8 @@
     <img alt="logo" src="/img/readme/logo.png?raw=true"><br><br><br>
     <img alt="example screenshot" src="/img/readme/screenshot-29032017-1.png?raw=true" width="400px">
     <img alt="example screenshot" src="/img/readme/screenshot-29032017-3.png?raw=true" width="400px"><br>
-    <img alt="example screenshot" src="/img/readme/screenshot-29032017-2.png?raw=true" width="400px">
     <img alt="example screenshot" src="/img/readme/screenshot-29032017-4.png?raw=true" width="400px">
+    <img alt="example screenshot" src="/img/readme/screenshot-29032017-2.png?raw=true" width="400px">
 </p>
 
 
