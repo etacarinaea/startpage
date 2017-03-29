@@ -1,4 +1,3 @@
-
 <p align="center">
     <img alt="logo" src="/img/readme/logo.png?raw=true"><br><br><br>
     <img alt="example screenshot" src="/img/readme/screenshot-29032017-1.png?raw=true" width="400px">
@@ -36,6 +35,15 @@ the manifest.json and save it in the same directory as the startpage. Go to
 Chrome's extension menu, enable _developer mode_, click on
 _"load unpacked extension"_ and select the folder you saved the startage in.
 
+
+## Usage
+
+The config menu can be opened any time by writing `-config` into the search
+square or by writing `search("-config")` into the browser console.
+
+The arrow keys can be used to navigate the squares: left and right will move to
+a different square and up and down will move between links in a square. The
+selected link can then be visited by pressing enter.
 
 
 ## Configuration
