@@ -9,9 +9,9 @@
 
 ## Installation
 
-Download a [release](https://github.com/fuyuneko/startpage/releases), clone the
-repository or
-[download the zip](https://github.com/fuyuneko/startpage/archive/master.zip).
+Download a [release](https://github.com/fuyuneko/startpage/releases), or
+download the [zip](https://github.com/fuyuneko/startpage/archive/master.zip)
+of the latest version on GitHub.
 
 
 ##### Firefox
@@ -48,7 +48,7 @@ selected link can then be visited by pressing enter.
 
 ## Configuration
 
-The startpage can be configured by using a configuration file or by using a
+The startpage can be configured by using a configuration file or by using the
 built-in menu.<br>
 If you're using some sort of private/incognito mode in your browser the
 configuration will not be saved and has to be loaded from `config.json`
