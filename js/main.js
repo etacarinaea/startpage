@@ -185,7 +185,7 @@ function main(){
     fixJitter(container);
     popupDiv = document.getElementById("popup");
 
-    document.addEventListener("keypress", globalKeyListener);
+    document.addEventListener("keydown", globalKeyListener);
     if(data.bool.allowVersionCheck){
         var ver = version();
         if(ver){
