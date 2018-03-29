@@ -45,26 +45,6 @@ function popup(obj, msg){
 }
 
 
-// expanding and contracting squares
-function expand(){
-    if(this.acount > 0){
-        this.style.height = 300 + 25*this.acount + "px";
-    }else{
-        this.style.height = "337px";
-    }
-    if(data.bool.borders){
-        this.style.borderWidth = data.style.border_width_hovered;
-    }
-}
-
-
-function contract(){
-    this.style.height = "150px";
-    this.style.borderWidth = data.style.border_width_normal;
-}
-
-
-
 String.prototype.replaceChars = function(character, replacement){
     var str = this;
     var a;
