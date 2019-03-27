@@ -22,12 +22,6 @@ function version(){
 }
 
 
-
-function fixJitter(container){
-    container.style.height = window.innerHeight - 0.5 + "px";
-}
-
-
 function popup(obj, msg){
     var popuphandler = function(){
         popup(this, msg);
@@ -88,12 +82,6 @@ function search(query){
                 query.replaceChars(" ", searchsquare.links[0].space);
     }
 }
-
-
-
-window.onresize = function(){
-    fixJitter(container);
-};
 
 
 var focusedSquare = -1;
@@ -158,11 +146,9 @@ function globalKeyListener(e){
 }
 
 
-
 function main(){
     visibility = false;
     container = document.getElementById("container");
-    fixJitter(container);
     popupDiv = document.getElementById("popup");
 
     document.addEventListener("keydown", globalKeyListener);
