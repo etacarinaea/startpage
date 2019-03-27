@@ -53,7 +53,7 @@ function Square(heading, links, isSearch){
 
     this.squareElement.appendChild(this.headingElement);
     this.squareElement.appendChild(this.contentElement);
-    document.getElementById("cell").appendChild(this.squareElement);
+    document.getElementById("container").appendChild(this.squareElement);
 
     if(!data.bool.alwaysopen){
         var square = this;

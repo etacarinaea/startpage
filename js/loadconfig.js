@@ -347,9 +347,9 @@ function loadConfig(d, callback){
     /* remove all existing squares, otherwise the old ones will still be
      * displayed (without a page reload)
      */
-    var cell = document.getElementById("cell");
-    while(cell.firstChild){
-        cell.removeChild(cell.firstChild);
+    var container = document.getElementById("container");
+    while(container.firstChild){
+        container.removeChild(container.firstChild);
     }
     normalSquares = [];
     for(var i=0; i < data.squares.length; i++){
