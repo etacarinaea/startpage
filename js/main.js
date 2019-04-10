@@ -88,22 +88,41 @@ var focusedSquare = -1;
 var focusedLink = 0;
 
 function globalKeyListener(e){
-    if(typeof configmenu !== "undefined" ||
-       searchsquare.searchinput == document.activeElement){
+    if(typeof configmenu !== "undefined") {
         return;
+    }
+    if(searchsquare.searchinput === document.activeElement && !(
+       searchsquare.searchinput.value === "" ||
+       searchsquare.searchinput.value === null)){
+      return;
     }
 
     var key = e.keyCode;
-    if(key == 9){
+    if(key == 27){
+        searchsquare.searchinput.blur();
+        searchsquare.contract();
+        if(normalSquares[focusedSquare] !== undefined) {
+            normalSquares[focusedSquare].unfocus(focusedLink);
+            normalSquares[focusedSquare].contract();
+        }
+        focusedSquare = -1;
+        focusedLink = 0;
+    }else if(key == 9){
         // tab
-        searchsquare.squareElement.style.height = "337px";
-        searchsquare.squareElement.style.borderWidth = data.style.border_width_hovered;
+        searchsquare.expand();
         searchsquare.searchinput.focus();
     }else if(key == 37){
         // left arrow
         if(focusedSquare > 0){
-            normalSquares[focusedSquare].unfocus(focusedLink);
-            normalSquares[focusedSquare].contract();
+            if(searchsquare.searchinput == document.activeElement && (
+               searchsquare.searchinput.value == "" ||
+               searchsquare.searchinput.value == null)){
+                searchsquare.searchinput.blur();
+                searchsquare.contract();
+            }else if(focusedSquare < normalSquares.length){
+                normalSquares[focusedSquare].unfocus(focusedLink);
+                normalSquares[focusedSquare].contract();
+            }
             focusedSquare--;
             focusedLink = 0;
             normalSquares[focusedSquare].expand();
@@ -127,6 +146,19 @@ function globalKeyListener(e){
             focusedLink = 0;
             normalSquares[focusedSquare].expand();
             normalSquares[focusedSquare].focus(focusedLink);
+        }else if(focusedSquare < normalSquares.length){
+            if(searchsquare.searchinput == document.activeElement && (
+                searchsquare.searchinput.value == "" ||
+                searchsquare.searchinput.value == null)){
+              searchsquare.searchinput.blur();
+              searchsquare.contract();
+            }else{
+                normalSquares[focusedSquare].unfocus(focusedLink);
+                normalSquares[focusedSquare].contract();
+            }
+            focusedSquare++;
+            searchsquare.expand();
+            searchsquare.searchinput.focus();
         }
     }else if(key == 40 && focusedSquare >= 0){
         // down arrow
