@@ -21,6 +21,7 @@ function Square(heading, links, isSearch){
 
         for (var i = 0; i < links.length; i++){
             linkElements[i] = document.createElement("a");
+            linkElements[i].tabIndex = "-1";
             linkElements[i].setAttribute("href", this.links[i].url);
 
             var textnode = document.createTextNode(this.links[i].name);
@@ -33,6 +34,7 @@ function Square(heading, links, isSearch){
     }else{
         this.squareElement.setAttribute("id", "search_sqr");
         this.searchinput = document.createElement("input");
+        this.searchinput.tabIndex = "-1";
         this.searchinput.setAttribute("id", "searchinput");
         this.searchinput.setAttribute("autocomplete", "off");
 
