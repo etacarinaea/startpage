@@ -1,10 +1,10 @@
 // string, array, bool
-function Square(heading, links, isSearch){
+function Square(heading, links, isSearch, size){
     this.heading = heading;
     this.links = links;
     this.search = isSearch;
 
-    this.height = 150;
+    this.size = size;
 
     this.squareElement = document.createElement("div");
     this.squareElement.setAttribute("class", "sqr");
@@ -59,8 +59,8 @@ function Square(heading, links, isSearch){
 
     if(!data.bool.alwaysopen){
         var square = this;
-        this.squareElement.addEventListener("mouseover", this.expand, false);
-        this.squareElement.addEventListener("mouseout", this.contract, false);
+        this.squareElement.addEventListener("mouseover", this.expand.bind(this), false);
+        this.squareElement.addEventListener("mouseout", this.contract.bind(this), false);
     }
 
     var squareElement = this.squareElement;
@@ -78,11 +78,9 @@ Square.prototype.expand = function(){
     }
 
     if(obj.acount > 0){
-        // replace hardcoeded div height (300) and line height (25)
-        obj.style.height = 300 + 25 * obj.acount + "px";
+        obj.style.height = (this.size*2 + 25 * obj.acount) + "px";
     }else{
-        // replace hardcoded height
-        obj.style.height = "337px";
+        obj.style.height = (this.size*2 + 37) + "px";
     }
     if(data.bool.borders){
         obj.style.borderWidth = data.style.border_width_hovered;
@@ -97,8 +95,7 @@ Square.prototype.contract = function(){
         obj = this;
     }
 
-    // replace hardcoeded div height (300)
-    obj.style.height = 150 + "px";
+    obj.style.height = this.size + "px";
     obj.style.borderWidth = data.style.border_width_normal;
 };
 

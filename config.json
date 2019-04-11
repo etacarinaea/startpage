@@ -43,6 +43,7 @@
     },
 
     "style": {
+        "square_size": "175",
         "heading_font":         "tewi",
         "link_font":            "tewi",
         "heading_font_size":    "10px",
