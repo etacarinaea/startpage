@@ -231,70 +231,67 @@ input {
 
 
 .squareURL {
+    display: flex;
     position:relative;
     line-height:21px;
     height:21px;
-    margin:5px 0 0 50px;
+    margin:5px 0 0 21px;
 }
 
 .squareURL input {
-    display:inline-block;
-    position:absolute;
-    top:0;
     width:150px;
 }
 .squareURL input[name="url"] {
-    width:39vw;
-    margin-left:165px;
+    width:100%;
+    margin-left:5px;
 }
 
 .squareOption {
+    display: flex;
     position:relative;
     line-height:21px;
     height:21px;
-    margin:5px 0 0 50px;
-    width:calc(100% - 50px);
+    margin:5px 0 0 21px;
 }
 .squareOption input {
-    display:inline-block;
-    position:absolute;
-    top:0;
+    margin-left:5px;
 }
 .squareOption input[name="opt"] {
     width:70px;
 }
 .squareOption input[name="url"] {
-    margin-left:85px;
-    width:40.5vw;
+    width:100%;
 }
 .squareOption input[name="space"] {
-    margin-left:calc(100px + 40.5vw);
     width:50px;
 }
 
 
 .option {
-    display:inline-block;
+    display: inline-flex;
     width:100%;
-    height:25px;
 
     line-height:25px;
 }
 
-.menu input[type="checkbox"] {
-    margin-top:4px;
-    float:left;
+.radioOption {
+    width:50%;
 }
-.menu input[type="text"] {
-    width:60%;
+
+.option label {
+    width:100%;
+}
+
+.option input {
     margin-top:4px;
-    float:right;
+}
+.option input[type="text"] {
+    width:100%;
 }
 
 
 .category {
     margin:40px;
-    overflow:hidden;
 }
 
 .categoryHeading {
