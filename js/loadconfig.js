@@ -354,13 +354,13 @@ function loadConfig(d, callback){
     normalSquares = [];
     for(var i=0; i < data.squares.length; i++){
         if(data.squares[i].links){
-            normalSquares[i] = new Square(data.squares[i].name, data.squares[i].links, false);
+            normalSquares[i] = new Square(data.squares[i].name, data.squares[i].links, false, data.style.square_size);
             if(data.bool.alwaysopen){
                 normalSquares[i].expand();
             }
         }else{
             // otherwise expect this to be a search square
-            searchsquare = new Square(data.squares[i].name, data.squares[i].options, true);
+            searchsquare = new Square(data.squares[i].name, data.squares[i].options, true, data.style.square_size);
             searchsquare.prefix = data.squares[i].prefix;
             if(data.bool.alwaysopen){
                 searchsquare.expand();
@@ -373,6 +373,9 @@ function loadConfig(d, callback){
     var a = $("a");
     var popup = $("#popup");
     var sqr = $(".sqr");
+    sqr.css("width", data.style.square_size + "px")
+    sqr.css("height", data.style.square_size + "px")
+    span.css("lineHeight", data.style.square_size + "px")
     span.css("fontFamily", data.style.heading_font);
     a.css("fontFamily", data.style.link_font);
     popup.css("fontFamily", data.style.link_font);
@@ -394,6 +397,7 @@ function loadConfig(d, callback){
     if(searchinput.length){
         searchinput.css("color", data.style.search_color);
         searchinput.css("backgroundColor", data.style.search_bg_color);
+        searchinput.css("width", data.style.square_size + "px")
     }
     var bgimg = $("#bgimg");
     if(data.bool.mascot){
