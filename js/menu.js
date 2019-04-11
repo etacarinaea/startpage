@@ -193,25 +193,26 @@ Category.prototype.appendOption = function(name, key, type, value, callback){
     // add to category option list
     this.options.push(option);
 
-    option.setAttribute("class", "option");
     input.setAttribute("name", key);
 
+    label.appendChild(text);
     if(type === 0){
-        option.style.width = "50%";
+        option.setAttribute("class", "option radioOption");
         input.setAttribute("type", "checkbox");
         if(!callback){
             input.checked = value;
         }
+        option.appendChild(input);
+        option.appendChild(label);
     }else{
+        option.setAttribute("class", "option");
         input.setAttribute("type", "text");
         if(!callback){
             input.setAttribute("value", value);
         }
+        option.appendChild(label);
+        option.appendChild(input);
     }
-
-    label.appendChild(text);
-    label.appendChild(input);
-    option.appendChild(label);
     this.element.appendChild(option);
 
     return option;
