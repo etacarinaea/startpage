@@ -130,6 +130,7 @@ function globalKeyListener(e){
         }
     }else if(key == 38 && focusedSquare >= 0){
         // up arrow
+        if(searchsquare.searchinput == document.activeElement) return;
         if(focusedLink > 0){
             normalSquares[focusedSquare].unfocus(focusedLink);
             focusedLink--;
@@ -162,6 +163,7 @@ function globalKeyListener(e){
         }
     }else if(key == 40 && focusedSquare >= 0){
         // down arrow
+        if(searchsquare.searchinput == document.activeElement) return;
         if(focusedLink < normalSquares[focusedSquare].links.length - 1){
             normalSquares[focusedSquare].unfocus(focusedLink);
             focusedLink++;
