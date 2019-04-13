@@ -14,6 +14,7 @@ var boolItems = {
 var bool = new ConfigObject(boolItems);
 
 var styleItems = {
+    square_size: "Square Size",
     heading_font: "Heading Font",
     link_font: "Link Font",
     heading_font_size: "Heading Font Size",
