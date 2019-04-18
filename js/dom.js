@@ -3,7 +3,9 @@ function $(query){
         this.elements = [];
         switch(query[0]){
             case "#":
-                this.elements[0] = document.getElementById(query.substr(1));
+                let el = document.getElementById(query.substr(1));
+                if(el === null) return null;
+                this.elements[0] = el;
                 break;
             case ".":
                 this.elements = document.getElementsByClassName(query.substr(1));

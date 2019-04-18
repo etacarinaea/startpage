@@ -248,12 +248,9 @@ function saveConfig(callback){
         if(squares[i].urls[1].className == "squareOption"){
             searchSquareCount += 1;
         }
-        try{
-            if(searchSquareCount > 1) throw "Too many search squares.";
-        }
-        catch(err){
-            alert(err);
-            throw err;
+        if(searchSquareCount > 1){
+            alert("Too many search squares.");
+            throw "Too many search squares.";
         }
 
         var length;
@@ -395,7 +392,7 @@ function loadConfig(d, callback){
     }
     popup.css("borderTop", data.style.border_width_normal + " solid " + data.style.border_color);
     var searchinput = $("#searchinput");
-    if(searchinput.length){
+    if(searchinput !== null){
         searchinput.css("color", data.style.search_color);
         searchinput.css("backgroundColor", data.style.search_bg_color);
         searchinput.css("width", data.style.square_size + "px")
