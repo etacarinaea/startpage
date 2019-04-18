@@ -91,34 +91,46 @@ function globalKeyListener(e){
     if(typeof configmenu !== "undefined") {
         return;
     }
-    if(searchsquare.searchinput === document.activeElement && !(
-       searchsquare.searchinput.value === "" ||
-       searchsquare.searchinput.value === null)){
-      return;
+    if(typeof searchsquare !== "undefined"){
+        if(searchsquare.searchinput === document.activeElement && !(
+           searchsquare.searchinput.value === "" ||
+           searchsquare.searchinput.value === null)){
+          return;
+        }
     }
+
+    var n = 0;
+    if(typeof searchsquare === "undefined") n = 1;
 
     var key = e.keyCode;
     if(key == 27){
-        searchsquare.searchinput.blur();
-        searchsquare.contract();
-        if(normalSquares[focusedSquare] !== undefined) {
+        if(typeof searchsquare !== "undefined"){
+            searchsquare.searchinput.blur();
+            searchsquare.contract();
+        }
+        if(normalSquares[focusedSquare] !== "undefined") {
             normalSquares[focusedSquare].unfocus(focusedLink);
             normalSquares[focusedSquare].contract();
         }
         focusedSquare = -1;
         focusedLink = 0;
-    }else if(key == 9){
+    }else if(key == 9 && typeof searchsquare !== "undefined"){
         // tab
         searchsquare.expand();
         searchsquare.searchinput.focus();
     }else if(key == 37){
         // left arrow
         if(focusedSquare > 0){
-            if(searchsquare.searchinput == document.activeElement && (
-               searchsquare.searchinput.value == "" ||
-               searchsquare.searchinput.value == null)){
-                searchsquare.searchinput.blur();
-                searchsquare.contract();
+            if(typeof searchsquare !== "undefined"){
+                if(searchsquare.searchinput == document.activeElement && (
+                   searchsquare.searchinput.value == "" ||
+                   searchsquare.searchinput.value == null)){
+                    searchsquare.searchinput.blur();
+                    searchsquare.contract();
+                }else if(focusedSquare < normalSquares.length){
+                    normalSquares[focusedSquare].unfocus(focusedLink);
+                    normalSquares[focusedSquare].contract();
+                }
             }else if(focusedSquare < normalSquares.length){
                 normalSquares[focusedSquare].unfocus(focusedLink);
                 normalSquares[focusedSquare].contract();
@@ -130,7 +142,9 @@ function globalKeyListener(e){
         }
     }else if(key == 38 && focusedSquare >= 0){
         // up arrow
-        if(searchsquare.searchinput == document.activeElement) return;
+        if(typeof searchsquare !== "undefined"){
+            if(searchsquare.searchinput == document.activeElement) return;
+        }
         if(focusedLink > 0){
             normalSquares[focusedSquare].unfocus(focusedLink);
             focusedLink--;
@@ -147,23 +161,32 @@ function globalKeyListener(e){
             focusedLink = 0;
             normalSquares[focusedSquare].expand();
             normalSquares[focusedSquare].focus(focusedLink);
-        }else if(focusedSquare < normalSquares.length){
-            if(searchsquare.searchinput == document.activeElement && (
-                searchsquare.searchinput.value == "" ||
-                searchsquare.searchinput.value == null)){
-              searchsquare.searchinput.blur();
-              searchsquare.contract();
+        }else if(focusedSquare < normalSquares.length - n){
+            if(typeof searchsquare !== "undefined"){
+                if(searchsquare.searchinput == document.activeElement && (
+                   searchsquare.searchinput.value == "" ||
+                   searchsquare.searchinput.value == null)){
+                    searchsquare.searchinput.blur();
+                    searchsquare.contract();
+                }else if(focusedSquare < normalSquares.length){
+                    normalSquares[focusedSquare].unfocus(focusedLink);
+                    normalSquares[focusedSquare].contract();
+                }
             }else{
                 normalSquares[focusedSquare].unfocus(focusedLink);
                 normalSquares[focusedSquare].contract();
             }
             focusedSquare++;
-            searchsquare.expand();
-            searchsquare.searchinput.focus();
+            if(typeof searchsquare !== "undefined"){
+                searchsquare.expand();
+                searchsquare.searchinput.focus();
+            }
         }
     }else if(key == 40 && focusedSquare >= 0){
         // down arrow
-        if(searchsquare.searchinput == document.activeElement) return;
+        if(typeof searchsquare !== "undefined"){
+            if(searchsquare.searchinput == document.activeElement) return;
+        }
         if(focusedLink < normalSquares[focusedSquare].links.length - 1){
             normalSquares[focusedSquare].unfocus(focusedLink);
             focusedLink++;
