@@ -1,74 +1,68 @@
 {
     "squares": [
-        {"name":"4chan", "links": [
-            {"name": "/a/",  "url": "http://www.4chan.org/a/"},
-            {"name": "/jp/", "url": "http://www.4chan.org/jp/"},
-            {"name": "/w/",  "url": "http://www.4chan.org/w/"},
-            {"name": "/ic/", "url": "http://www.4chan.org/ic/"},
-            {"name": "/g/",  "url": "http://www.4chan.org/g/"}
-        ]},
-
-        {"name":"images", "links": [
-            {"name": "danbooru", "url": "http://danbooru.donmai.us/"},
-            {"name": "pixiv",    "url": "http://www.pixiv.net/"},
-            {"name": "imgur",    "url": "http://imgur.com/"}
-        ]},
-
-        {"name":"anime", "links": [
-            {"name": "horriblesubs", "url": "http://horriblesubs.info/"},
-            {"name": "myanimelist",  "url": "http://myanimelist.net/"},
-            {"name": "anichart",     "url": "http://anichart.net/"},
-            {"name": "anidb",        "url": "http://anidb.net/"},
-            {"name": "nyaa.se",      "url": "http://nyaa.se/"},
-            {"name": "bakabt",       "url": "http://bakabt.me/"}
-        ]},
-
-        {"name":"search", "prefix":"-", "options": [
-            {"opt": "g", "url": "https://www.google.com/#q=",                         "space":"+"},
-            {"opt": "a", "url": "https://wiki.archlinux.org/index.php?search=",       "space":"+"},
-            {"opt": "d", "url": "http://danbooru.donmai.us/posts?tags=",              "space":"+"},
-            {"opt": "p", "url": "http://www.pixiv.net/search.php?s_mode=s_tag&word=", "space":"%20"},
-            {"opt": "w", "url": "https://en.wikipedia.org/w/index.php?search=",       "space":"+"},
-            {"opt": "y", "url": "https://www.youtube.com/results?search_query=",      "space":"+"}
-        ]}
+        { "name": "reddit", "links": [
+                { "name": "SkincareAddiction", "url": "https://www.reddit.com/r/SkincareAddiction/" },
+                { "name": "MakeupAddiction", "url": "https://www.reddit.com/r/MakeupAddiction/" },
+                { "name": "dwarffortress", "url": "https://www.reddit.com/r/dwarffortress/" },
+                { "name": "unixporn", "url": "https://www.reddit.com/r/unixporn/" }
+            ]
+        },
+        { "name": "media", "links": [
+                { "name": "Netflix", "url": "https://www.netflix.com/" },
+                { "name": "goodreads", "url": "https://www.goodreads.com/" },
+                { "name": "imgur", "url": "http://imgur.com/" }
+            ]
+        },
+        { "name": "programming", "links": [
+                { "name": "GitHub", "url": "https://github.com/" },
+                { "name": "stackoverflow", "url": "https://stackoverflow.com/" },
+                { "name": "MDN Web Docs", "url": "https://developer.mozilla.org/bm/" },
+                { "name": "cppreference", "url": "http://en.cppreference.com/w/" }
+            ]
+        },
+        { "name": "search", "prefix": "-", "options": [
+                { "opt": "g", "url": "https://www.google.com/#q=", "space": "+" },
+                { "opt": "r", "url": "https://www.reddit.com/search?q=", "space": "+" },
+                { "opt": "a", "url": "https://wiki.archlinux.org/index.php?search=", "space": "+" },
+                { "opt": "w", "url": "https://en.wikipedia.org/w/index.php?search=", "space": "+" },
+                { "opt": "y", "url": "https://www.youtube.com/results?search_query=", "space": "+" }
+            ]
+        }
     ],
 
-
     "bool": {
-        "borders":              true,
-        "alwaysopen":           false,
-        "mascot":               false,
-        "allowVersionCheck":    true,
-        "privateMode":          false
+        "borders": true,
+        "alwaysopen": false,
+        "mascot": false,
+        "allow_version_check": false,
+        "use_json_file": false
     },
 
     "style": {
         "square_size": "175",
-        "heading_font":         "tewi",
-        "link_font":            "tewi",
-        "heading_font_size":    "10px",
-        "link_font_size":       "10px",
-        "background":           "#212121",
-        "foreground":           "#1a1a1a",
-        "heading_color":        "#7e1f41",
-        "link_color":           "#aaaaaa",
-        "border_color":         "#7e1f41",
-        "border_width_normal":  "0",
+        "heading_font": "DejaVu Sans",
+        "link_font": "DejaVu Sans",
+        "heading_font_size": "14px",
+        "link_font_size": "14px",
+        "background": "#282a36",
+        "foreground": "#3c3e4d ",
+        "heading_color": "#e4756b",
+        "link_color": "#c1cadd",
+        "border_color": "#e4756b",
+        "border_width_normal": "0",
         "border_width_hovered": "2px 0",
-        "focus_color":          "#aaaaaa",
-        "focus_bg_color":       "#7e1f41",
-        "search_color":         "#aaaaaa",
-        "search_bg_color":      "rgba(110,110,110,0.1)"
+        "focus_color": "#e4756b",
+        "focus_bg_color": "#454757",
+        "search_color": "#c1cadd",
+        "search_bg_color": "#454757"
     },
 
     "ext": {
-        "images":[              "image1.png",
-                                "image2.png",
-                                "image3.png"],
-        "bottom":               "0",
-        "right":                "0",
-        "height":               "500px",
-        "width":                "400px",
-        "opacity":              ".2"
+        "images": ["image1.png", "image2.png", "image3.png"],
+        "bottom": "0",
+        "right": "0",
+        "height": "500px",
+        "width": "400px",
+        "opacity": ".2"
     }
 }
