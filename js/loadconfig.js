@@ -366,14 +366,16 @@ function loadConfig(d, callback){
         }
     }
 
+    // Append px if just a number
+    let px = (s) => isNaN(s) ? s : s + "px";
     // style
     var span = $("span");
     var a = $("a");
     var popup = $("#popup");
     var sqr = $(".sqr");
-    sqr.css("width", data.style.square_size + "px")
-    sqr.css("height", data.style.square_size + "px")
-    span.css("lineHeight", data.style.square_size + "px")
+    sqr.css("width", px(data.style.square_size))
+    sqr.css("height", px(data.style.square_size))
+    span.css("lineHeight", px(data.style.square_size))
     span.css("fontFamily", data.style.heading_font);
     a.css("fontFamily", data.style.link_font);
     popup.css("fontFamily", data.style.link_font);
@@ -395,7 +397,7 @@ function loadConfig(d, callback){
     if(searchinput !== null){
         searchinput.css("color", data.style.search_color);
         searchinput.css("backgroundColor", data.style.search_bg_color);
-        searchinput.css("width", data.style.square_size + "px")
+        searchinput.css("width", px(data.style.square_size))
     }
     var bgimg = $("#bgimg");
     if(data.bool.mascot){
