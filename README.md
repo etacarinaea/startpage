@@ -1,39 +1,22 @@
 <p align="center">
-    <img alt="logo" src="/img/readme/logo.png?raw=true"><br><br><br>
-    <img alt="example screenshot" src="/img/readme/screenshot-29032017-1.png?raw=true" width="400px">
-    <img alt="example screenshot" src="/img/readme/screenshot-29032017-3.png?raw=true" width="400px"><br>
-    <img alt="example screenshot" src="/img/readme/screenshot-29032017-4.png?raw=true" width="400px">
-    <img alt="example screenshot" src="/img/readme/screenshot-29032017-2.png?raw=true" width="400px">
+  <img alt="logo" src="/img/readme/logo.png?raw=true"><br><br><br>
+  <img alt="example screenshot" src="/img/readme/screenshot-20190601.png?raw=true" width="800px">
 </p>
 
 
 ## Installation
 
-Download a [release](https://github.com/fuyuneko/startpage/releases), or
-download the [zip](https://github.com/fuyuneko/startpage/archive/master.zip)
-of the latest version on GitHub.
+Just install the [Firefox add-on][1].
 
-
-##### Firefox
-
-Download an extension that lets you change the newtab page, then just add the
-path to `index.html` as the URL, e.g.:
-`file:///home/yuki/startpage/index.html` or `file:///c:/startpage/index.html`
-
-If you're using an older version of Firefox you can simply change
-`browser.newtab.url` in `about:config`.
+If you're using a different browser:<br>
+Download a [release][2], download the [zip][3] of the latest version on GitHub,
+or just clone the repository.  If your browser doesn't support the
+[WebExtensions API][4] You'll have to find a way to overwrite the newtab page of
+your browser and select `index.html` as the new one.
 
 ##### Chromium/Chrome
 
-Download the `.crx file` from the
-[latest release](https://github.com/fuyuneko/startpage/releases/latest) and open
-it with Chrome.<br>
-If a `.crx` file for a release isn't available or you want to use the latest
-version on GitHub you will have to
-[download](https://github.com/fuyuneko/startpage/blob/chromium-patch/manifest.json)
-the manifest.json and save it in the same directory as the startpage. Go to
-Chrome's extension menu, enable _developer mode_, click on
-_"load unpacked extension"_ and select the folder you saved the startage in.
+Download the `.crx file` from the [latest release][5] and open it with Chrome.
 
 
 ## Usage
@@ -44,6 +27,8 @@ square or by writing `search("-config")` into the browser console.
 The arrow keys can be used to navigate the squares: left and right will move to
 a different square and up and down will move between links in a square. The
 selected link can then be visited by pressing enter.
+
+The tab key automatically selects the search field.
 
 
 ## Configuration
@@ -69,5 +54,22 @@ file in the menu, then move the directory and import it again.
 ## Contact
 
 If you're having problems or have an improvement you can create an issue
-[here](https://github.com/fuyuneko/startpage/issues).
+[here][6].
 
+
+## More examples
+
+<p align="center">
+  <img alt="example screenshot" src="/img/readme/screenshot-29032017-1.png?raw=true" width="400px">
+  <img alt="example screenshot" src="/img/readme/screenshot-29032017-3.png?raw=true" width="400px"><br>
+  <img alt="example screenshot" src="/img/readme/screenshot-29032017-4.png?raw=true" width="400px">
+  <img alt="example screenshot" src="/img/readme/screenshot-29032017-2.png?raw=true" width="400px">
+</p>
+
+
+[1]: https://addons.mozilla.org/en-US/firefox/addon/square-startpage/
+[2]: https://github.com/etacarinaea/startpage/releases
+[3]: https://github.com/etacarinaea/startpage/archive/master.zip
+[4]: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions
+[5]: https://github.com/etacarinaea/startpage/releases/latest
+[6]: https://github.com/fuyuneko/startpage/issues
