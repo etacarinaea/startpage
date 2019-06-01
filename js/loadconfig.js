@@ -62,7 +62,7 @@ function configmenuInit(callback){
 function pipe(data, callback){
     // create initial menu, config menu or load config on window load
     if(localStorage.config === undefined){
-        initmenu = new Menu("Init-Menu", true, 550, 350);
+        initmenu = new Menu("Init-Menu", 550, 350);
         initmenu.appendTab("Choose an Option:");
         initmenu.makeTabActive(0);
         var initbuttons = initmenu.split(
@@ -86,7 +86,7 @@ function pipe(data, callback){
 }
 
 function createMenu(data, callback){
-    configmenu = new Menu("Config-Menu", false, 110, 110);
+    configmenu = new Menu("Config-Menu", 750, -100);
     configmenu.appendTab("Squares");
     configmenu.appendTab("Style");
     configmenu.makeTabActive(0);

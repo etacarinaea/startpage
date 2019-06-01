@@ -3,10 +3,11 @@
  * or append an already existing object passed to it.
  */
 
-// percentual size ; x: left/right padding; y: top/bottom padding
-// static size     ; x: width; y: height
-function Menu(name, staticSize, x, y){
-    this.staticSize = staticSize;
+// x>0: static width
+// x<1: dynamic width, x is x-padding
+// y>0: static height
+// y<1: dynamic height, y is y-padding
+function Menu(name, x, y){
     this.name = name;
     this.tabs = [];
     this.buttons = [];
@@ -26,19 +27,16 @@ function Menu(name, staticSize, x, y){
     this.tabBar.setAttribute("class", "tabBar");
     this.content.setAttribute("class", "menuContent");
 
-    // set styles for different types
-    if(!this.staticSize){
-        this.width = "100%";
-        this.height = "100%";
-        this.container.style.padding = y + "px " + x + "px";
-    }else{
-        this.width = x + "px";
-        this.height = y + "px";
-        this.menu.style.position = "relative";
-        this.menu.style.top = "50%";
-        this.menu.style.transform = "translateY(-50%)";
-        this.menu.style.margin = "auto";
+    this.width = x > 0 ? x + "px" : "100%";
+    this.height = y > 0 ? y + "px" : "100%";
+    if(x < 1 || y < 1) {
+      this.container.style.padding = 
+        (y > 0 ? 0 : -y + "px") + " " + (x > 0 ? 0 : -x + "px")
     }
+    this.menu.style.position = "relative";
+    this.menu.style.top = "50%";
+    this.menu.style.transform = "translateY(-50%)";
+    this.menu.style.margin = "auto";
     this.menu.style.width = this.width;
     this.menu.style.height = this.height;
 
