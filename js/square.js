@@ -4,7 +4,8 @@ function Square(heading, links, isSearch, size){
     this.links = links;
     this.search = isSearch;
 
-    this.size = size;
+    this.size = size.substr(0, size.length-2);
+    this.sizeUnit = size.substr(-2);
 
     this.squareElement = document.createElement("div");
     this.squareElement.setAttribute("class", "sqr");
@@ -78,9 +79,9 @@ Square.prototype.expand = function(){
     }
 
     if(obj.acount > 0){
-        obj.style.height = (this.size*2 + 25 * obj.acount) + "px";
+        obj.style.height = (this.size*2 + 25 * obj.acount) + this.sizeUnit;
     }else{
-        obj.style.height = (this.size*2 + 37) + "px";
+        obj.style.height = (this.size*2 + 37) + this.sizeUnit;
     }
     if(data.bool.borders){
         obj.style.borderWidth = data.style.border_width_hovered;
@@ -95,7 +96,7 @@ Square.prototype.contract = function(){
         obj = this;
     }
 
-    obj.style.height = this.size + "px";
+    obj.style.height = this.size + this.sizeUnit;
     obj.style.borderWidth = data.style.border_width_normal;
 };
 
