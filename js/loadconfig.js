@@ -8,7 +8,6 @@ var boolItems = {
     borders: "Borders",
     alwaysopen: "Keep all squares open",
     mascot: "Enable background image/mascot",
-    allow_version_check: "Allow checking for new versions",
     use_json_file: "Use config.json instead of this menu"
 };
 var bool = new ConfigObject(boolItems);

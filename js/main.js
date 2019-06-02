@@ -1,25 +1,4 @@
-VERSION = "v1.7.0";
-
-
-function version(){
-    var msg;
-    var responseobj;
-    var request = new XMLHttpRequest();
-
-    request.onload = function(){
-        responseobj = JSON.parse(this.responseText);
-        if(responseobj.tag_name != VERSION && this.status == 200){
-            msg = responseobj.tag_name;
-        }
-    };
-
-    request.open("get",
-            "http://api.github.com/repos/fuyuneko/startpage/releases/latest",
-            false);
-    request.send();
-
-    return msg;
-}
+VERSION = "v1.7.1";
 
 
 function popup(obj, node){
@@ -218,18 +197,6 @@ function main(){
     popupDiv = document.getElementById("popup");
 
     document.addEventListener("keydown", globalKeyListener);
-    if(data.bool.allowVersionCheck){
-        var ver = version();
-        if(ver){
-            var verMsg = document.createElement("a");
-            verMsg.appendChild(
-                document.createTextNode("A new version is available: " + ver)
-            );
-            verMsg.href = "https://github.com/etacarinaea/startpage/releases";
-
-            popup(popupDiv, verMsg);
-        }
-    }
 
     // generate helptext for static options
     var prefix = data.squares[data.squares.length - 1].prefix;
@@ -270,6 +237,11 @@ function main(){
             ])
         }
     }
+
+    let versionNode = document.createElement("span");
+    append(versionNode, [document.createTextNode("startpage " + VERSION)]);
+    append(HelpText, [document.createElement("br"), versionNode]);
+    versionNode.className = "version";
 }
 
 

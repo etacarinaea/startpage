@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "startpage",
-    "version": "1.7.0",
+    "version": "1.7.1",
     "description": "Overrides the browsers newtab-page with a custom startpage.",
     "author": "etacarinaea",
 
@@ -9,10 +9,6 @@
       "48": "img/icon.svg",
       "96": "img/icon.svg"
     },
-
-    "permissions": [
-        "http://api.github.com/*"
-    ],
 
     "chrome_url_overrides": {
         "newtab": "index.html"
