@@ -18,6 +18,12 @@ your browser and select `index.html` as the new one.
 
 Download the `.crx file` from the [latest release][5] and open it with Chrome.
 
+##### GitHub Pages
+
+The startpage is hosted on [GitHub pages](http://etacarinaea.github.io/startpage/)
+for demonstration purposes. You can set your newtab url to that site, but I
+can't guarantee the GitHub pages version will always be up-to-date.
+
 
 ## Usage
 
