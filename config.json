@@ -34,7 +34,6 @@
         "borders": true,
         "alwaysopen": false,
         "mascot": false,
-        "allow_version_check": false,
         "use_json_file": false
     },
 
