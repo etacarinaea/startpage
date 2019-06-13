@@ -43,45 +43,8 @@ var extItems = {
 var ext = new ConfigObject(extItems);
 
 
-
-
 function configmenuInit(callback){
-    $.loadJSON("config.json", function(data){
-        if(data.bool.privateMode === true){
-            loadConfig(data, callback);
-        }else if(localStorage.use_json_file == "true" || localStorage.config === undefined){
-            pipe(data, callback);
-        }else{
-            pipe(JSON.parse(localStorage.config), callback);
-        }
-    });
-}
-
-// separate function so it wont execute before jQuery.getJSON has finished
-function pipe(data, callback){
-    // create initial menu, config menu or load config on window load
-    if(localStorage.config === undefined){
-        initmenu = new Menu("Init-Menu", 550, 350);
-        initmenu.appendTab("Choose an Option:");
-        initmenu.makeTabActive(0);
-        var initbuttons = initmenu.split(
-                ["Use files.",
-                 "Use configuration menu."],
-                ["Use the config.json file located in the startpage's root directory.",
-                 "Use a GUI to easily configure the startpage's style. Has import/export function."]);
-        initbuttons[0].addEventListener("click", function(){
-            loadConfig(data, callback);
-            initmenu.kill();
-        });
-        initbuttons[1].addEventListener("click", function(){
-            createMenu(data, callback);
-            initmenu.kill();
-        });
-    }else if(callback === undefined){
-        createMenu(data, callback);
-    }else{
-        loadConfig(data, callback);
-    }
+    createMenu(JSON.parse(localStorage.config), callback);
 }
 
 function createMenu(data, callback){
