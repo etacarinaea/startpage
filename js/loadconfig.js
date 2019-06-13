@@ -401,10 +401,6 @@ function loadConfig(d, callback){
     var bgimg = $("#bgimg");
     if(data.bool.mascot){
         bgimg.css("backgroundImage", "url('" + data.ext.images[Math.floor(Math.random()*data.ext.images.length)] + "')");
-        console.log(data.ext.images);
-        console.log(data.ext.images);
-        console.log(data.ext.images[Math.floor(Math.random()*data.ext.images.length)]);
-        console.log(Math.floor(Math.random()*data.ext.images.length));
         bgimg.css("bottom", data.ext.bottom);
         bgimg.css("right", data.ext.right);
         bgimg.css("height", data.ext.height);
