@@ -1,28 +1,48 @@
 <p align="center">
-  <img alt="logo" src="/img/readme/logo.png?raw=true"><br><br><br>
-  <img alt="example screenshot" src="/img/readme/screenshot-20190601.png?raw=true" width="800px">
+  <img alt="logo" src="/img/readme/logo.png?raw=true">
 </p>
+<p align="center">
+  <a href="https://github.com/etacarinaea/startpage/releases"><img src="https://img.shields.io/github/manifest-json/v/etacarinaea/startpage.svg?color=%23C9A0DC&label=Version" /></a>
+  <a href="https://github.com/etacarinaea/startpage/blob/master/COPYING"><img src="https://img.shields.io/github/license/etacarinaea/startpage.svg?color=%23C9A0DC&label=License" /></a>
+  <a href="https://addons.mozilla.org/en-US/firefox/addon/square-startpage/"><img src="https://img.shields.io/badge/Firefox-Download-%23FF9400.svg" /></a>
+  <a href="https://chrome.google.com/webstore/detail/startpage/odmjpppdiaenedpilgldapgbodindjak"><img src="https://img.shields.io/badge/Chrome%2FChromium-Download-%234285F4.svg" /></a>
+</p>
+<br>
+
+Quickly access your favourite websites whenever you open a new tab
+
+
+## Key Features
+
+* Easy customisation using a built-in configuration menu
+* Keyboard controls
+* Customisable search function
+* Export/Import function to backup your config or to use the same one on multiple devices
+
+
+<br><br>
+<p align="center">
+  <img alt="example screenshot" src="/img/readme/screenshot-20190601.png?raw=true" width="850px">
+</p>
+<br><br>
 
 
 ## Installation
 
-Just install the [Firefox add-on][1].
+Install the [Firefox add-on][1] or the [Chrome add-on][2].
 
 If you're using a different browser:<br>
-Download a [release][2], download the [zip][3] of the latest version on GitHub,
+Download a [release][3], download the [zip][4] of the latest version on GitHub,
 or just clone the repository.  If your browser doesn't support the
-[WebExtensions API][4] You'll have to find a way to overwrite the newtab page of
+[WebExtensions API][5] you'll have to find a way to overwrite the newtab page of
 your browser and select `index.html` as the new one.
-
-##### Chromium/Chrome
-
-Download the `.crx file` from the [latest release][5] and open it with Chrome.
 
 ##### GitHub Pages
 
-The startpage is hosted on [GitHub pages](http://etacarinaea.github.io/startpage/)
-for demonstration purposes. You can set your newtab url to that site, but I
-can't guarantee the GitHub pages version will always be up-to-date.
+The startpage is also hosted on
+[GitHub pages](http://etacarinaea.github.io/startpage/) for demonstration
+purposes. You can set your newtab url to that site, but I can't guarantee the
+GitHub pages version will always be up-to-date.
 
 
 ## Usage
@@ -74,8 +94,8 @@ If you're having problems or have an improvement you can create an issue
 
 
 [1]: https://addons.mozilla.org/en-US/firefox/addon/square-startpage/
-[2]: https://github.com/etacarinaea/startpage/releases
-[3]: https://github.com/etacarinaea/startpage/archive/master.zip
-[4]: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions
-[5]: https://github.com/etacarinaea/startpage/releases/latest
+[2]: https://chrome.google.com/webstore/detail/startpage/odmjpppdiaenedpilgldapgbodindjak
+[3]: https://github.com/etacarinaea/startpage/releases
+[4]: https://github.com/etacarinaea/startpage/archive/master.zip
+[5]: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions
 [6]: https://github.com/fuyuneko/startpage/issues
