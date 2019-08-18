@@ -182,7 +182,7 @@ Menu.prototype.split = function(name, description){
 
 // type == 0: checkbox, else: text
 // value: HTML element value
-Category.prototype.appendOption = function(name, key, type, value, callback){
+Category.prototype.appendOption = function(name, key, type, value){
     var option = document.createElement("div");
     var label = document.createElement("label");
     var text = document.createTextNode(name);
@@ -197,17 +197,13 @@ Category.prototype.appendOption = function(name, key, type, value, callback){
     if(type === 0){
         option.setAttribute("class", "option radioOption");
         input.setAttribute("type", "checkbox");
-        if(!callback){
-            input.checked = value;
-        }
+        input.checked = value;
         option.appendChild(input);
         option.appendChild(label);
     }else{
         option.setAttribute("class", "option");
         input.setAttribute("type", "text");
-        if(!callback){
-            input.setAttribute("value", value);
-        }
+        input.setAttribute("value", value);
         option.appendChild(label);
         option.appendChild(input);
     }

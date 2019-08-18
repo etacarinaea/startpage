@@ -43,8 +43,6 @@ var extItems = {
 var ext = new ConfigObject(extItems);
 
 
-
-
 function configmenuInit(callback){
     $.loadJSON("config.json", function(data){
         if(data.bool.privateMode === true){
@@ -57,7 +55,6 @@ function configmenuInit(callback){
     });
 }
 
-// separate function so it wont execute before jQuery.getJSON has finished
 function pipe(data, callback){
     // create initial menu, config menu or load config on window load
     if(localStorage.config === undefined){
@@ -74,6 +71,7 @@ function pipe(data, callback){
             initmenu.kill();
         });
         initbuttons[1].addEventListener("click", function(){
+            loadConfig(data, undefined);
             createMenu(data, callback);
             initmenu.kill();
         });
@@ -185,13 +183,14 @@ function createMenu(data, callback){
     }
 
     for(var key in bool){
-        configmenu.tabs[1].categories[0].appendOption(bool[key].name, key, 0, data.bool[key], callback);
+        console.log(bool[key].name, key, 0, data.bool[key], callback);
+        configmenu.tabs[1].categories[0].appendOption(bool[key].name, key, 0, data.bool[key]);
     }
     for(var key in style){
-        configmenu.tabs[1].categories[1].appendOption(style[key].name, key, 1, data.style[key], callback);
+        configmenu.tabs[1].categories[1].appendOption(style[key].name, key, 1, data.style[key]);
     }
     for(var key in ext){
-        configmenu.tabs[1].categories[2].appendOption(ext[key].name, key, 1, data.ext[key], callback);
+        configmenu.tabs[1].categories[2].appendOption(ext[key].name, key, 1, data.ext[key]);
     }
 
     var saveButton = configmenu.appendButton("save", "#99bb99");
