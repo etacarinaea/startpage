@@ -35,7 +35,7 @@ $.loadJSON = function(url, callback){
         }
     };
 
-    request.open("GET", url, false);
+    request.open("GET", url, true);
     request.send();
 };
 
