@@ -25,6 +25,8 @@ var styleItems = {
     border_color: "Border Color",
     border_width_normal: "Border Width",
     border_width_hovered: "Border Width (Hovered)",
+    border_radius: "Border Radius",
+    square_shadow: "Square Shadow",
     focus_color: "Focus Color",
     focus_bg_color: "Focus Background Color",
     search_color: "Search Color",
@@ -387,6 +389,8 @@ function loadConfig(d, callback){
     a.css("color", data.style.link_color);
     popup.css("color", data.style.link_color);
     sqr.css("borderColor", data.style.border_color);
+    sqr.css("borderRadius", data.style.border_radius);
+    sqr.css("boxShadow", data.style.square_shadow);
     if(!data.bool.alwaysopen){
         sqr.css("borderWidth", data.style.border_width_normal);
     }
