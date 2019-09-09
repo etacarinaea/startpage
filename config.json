@@ -38,7 +38,8 @@
     },
 
     "style": {
-        "square_size": "175",
+        "square_size": "175px",
+        "square_spacing": "6px",
         "heading_font": "DejaVu Sans",
         "link_font": "DejaVu Sans",
         "heading_font_size": "14px",
@@ -50,6 +51,8 @@
         "border_color": "#e4756b",
         "border_width_normal": "0",
         "border_width_hovered": "2px 0",
+        "border_radius": "0",
+        "square_shadow": "0",
         "focus_color": "#e4756b",
         "focus_bg_color": "#454757",
         "search_color": "#c1cadd",
