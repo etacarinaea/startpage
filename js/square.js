@@ -5,8 +5,8 @@ function Square(heading, links, isSearch, size){
     this.search = isSearch;
 
     // Make sure size has a unit
-    this.size = isNaN(size) ? size.substr(0, s.length-2) : size;
-    this.sizeUnit = isNaN(size) ?  s.substr(-2) : "px";
+    this.size = isNaN(size) ? size.substr(0, size.length-2) : size;
+    this.sizeUnit = isNaN(size) ?  size.substr(-2) : "px";
 
     this.squareElement = document.createElement("div");
     this.squareElement.setAttribute("class", "sqr");
