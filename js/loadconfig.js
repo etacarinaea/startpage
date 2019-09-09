@@ -14,6 +14,7 @@ var bool = new ConfigObject(boolItems);
 
 var styleItems = {
     square_size: "Square Size",
+    square_spacing: "Square Spacing",
     heading_font: "Heading Font",
     link_font: "Link Font",
     heading_font_size: "Heading Font Size",
@@ -375,6 +376,7 @@ function loadConfig(d, callback){
     var sqr = $(".sqr");
     sqr.css("width", px(data.style.square_size))
     sqr.css("height", px(data.style.square_size))
+    sqr.css("margin", "0 " + px(parseInt(data.style.square_spacing, 10) / 2));
     span.css("lineHeight", px(data.style.square_size))
     span.css("fontFamily", data.style.heading_font);
     a.css("fontFamily", data.style.link_font);
