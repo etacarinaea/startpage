@@ -1,6 +1,6 @@
-function ConfigObject(items){
-  for(var i in items){
-    this[i] = {name: items[i]};
+function ConfigObject(items) {
+  for(var i in items) {
+    this[i] = { name: items[i] };
   }
 }
 
@@ -46,21 +46,22 @@ var extItems = {
 var ext = new ConfigObject(extItems);
 
 
-function configmenuInit(callback){
-  $.loadJSON("config.json", function(data){
-    if(data.bool.privateMode === true){
+function configmenuInit(callback) {
+  $.loadJSON("config.json", function(data) {
+    if(data.bool.privateMode === true) {
       loadConfig(data, callback);
-    }else if(localStorage.use_json_file == "true" || localStorage.config === undefined){
+    } else if(localStorage.use_json_file == "true"
+              || localStorage.config === undefined) {
       pipe(data, callback);
-    }else{
+    } else {
       pipe(JSON.parse(localStorage.config), callback);
     }
   });
 }
 
-function pipe(data, callback){
+function pipe(data, callback) {
   // create initial menu, config menu or load config on window load
-  if(localStorage.config === undefined){
+  if(localStorage.config === undefined) {
     initmenu = new Menu("Init-Menu", 550, 350);
     initmenu.appendTab("Choose an Option:");
     initmenu.makeTabActive(0);
@@ -69,60 +70,60 @@ function pipe(data, callback){
          "Use configuration menu."],
         ["Use the config.json file located in the startpage's root directory.",
          "Use a GUI to easily configure the startpage's style. Has import/export function."]);
-    initbuttons[0].addEventListener("click", function(){
+    initbuttons[0].addEventListener("click", function() {
       loadConfig(data, callback);
       initmenu.kill();
     });
-    initbuttons[1].addEventListener("click", function(){
+    initbuttons[1].addEventListener("click", function() {
       loadConfig(data, undefined);
       createMenu(data, callback);
       initmenu.kill();
     });
-  }else if(callback === undefined){
+  } else if(callback === undefined) {
     createMenu(data, callback);
-  }else{
+  } else {
     loadConfig(data, callback);
   }
 }
 
-function createMenu(data, callback){
+function createMenu(data, callback) {
   configmenu = new Menu("Config-Menu", 750, -100);
   configmenu.appendTab("Squares");
   configmenu.appendTab("Style");
   configmenu.makeTabActive(0);
 
-  configmenu.tabs[0].node.addEventListener("click", function(){
+  configmenu.tabs[0].node.addEventListener("click", function() {
     configmenu.makeTabActive(0);
   });
-  configmenu.tabs[1].node.addEventListener("click", function(){
+  configmenu.tabs[1].node.addEventListener("click", function() {
     configmenu.makeTabActive(1);
   });
 
   // squares
   var normalcategory = configmenu.appendCategory("normal", undefined, 0);
 
-  if(localStorage.squares){
+  if(localStorage.squares) {
     var squares = JSON.parse(localStorage.squares);
 
-    for(var i=0; i < squares.length; i++){
-      if(squares[i].options === undefined){
+    for(var i=0; i < squares.length; i++) {
+      if(squares[i].options === undefined) {
         var div = configmenu.tabs[0]
-                  .categories[0]
-                  .appendSquareDiv(squares[i].name);
+                            .categories[0]
+                            .appendSquareDiv(squares[i].name);
         configmenu.tabs[0]
-              .categories[0]
-              .options[i]
-              .appendTextField("heading" + i, i, "squareHeading",
-                       squares[i].name, 1, i, normalcategory);
-        for(var a=0; a < squares[i].links.length; a++){
-          var tf = configmenu.tabs[0]
                   .categories[0]
                   .options[i]
-                  .appendTextField("link" + i, [i, "url"], "squareURL",
-                           [squares[i].links[a].name,
-                            squares[i].links[a].url], 2, i, normalcategory);
+                  .appendTextField("heading" + i, i, "squareHeading",
+                                   squares[i].name, 1, i, normalcategory);
+        for(var a=0; a < squares[i].links.length; a++) {
+          var tf = configmenu.tabs[0]
+              .categories[0].options[i]
+              .appendTextField("link" + i, [i, "url"], "squareURL",
+                               [squares[i].links[a].name,
+                                squares[i].links[a].url],
+                               2, i, normalcategory);
         }
-      }else{
+      } else {
         // search
         var div = configmenu.tabs[0]
                   .categories[0]
@@ -131,24 +132,27 @@ function createMenu(data, callback){
               .categories[0]
               .options[i]
               .appendTextField("heading" + i, [i, "prefix"], "squareHeading",
-                       [squares[i].name, squares[i].prefix], 2, i, normalcategory);
-        for(var a=0; a < squares[i].options.length; a++){
+                               [squares[i].name, squares[i].prefix], 2, i,
+                               normalcategory);
+        for(var a=0; a < squares[i].options.length; a++) {
           var tf = configmenu.tabs[0]
                 .categories[0]
                 .options[i]
-                .appendTextField("option" + i, ["opt", "url", "space"], "squareOption",
-                         [squares[i].options[a].opt,
-                          squares[i].options[a].url,
-                          squares[i].options[a].space], 3, i, normalcategory);
+                .appendTextField("option" + i, ["opt", "url", "space"],
+                                 "squareOption",
+                                 [squares[i].options[a].opt,
+                                  squares[i].options[a].url,
+                                  squares[i].options[a].space],
+                                 3, i, normalcategory);
         }
       }
-      if(squares[i].options === undefined){
+      if(squares[i].options === undefined) {
         var add = configmenu.tabs[0]
                   .categories[0]
                   .options[i]
                   .appendTextField("link" + i, undefined,
                            "squareURL", undefined, 0, i, normalcategory);
-      }else{
+      } else {
         var add = configmenu.tabs[0]
                   .categories[0]
                   .options[i]
@@ -160,19 +164,24 @@ function createMenu(data, callback){
     var newDiv = normalcategory.appendSquareDiv();
     var opts = configmenu.tabs[0].categories[0].options;
     opts[opts.length-1].appendTextField(undefined, undefined, "squareHeading",
-                   undefined, 0, i, normalcategory);
-    opts[opts.length-1].appendTextField(undefined, undefined, "squareHeading_addS",
-                   undefined, 0, i, normalcategory);
-  }else{
+                                        undefined, 0, i, normalcategory);
+    opts[opts.length-1].appendTextField(undefined, undefined,
+                                        "squareHeading_addS",
+                                        undefined, 0, i, normalcategory);
+  } else {
     div = configmenu.tabs[0]
-            .categories[0]
-            .appendSquareDiv("default");
-    configmenu.tabs[0].categories[0].options[0]
+                    .categories[0]
+                    .appendSquareDiv("default");
+    configmenu.tabs[0]
+              .categories[0]
+              .options[0]
               .appendTextField(undefined, undefined, "squareHeading",
-                       undefined, 0, undefined, normalcategory);
-    configmenu.tabs[0].categories[0].options[0]
+                               undefined, 0, undefined, normalcategory);
+    configmenu.tabs[0]
+              .categories[0]
+              .options[0]
               .appendTextField(undefined, undefined, "squareHeading_addS",
-                       undefined, 0, undefined, normalcategory);
+                               undefined, 0, undefined, normalcategory);
   }
 
 
@@ -181,52 +190,55 @@ function createMenu(data, callback){
   var stylecategory = configmenu.appendCategory("style", "General", 1);
   var extcategory = configmenu.appendCategory("ext", "Mascot", 1);
 
-  if(!data){
-    var data = {bool:"",style:"",ext:""};
+  if(!data) {
+    var data = { bool:"",style:"",ext:"" };
   }
 
-  for(var key in bool){
+  for(var key in bool) {
     console.log(bool[key].name, key, 0, data.bool[key], callback);
-    configmenu.tabs[1].categories[0].appendOption(bool[key].name, key, 0, data.bool[key]);
+    configmenu.tabs[1].categories[0].appendOption(bool[key].name, key, 0,
+                                                  data.bool[key]);
   }
-  for(var key in style){
-    configmenu.tabs[1].categories[1].appendOption(style[key].name, key, 1, data.style[key]);
+  for(var key in style) {
+    configmenu.tabs[1].categories[1].appendOption(style[key].name, key, 1,
+                                                  data.style[key]);
   }
-  for(var key in ext){
-    configmenu.tabs[1].categories[2].appendOption(ext[key].name, key, 1, data.ext[key]);
+  for(var key in ext) {
+    configmenu.tabs[1].categories[2].appendOption(ext[key].name, key, 1,
+                                                  data.ext[key]);
   }
 
   var saveButton = configmenu.appendButton("save", "#99bb99");
-  saveButton.addEventListener("click", function(){
+  saveButton.addEventListener("click", function() {
     saveConfig(callback);
     configmenu.kill();
     configmenu = undefined;
   });
   var exportButton = configmenu.appendButton("export", "#9999bb");
-  exportButton.addEventListener("click", function(){
+  exportButton.addEventListener("click", function() {
     exportConfig();
   });
   var importButton = configmenu.appendButton("import", "#bb9999");
-  importButton.addEventListener("click", function(){
+  importButton.addEventListener("click", function() {
     importConfig(callback);
   });
 }
 
 
-function importConfig(callback){
+function importConfig(callback) {
   var importinput = document.createElement("input");
   importinput.setAttribute("type", "file");
   importinput.setAttribute("name", "importinput");
 
   configmenu.menu.appendChild(importinput);
 
-  importinput.addEventListener("change", function(e){
+  importinput.addEventListener("change", function(e) {
     var file = importinput.files[0];
 
     var reader = new FileReader();
     reader.readAsText(file);
 
-    reader.onload = function(e){
+    reader.onload = function(e) {
       loadConfig(JSON.parse(reader.result), callback);
       configmenu.kill();
     };
@@ -235,67 +247,69 @@ function importConfig(callback){
   importinput.click();
 }
 
-function exportConfig(){
+function exportConfig() {
   saveConfig();
-  window.open("data:application/octet-stream;base64," + btoa(localStorage.config));
+  window.open("data:application/octet-stream;base64,"
+              + btoa(localStorage.config));
 }
 
-function saveConfig(callback){
-  json = {squares:[], bool:{}, style:{}, ext:{}};
+function saveConfig(callback) {
+  json = { squares:[], bool:{}, style:{}, ext:{} };
   // squares
   var searchSquareCount = 0;
   var squares = configmenu.tabs[0].categories[0].options;
-  for(var i=0; i < (squares.length - 1); i++){
-    if(squares[i].urls[1].className == "squareOption"){
+  for(var i=0; i < (squares.length - 1); i++) {
+    if(squares[i].urls[1].className == "squareOption") {
       searchSquareCount += 1;
     }
-    if(searchSquareCount > 1){
+    if(searchSquareCount > 1) {
       alert("Too many search squares.");
       throw "Too many search squares.";
     }
 
     var length;
-    try{
+    try {
       length = squares[i].urls[1].childNodes.length;
     }
-    catch(err){
+    catch(err) {
       alert(err + "\nA square is probably empty.");
       throw err;
     }
 
-    try{
-      if(squares[i].urls[1].className == "squareOption"){
-        for(var a=2; a < squares[i].urls.length; a++){
+    try {
+      if(squares[i].urls[1].className == "squareOption") {
+        for(var a=2; a < squares[i].urls.length; a++) {
           // dont allow options longer than one character
-          if(squares[i].urls[a].childNodes[1].value.length > 1){
-            throw "\"" + squares[i].urls[a].childNodes[1].value + "\"(" + (i+1) + "," + a + ") is too long";
+          if(squares[i].urls[a].childNodes[1].value.length > 1) {
+            throw "\"" + squares[i].urls[a].childNodes[1].value + "\"(" + (i+1)
+                  + "," + a + ") is too long";
           }
         }
       }
     }
-    catch(err){
+    catch(err) {
       alert(err + "\nOptions can be no longer than one character.");
       throw err;
     }
 
-    if(squares[i].urls[1].className == "squareOption"){
-      if(squares[i].urls[1].childNodes[1].value != "default"){
-        alert("Warning:\n" +
-            "\"" + squares[i].urls[1].childNodes[1].value +
-            "\" will be used as default search option because it's the first one.");
+    if(squares[i].urls[1].className == "squareOption") {
+      if(squares[i].urls[1].childNodes[1].value != "default") {
+        alert("Warning:\n" + "\"" + squares[i].urls[1].childNodes[1].value +
+              "\" will be used as default search option because it's the first one.");
       }
     }
 
-    if(length !== 4){
+    if(length !== 4) {
       var sqr = {name:squares[i].urls[0].childNodes[1].value, links:[]};
-      for(var a=1; a < squares[i].urls.length; a++){
-        var url = {name:squares[i].urls[a].childNodes[1].value,
-               url:squares[i].urls[a].childNodes[2].value};
+      for(var a=1; a < squares[i].urls.length; a++) {
+        var url = { name:squares[i].urls[a].childNodes[1].value,
+                    url:squares[i].urls[a].childNodes[2].value };
         sqr.links.push(url);
       }
-    }else{
-      var sqr = {name:squares[i].urls[0].childNodes[1].value, prefix:squares[i].urls[0].childNodes[2].value, options:[]};
-      for(var a=1; a < squares[i].urls.length; a++){
+    } else {
+      var sqr = { name:squares[i].urls[0].childNodes[1].value,
+                  prefix:squares[i].urls[0].childNodes[2].value, options:[] };
+      for(var a=1; a < squares[i].urls.length; a++) {
         var opt = {opt:squares[i].urls[a].childNodes[1].value,
                url:squares[i].urls[a].childNodes[2].value,
                space:squares[i].urls[a].childNodes[3].value};
@@ -306,26 +320,27 @@ function saveConfig(callback){
   }
 
   // style
-  for(var key in bool){
+  for(var key in bool) {
     var elem = document.querySelector("input[name='" + key + "'");
     bool[key].value = elem.checked;
     json.bool[key] = elem.checked;
   }
-  localStorage.use_json_file = document.querySelector("input[name='use_json_file'").checked;
-  for(var key in style){
+  localStorage.use_json_file = document.querySelector("input[name='use_json_file'")
+                                       .checked;
+  for(var key in style) {
     var elem = document.querySelector(
         "#style input[name='" + key + "'");
     style[key].value = elem.value;
     json.style[key] = String(elem.value);
   }
-  for(var key in ext){
+  for(var key in ext) {
     var elem = document.querySelector(
         "#ext input[name='" + key + "'");
-    if(elem.getAttribute("name") == "images"){
+    if(elem.getAttribute("name") == "images") {
       var val = elem.value.replace(/\s+/g, "").split(",");
       ext[key].value = val;
       json.ext[key] = val;
-    }else{
+    } else {
       ext[key].value = elem.value;
       json.ext[key] = String(elem.value);
     }
@@ -337,7 +352,7 @@ function saveConfig(callback){
 
 var data;
 // load and apply
-function loadConfig(d, callback){
+function loadConfig(d, callback) {
   data = d;
   localStorage.config = JSON.stringify(data, undefined, 4);
   localStorage.squares = JSON.stringify(data.squares, undefined, 4);
@@ -347,21 +362,23 @@ function loadConfig(d, callback){
    * displayed (without a page reload)
    */
   var container = document.getElementById("container");
-  while(container.firstChild){
+  while(container.firstChild) {
     container.removeChild(container.firstChild);
   }
   normalSquares = [];
-  for(var i=0; i < data.squares.length; i++){
-    if(data.squares[i].links){
-      normalSquares[i] = new Square(data.squares[i].name, data.squares[i].links, false, data.style.square_size);
-      if(data.bool.alwaysopen){
+  for(var i=0; i < data.squares.length; i++) {
+    if(data.squares[i].links) {
+      normalSquares[i] = new Square(data.squares[i].name, data.squares[i].links,
+                                    false, data.style.square_size);
+      if(data.bool.alwaysopen) {
         normalSquares[i].expand();
       }
-    }else{
+    } else {
       // otherwise expect this to be a search square
-      searchsquare = new Square(data.squares[i].name, data.squares[i].options, true, data.style.square_size);
+      searchsquare = new Square(data.squares[i].name, data.squares[i].options,
+                                true, data.style.square_size);
       searchsquare.prefix = data.squares[i].prefix;
-      if(data.bool.alwaysopen){
+      if(data.bool.alwaysopen) {
         searchsquare.expand();
       }
     }
@@ -393,29 +410,31 @@ function loadConfig(d, callback){
   sqr.css("borderColor", data.style.border_color);
   sqr.css("borderRadius", data.style.border_radius);
   sqr.css("boxShadow", data.style.square_shadow);
-  if(!data.bool.alwaysopen){
+  if(!data.bool.alwaysopen) {
     sqr.css("borderWidth", data.style.border_width_normal);
   }
-  popup.css("borderTop", data.style.border_width_normal + " solid " + data.style.border_color);
+  popup.css("borderTop", data.style.border_width_normal + " solid "
+            + data.style.border_color);
   var searchinput = $("#searchinput");
-  if(searchinput !== null){
+  if(searchinput !== null) {
     searchinput.css("color", data.style.search_color);
     searchinput.css("backgroundColor", data.style.search_bg_color);
     searchinput.css("width", px(data.style.square_size))
   }
   var bgimg = $("#bgimg");
-  if(data.bool.mascot){
-    bgimg.css("backgroundImage", "url('" + data.ext.images[Math.floor(Math.random()*data.ext.images.length)] + "')");
+  if(data.bool.mascot) {
+    bgimg.css("backgroundImage", "url('" + data.ext.images[
+      Math.floor(Math.random()*data.ext.images.length)] + "')");
     bgimg.css("bottom", data.ext.bottom);
     bgimg.css("right", data.ext.right);
     bgimg.css("height", data.ext.height);
     bgimg.css("width", data.ext.width);
     bgimg.css("opacity", data.ext.opacity);
-  }else{
+  } else {
     bgimg.css("backgroundImage", "");
   }
 
-  if(callback){
+  if(callback) {
     callback();
   }
 }
