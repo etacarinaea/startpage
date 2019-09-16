@@ -61,8 +61,10 @@ function Square(heading, links, isSearch, size) {
 
   if(!data.bool.alwaysopen) {
     var square = this;
-    this.squareElement.addEventListener("mouseover", this.expand.bind(this), false);
-    this.squareElement.addEventListener("mouseout", this.contract.bind(this), false);
+    this.squareElement.addEventListener("mouseover", this.expand.bind(this),
+                                        false);
+    this.squareElement.addEventListener("mouseout", this.contract.bind(this),
+                                        false);
   }
 
   var squareElement = this.squareElement;
@@ -101,7 +103,8 @@ Square.prototype.contract = function() {
 };
 
 Square.prototype.focus = function(index) {
-  this.contentElement.childNodes[index*2].style.backgroundColor = data.style.focus_bg_color;
+  this.contentElement.childNodes[index*2].style.backgroundColor =
+      data.style.focus_bg_color;
   this.contentElement.childNodes[index*2].style.color = data.style.focus_color;
 };
 

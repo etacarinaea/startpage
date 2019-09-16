@@ -1,16 +1,16 @@
 VERSION = "v1.7.4";
 
 
-function popup(obj, node){
-  var popuphandler = function(){
+function popup(obj, node) {
+  var popuphandler = function() {
     popup(this, node);
   };
   // add event listener when it's going to be visible
-  if(!visibility){
+  if(!visibility) {
     obj.addEventListener("click", popuphandler);
     obj.appendChild(node);
     obj.style.bottom = "-" + data.style.border_width_normal;
-  }else{
+  } else {
     obj.removeEventListener("click", popuphandler);
     obj.style.bottom = "-200px";
   }
@@ -18,16 +18,16 @@ function popup(obj, node){
 }
 
 
-String.prototype.replaceChars = function(character, replacement){
+String.prototype.replaceChars = function(character, replacement) {
   var str = this;
   var a;
   var b;
-  for(var i=0; i < str.length; i++){
-    if(str.charAt(i) == character){
+  for(var i=0; i < str.length; i++) {
+    if(str.charAt(i) == character) {
       a = str.substr(0, i) + replacement;
       b = str.substr(i + 1);
       str = a + b;
-      if(replacement === ""){
+      if(replacement === "") {
         i--;
       }
     }
@@ -36,17 +36,17 @@ String.prototype.replaceChars = function(character, replacement){
 };
 
 
-function search(query){
-  if(typeof searchsquare == 'undefined'){
+function search(query) {
+  if(typeof searchsquare == 'undefined') {
     configmenuInit(undefined);
-  }else if(query[0] == searchsquare.prefix){
-    if(query.substr(1) == "help"){
+  } else if(query[0] == searchsquare.prefix) {
+    if(query.substr(1) == "help") {
       popup(popupDiv, HelpText);
-    }else if(query.substr(1) == "config"){
+    } else if(query.substr(1) == "config") {
       configmenuInit(undefined);
-    }else{
-      for(var i=0; i < searchsquare.links.length; i++){
-        if(query[1] == searchsquare.links[i].opt){
+    } else {
+      for(var i=0; i < searchsquare.links.length; i++) {
+        if(query[1] == searchsquare.links[i].opt) {
           query = query.substr(3);
           window.location = searchsquare.links[i].url +
               query.replaceChars(" ", searchsquare.links[i].space);
@@ -54,9 +54,9 @@ function search(query){
         }
       }
     }
-  }else if(query === ""){
+  } else if(query === "") {
     popup(popupDiv, HelpText);
-  }else{
+  } else {
     window.location = searchsquare.links[0].url +
         query.replaceChars(" ", searchsquare.links[0].space);
   }
@@ -66,14 +66,14 @@ function search(query){
 var focusedSquare = -1;
 var focusedLink = 0;
 
-function globalKeyListener(e){
+function globalKeyListener(e) {
   if(typeof configmenu !== "undefined") {
     return;
   }
-  if(typeof searchsquare !== "undefined"){
-    if(searchsquare.searchinput === document.activeElement && !(
-       searchsquare.searchinput.value === "" ||
-       searchsquare.searchinput.value === null)){
+  if(typeof searchsquare !== "undefined") {
+    if(searchsquare.searchinput === document.activeElement
+       && !(searchsquare.searchinput.value === ""
+       || searchsquare.searchinput.value === null)) {
       return;
     }
   }
@@ -82,9 +82,9 @@ function globalKeyListener(e){
   if(typeof searchsquare === "undefined") n = 1;
 
   var key = e.keyCode;
-  if(key == 27){
+  if(key == 27) {
     // esc
-    if(typeof searchsquare !== "undefined"){
+    if(typeof searchsquare !== "undefined") {
       searchsquare.searchinput.blur();
       searchsquare.contract();
     }
@@ -94,7 +94,7 @@ function globalKeyListener(e){
     }
     focusedSquare = -1;
     focusedLink = 0;
-  }else if(key == 9 && typeof searchsquare !== "undefined"){
+  } else if(key == 9 && typeof searchsquare !== "undefined") {
     // tab
     if(typeof normalSquares[focusedSquare] !== "undefined") {
       normalSquares[focusedSquare].unfocus(focusedLink);
@@ -103,20 +103,20 @@ function globalKeyListener(e){
     focusedSquare = normalSquares.length;
     searchsquare.expand();
     searchsquare.searchinput.focus();
-  }else if(key == 37){
+  } else if(key == 37) {
     // left arrow
-    if(focusedSquare > 0){
-      if(typeof searchsquare !== "undefined"){
-        if(searchsquare.searchinput == document.activeElement && (
-           searchsquare.searchinput.value == "" ||
-           searchsquare.searchinput.value == null)){
+    if(focusedSquare > 0) {
+      if(typeof searchsquare !== "undefined") {
+        if(searchsquare.searchinput == document.activeElement
+           && (searchsquare.searchinput.value == ""
+           || searchsquare.searchinput.value == null)) {
           searchsquare.searchinput.blur();
           searchsquare.contract();
-        }else if(focusedSquare < normalSquares.length){
+        } else if(focusedSquare < normalSquares.length) {
           normalSquares[focusedSquare].unfocus(focusedLink);
           normalSquares[focusedSquare].contract();
         }
-      }else if(focusedSquare < normalSquares.length){
+      } else if(focusedSquare < normalSquares.length) {
         normalSquares[focusedSquare].unfocus(focusedLink);
         normalSquares[focusedSquare].contract();
       }
@@ -125,20 +125,20 @@ function globalKeyListener(e){
       normalSquares[focusedSquare].expand();
       normalSquares[focusedSquare].focus(focusedLink);
     }
-  }else if(key == 38 && focusedSquare >= 0){
+  } else if(key == 38 && focusedSquare >= 0) {
     // up arrow
-    if(typeof searchsquare !== "undefined"){
+    if(typeof searchsquare !== "undefined") {
       if(searchsquare.searchinput == document.activeElement) return;
     }
-    if(focusedLink > 0){
+    if(focusedLink > 0) {
       normalSquares[focusedSquare].unfocus(focusedLink);
       focusedLink--;
       normalSquares[focusedSquare].focus(focusedLink);
     }
-  }else if(key == 39){
+  } else if(key == 39) {
     // right arrow
-    if(focusedSquare < normalSquares.length - 1){
-      if(focusedSquare >= 0){
+    if(focusedSquare < normalSquares.length - 1) {
+      if(focusedSquare >= 0) {
         normalSquares[focusedSquare].unfocus(focusedLink);
         normalSquares[focusedSquare].contract();
       }
@@ -146,38 +146,38 @@ function globalKeyListener(e){
       focusedLink = 0;
       normalSquares[focusedSquare].expand();
       normalSquares[focusedSquare].focus(focusedLink);
-    }else if(focusedSquare < normalSquares.length - n){
-      if(typeof searchsquare !== "undefined"){
-        if(searchsquare.searchinput == document.activeElement && (
-           searchsquare.searchinput.value == "" ||
-           searchsquare.searchinput.value == null)){
+    } else if(focusedSquare < normalSquares.length - n) {
+      if(typeof searchsquare !== "undefined") {
+        if(searchsquare.searchinput == document.activeElement
+           && (searchsquare.searchinput.value == ""
+           || searchsquare.searchinput.value == null)) {
           searchsquare.searchinput.blur();
           searchsquare.contract();
-        }else if(focusedSquare < normalSquares.length){
+        } else if(focusedSquare < normalSquares.length) {
           normalSquares[focusedSquare].unfocus(focusedLink);
           normalSquares[focusedSquare].contract();
         }
-      }else{
+      } else {
         normalSquares[focusedSquare].unfocus(focusedLink);
         normalSquares[focusedSquare].contract();
       }
       focusedSquare++;
-      if(typeof searchsquare !== "undefined"){
+      if(typeof searchsquare !== "undefined") {
         searchsquare.expand();
         searchsquare.searchinput.focus();
       }
     }
-  }else if(key == 40 && focusedSquare >= 0){
+  } else if(key == 40 && focusedSquare >= 0) {
     // down arrow
-    if(typeof searchsquare !== "undefined"){
+    if(typeof searchsquare !== "undefined") {
       if(searchsquare.searchinput == document.activeElement) return;
     }
-    if(focusedLink < normalSquares[focusedSquare].links.length - 1){
+    if(focusedLink < normalSquares[focusedSquare].links.length - 1) {
       normalSquares[focusedSquare].unfocus(focusedLink);
       focusedLink++;
       normalSquares[focusedSquare].focus(focusedLink);
     }
-  }else if(key == 13){
+  } else if(key == 13) {
     // enter
     if(searchsquare.searchinput !== document.activeElement &&
        normalSquares[focusedSquare] !== undefined) {
@@ -185,13 +185,13 @@ function globalKeyListener(e){
     }
   }
 
-  if([9,37,38,39,40].indexOf(key) > -1){
+  if([9,37,38,39,40].indexOf(key) > -1) {
     e.preventDefault();
   }
 }
 
 
-function main(){
+function main() {
   visibility = false;
   container = document.getElementById("container");
   popupDiv = document.getElementById("popup");
@@ -223,9 +223,9 @@ function main(){
 
   // generate helptext for custom options
   var searchsquareOptions = data.squares[data.squares.length - 1].options;
-  if(searchsquareOptions){
+  if(searchsquareOptions) {
     append(HelpText, [document.createElement("br")]);
-    for(var i=0; i < searchsquareOptions.length; i++){
+    for(var i=0; i < searchsquareOptions.length; i++) {
       // remove scheme, path and everything after path from URL
       var url = searchsquareOptions[i].url.replace(/https?:\/\//, "")
                         .replace(/\/.*/, "");
@@ -245,6 +245,6 @@ function main(){
 }
 
 
-document.addEventListener("DOMContentLoaded", function(event){
+document.addEventListener("DOMContentLoaded", function(event) {
   configmenuInit(main);
 });

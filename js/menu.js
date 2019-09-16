@@ -30,7 +30,7 @@ function Menu(name, x, y) {
   this.width = x > 0 ? x + "px" : "100%";
   this.height = y > 0 ? y + "px" : "100%";
   if(x < 1 || y < 1) {
-    this.container.style.padding = 
+    this.container.style.padding =
     (y > 0 ? 0 : -y + "px") + " " + (x > 0 ? 0 : -x + "px")
   }
   this.menu.style.position = "relative";
@@ -285,12 +285,13 @@ TextField.prototype.addEvent = function(add) {
       if(cssClass == "squareURL") {
         textfieldDiv.removeChild(node);
         parentObject.appendTextField("link" + index, [index, "url"],
-                       "squareURL", ["name", "url"], 2);
+                                     "squareURL", ["name", "url"], 2);
         textfieldDiv.appendChild(node);
       } else if(cssClass == "squareOption") {
         textfieldDiv.removeChild(node);
-        parentObject.appendTextField("option" + index, ["opt", "url", "space"], "squareOption",
-                       ["option", "url", "space"], 3, index);
+        parentObject.appendTextField("option" + index, ["opt", "url", "space"],
+                                     "squareOption", ["option", "url", "space"],
+                                     3, index);
         textfieldDiv.appendChild(node);
       } else if(cssClass == "squareHeading") {
         // new square
@@ -325,11 +326,12 @@ TextField.prototype.addEvent = function(add) {
           parentCategoryObject.element.removeChild(addObject.node);
           var sqr = parentCategoryObject.appendSquareDiv("new search square");
           sqr.appendTextField("heading" + index, [index, "prefix"],
-                    "squareHeading", ["new search square", "-"], 2, index, parentCategoryObject);
+                              "squareHeading", ["new search square", "-"], 2,
+                              index, parentCategoryObject);
           sqr.appendTextField("option" + index, ["opt", "url", "space"],
-              "squareOption", ["default", "url", "+"], 3);
+                              "squareOption", ["default", "url", "+"], 3);
           sqr.appendTextField("link" + index, undefined,"squareOption",
-                    undefined, 0, index);
+                              undefined, 0, index);
           parentCategoryObject.element.appendChild(parentObject.node);
           parentCategoryObject.options.push(addObject);
         } else {
