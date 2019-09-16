@@ -1,403 +1,403 @@
 body{
-    overflow:hidden;
+  overflow:hidden;
 }
 
 #container a {
-    display:inline-block;
-    color:inherit;
-    text-decoration:none;
-    line-height:25px;
-    height:100%;
-    width:100%;
+  display:inline-block;
+  color:inherit;
+  text-decoration:none;
+  line-height:25px;
+  height:100%;
+  width:100%;
 }
 
 
 #bgimg {
-    z-index:-10;
-    position:fixed;
-    background-size:cover;
-    background-repeat:no-repeat;
+  z-index:-10;
+  position:fixed;
+  background-size:cover;
+  background-repeat:no-repeat;
 }
 
 
 #container {
-    position: absolute;
-    top:0;
-    left:0;
-    height:100vh;
-    width:100vw;
+  position: absolute;
+  top:0;
+  left:0;
+  height:100vh;
+  width:100vw;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
 }
 
 .sqr {
-    display:inline-block;
-    width:150px;
-    height:150px;
-    margin:3px 3px;
-    border:0 solid #000000;
-    overflow:hidden;
-    -moz-transition:all .25s ease-in-out;
-    -webkit-transition:all .25s ease-in-out;
-    -o-transition:all .25s ease-in-out;
-    transition:all .25s ease-in-out;
+  display:inline-block;
+  width:150px;
+  height:150px;
+  margin:3px 3px;
+  border:0 solid #000000;
+  overflow:hidden;
+  -moz-transition:all .25s ease-in-out;
+  -webkit-transition:all .25s ease-in-out;
+  -o-transition:all .25s ease-in-out;
+  transition:all .25s ease-in-out;
 }
 
 #container span {
-    width:inherit;
-    height:inherit;
-    line-height:150px;
-    text-transform:uppercase;
+  width:inherit;
+  height:inherit;
+  line-height:150px;
+  text-transform:uppercase;
 }
 
 
 #searchinput {
-    width:150px;
-    height:37px;
-    padding:0 10px;
-    border:none;
-    box-sizing:border-box;
+  width:150px;
+  height:37px;
+  padding:0 10px;
+  border:none;
+  box-sizing:border-box;
 }
 
 
 #popup {
-    z-index:101;
-    position:absolute;
-    bottom:-200px;
-    right:15px;
-    padding:25px;
-    -moz-transition:all .25s ease-in-out;
-    -webkit-transition:all .25s ease-in-out;
-    -o-transition:all .25s ease-in-out;
-    transition:all .25s ease-in-out;
-    text-align:left;
+  z-index:101;
+  position:absolute;
+  bottom:-200px;
+  right:15px;
+  padding:25px;
+  -moz-transition:all .25s ease-in-out;
+  -webkit-transition:all .25s ease-in-out;
+  -o-transition:all .25s ease-in-out;
+  transition:all .25s ease-in-out;
+  text-align:left;
 }
 
 #popup a {
-    font-size:14px;
-    font-family:Arial, Sans-Serif;
-    color:#fafafa;
-    text-shadow:0 -1px #000, 1px 0 #000, 0 1px #000, -1px 0 #000;
+  font-size:14px;
+  font-family:Arial, Sans-Serif;
+  color:#fafafa;
+  text-shadow:0 -1px #000, 1px 0 #000, 0 1px #000, -1px 0 #000;
 }
 
 
 #version {
-    z-index:100;
-    position:absolute;
-    bottom:5px;
-    right:5px;
+  z-index:100;
+  position:absolute;
+  bottom:5px;
+  right:5px;
 }
 
 
 /* CONFIGMENU */
 
 .menuContainer {
-    position:absolute;
-    z-index:120;
-    top:0;
-    left:0;
+  position:absolute;
+  z-index:120;
+  top:0;
+  left:0;
 
-    width:100vw;
-    height:100vh;
+  width:100vw;
+  height:100vh;
 
-    font-family:Arial;
-    font-size:14px;
+  font-family:Arial;
+  font-size:14px;
 
-    background-color:rgba(255,255,255,0.2);
-    box-sizing:border-box;
+  background-color:rgba(255,255,255,0.2);
+  box-sizing:border-box;
 }
 
 .menu {
-    background-color:#ffffff;
-    box-shadow:0 0 15px rgba(0,0,0,0.5);
+  background-color:#ffffff;
+  box-shadow:0 0 15px rgba(0,0,0,0.5);
 }
 
 .menuBar {
-    height:40px;
-    font-size:20px;
+  height:40px;
+  font-size:20px;
 
-    background-color:#fbfbfb;
+  background-color:#fbfbfb;
 }
 
 .tabBar {
-    display:inline-table;
-    table-layout:fixed;
-    height:100%;
+  display:inline-table;
+  table-layout:fixed;
+  height:100%;
 }
 
 .tab {
-    display:table-cell;
-    line-height:38px;
-    height:auto;
-    width:100%;
+  display:table-cell;
+  line-height:38px;
+  height:auto;
+  width:100%;
 
-    padding-left:10px;
-    border-width:0 0 2px 2px;
-    border-style:solid;
-    border-color:#ccc;
+  padding-left:10px;
+  border-width:0 0 2px 2px;
+  border-style:solid;
+  border-color:#ccc;
 
-    background-color:#eee;
+  background-color:#eee;
 
-    opacity:0.5;
+  opacity:0.5;
 
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none;
-    cursor:pointer;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  cursor:pointer;
 }
 .tab:first-child {
-    border-left-width:0;
+  border-left-width:0;
 }
 .tab:last-child {
-    border-right-width:0;
+  border-right-width:0;
 }
 .tab:hover {
-    background-color:#ccc;
+  background-color:#ccc;
 }
 #activeTab {
-    background-color:#fff;
-    border-bottom:none;
-    border-color:#e5e5e5;
-    opacity:1;
+  background-color:#fff;
+  border-bottom:none;
+  border-color:#e5e5e5;
+  opacity:1;
 }
 
 .menuContent {
-    position:relative;
-    height:calc(100% - 40px);
-    overflow-y:auto;
+  position:relative;
+  height:calc(100% - 40px);
+  overflow-y:auto;
 }
 
 .tabContent {
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
 }
 
 input {
-    line-height:19px;
-    padding:0 0 0 5px;
-    border-radius:0;
-    border:1px solid #ddd;
-    background-color:#fbfbfb;
+  line-height:19px;
+  padding:0 0 0 5px;
+  border-radius:0;
+  border:1px solid #ddd;
+  background-color:#fbfbfb;
 }
 
 .menu input {
-    font-family:monospace;
-    font-size:inherit;
+  font-family:monospace;
+  font-size:inherit;
 }
 
 .squareHeading {
-    display:inline-block;
-    position:relative;
-    line-height:21px;
-    height:21px;
-    width:21px;
+  display:inline-block;
+  position:relative;
+  line-height:21px;
+  height:21px;
+  width:21px;
 
-    margin:30px 0 10px 0;
+  margin:30px 0 10px 0;
 }
 .squareHeading_addS {
-    display:inline-block;
-    position:relative;
-    line-height:21px;
-    height:21px;
-    width:21px;
+  display:inline-block;
+  position:relative;
+  line-height:21px;
+  height:21px;
+  width:21px;
 
-    margin:10px 0;
+  margin:10px 0;
 }
 
 .category img {
-    display:inline-block;
-    opacity:0.5;
-    cursor:pointer;
+  display:inline-block;
+  opacity:0.5;
+  cursor:pointer;
 }
 .category img:hover {
-    opacity:1;
+  opacity:1;
 }
 .squareHeading input {
-    display:inline-block;
-    position:absolute;
-    top:0;
-    width:150px;
+  display:inline-block;
+  position:absolute;
+  top:0;
+  width:150px;
 }
 .squareHeading input[name="prefix"] {
-    margin-left:165px;
-    width:30px;
+  margin-left:165px;
+  width:30px;
 }
 
 
 .squareURL {
-    display: flex;
-    position:relative;
-    line-height:21px;
-    height:21px;
-    margin:5px 0 0 21px;
+  display: flex;
+  position:relative;
+  line-height:21px;
+  height:21px;
+  margin:5px 0 0 21px;
 }
 
 .squareURL input {
-    width:150px;
+  width:150px;
 }
 .squareURL input[name="url"] {
-    width:100%;
-    margin-left:5px;
+  width:100%;
+  margin-left:5px;
 }
 
 .squareOption {
-    display: flex;
-    position:relative;
-    line-height:21px;
-    height:21px;
-    margin:5px 0 0 21px;
+  display: flex;
+  position:relative;
+  line-height:21px;
+  height:21px;
+  margin:5px 0 0 21px;
 }
 .squareOption input {
-    margin-left:5px;
+  margin-left:5px;
 }
 .squareOption input[name="opt"] {
-    width:70px;
+  width:70px;
 }
 .squareOption input[name="url"] {
-    width:100%;
+  width:100%;
 }
 .squareOption input[name="space"] {
-    width:50px;
+  width:50px;
 }
 
 
 .option {
-    display: inline-flex;
-    width:100%;
+  display: inline-flex;
+  width:100%;
 
-    line-height:25px;
+  line-height:25px;
 }
 
 .radioOption {
-    width:50%;
+  width:50%;
 }
 
 .option label {
-    width:100%;
+  width:100%;
 }
 
 .option input {
-    margin-top:4px;
+  margin-top:4px;
 }
 .option input[type="text"] {
-    width:100%;
+  width:100%;
 }
 
 
 .category {
-    margin:40px;
+  margin:40px;
 }
 
 .categoryHeading {
-    display:inline-block;
-    margin-bottom:10px;
-    font-size:20px;
+  display:inline-block;
+  margin-bottom:10px;
+  font-size:20px;
 }
 
 .button {
-    width:40px;
-    height:40px;
+  width:40px;
+  height:40px;
 
-    float:right;
+  float:right;
 
-    line-height:40px;
-    text-align:center;
+  line-height:40px;
+  text-align:center;
 
-    cursor:pointer;
+  cursor:pointer;
 }
 .button:hover {
-    opacity:0.7;
+  opacity:0.7;
 }
 
 #import {
-    background-image:url("../img/import.png");
-    background-size:contain;
+  background-image:url("../img/import.png");
+  background-size:contain;
 }
 #importinput {
-    display:none;
+  display:none;
 }
 
 #export {
-    background-image:url("../img/export.png");
-    background-size:contain;
+  background-image:url("../img/export.png");
+  background-size:contain;
 }
 
 #save {
-    background-image:url("../img/save.png");
-    background-size:contain;
+  background-image:url("../img/save.png");
+  background-size:contain;
 }
 
 
 .splitbutton {
-    position:relative;
+  position:relative;
 
-    --margin:18px;
+  --margin:18px;
 
-    display:inline-block;
-    height:calc(100% - var(--margin) * 2);
-    width:calc(50% - (var(--margin) + var(--margin) / 2));
-    margin:var(--margin) 0 0 var(--margin);
+  display:inline-block;
+  height:calc(100% - var(--margin) * 2);
+  width:calc(50% - (var(--margin) + var(--margin) / 2));
+  margin:var(--margin) 0 0 var(--margin);
 
-    font-size:14px;
+  font-size:14px;
 
-    background-color:#fbfbfb;
+  background-color:#fbfbfb;
 
-    border:solid 1px #dddddd;
-    box-sizing:border-box;
+  border:solid 1px #dddddd;
+  box-sizing:border-box;
 
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none;
-    cursor:pointer;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  cursor:pointer;
 }
 .splitbutton_nametable {
-    display:table;
-    height:100%;
-    width:100%;
+  display:table;
+  height:100%;
+  width:100%;
 
-    text-align:center;
+  text-align:center;
 
-    transition:height .1s ease-in-out;
+  transition:height .1s ease-in-out;
 }
 .splitbutton_namecell {
-    display:table-cell;
+  display:table-cell;
 
-    vertical-align:middle;
+  vertical-align:middle;
 
-    background-color:inherit;
+  background-color:inherit;
 }
 .splitbutton_description {
-    position:absolute;
-    bottom:0;
-    left:0;
+  position:absolute;
+  bottom:0;
+  left:0;
 
-    overflow:hidden;
+  overflow:hidden;
 
-    height:0;
-    width:100%;
+  height:0;
+  width:100%;
 
-    padding:20px 10px 0 10px;
-    box-sizing:border-box;
+  padding:20px 10px 0 10px;
+  box-sizing:border-box;
 
-    background:linear-gradient(#dddddd, #f4f4f4 5%);
+  background:linear-gradient(#dddddd, #f4f4f4 5%);
 
-    transition:height .1s ease-in-out;
+  transition:height .1s ease-in-out;
 }
 
 .splitbutton:hover .splitbutton_description {
-    height:calc(100% - 100px);
+  height:calc(100% - 100px);
 }
 .splitbutton:hover .splitbutton_nametable {
-    height:100px;
+  height:100px;
 }
 
 .version {
-    font-size:0.8em;
+  font-size:0.8em;
 }
