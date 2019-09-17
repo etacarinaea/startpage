@@ -2,7 +2,7 @@ VERSION = "v1.7.4";
 
 
 function popup(obj, node) {
-  var popuphandler = function() {
+  let popuphandler = function() {
     popup(this, node);
   };
   // add event listener when it's going to be visible
@@ -19,10 +19,10 @@ function popup(obj, node) {
 
 
 String.prototype.replaceChars = function(character, replacement) {
-  var str = this;
-  var a;
-  var b;
-  for(var i=0; i < str.length; i++) {
+  let str = this;
+  let a;
+  let b;
+  for(let i=0; i < str.length; i++) {
     if(str.charAt(i) == character) {
       a = str.substr(0, i) + replacement;
       b = str.substr(i + 1);
@@ -45,7 +45,7 @@ function search(query) {
     } else if(query.substr(1) == "config") {
       configmenuInit(undefined);
     } else {
-      for(var i=0; i < searchsquare.links.length; i++) {
+      for(let i=0; i < searchsquare.links.length; i++) {
         if(query[1] == searchsquare.links[i].opt) {
           query = query.substr(3);
           window.location = searchsquare.links[i].url +
@@ -63,8 +63,8 @@ function search(query) {
 }
 
 
-var focusedSquare = -1;
-var focusedLink = 0;
+let focusedSquare = -1;
+let focusedLink = 0;
 
 function globalKeyListener(e) {
   if(typeof configmenu !== "undefined") {
@@ -78,10 +78,10 @@ function globalKeyListener(e) {
     }
   }
 
-  var n = 0;
+  let n = 0;
   if(typeof searchsquare === "undefined") n = 1;
 
-  var key = e.keyCode;
+  let key = e.keyCode;
   if(key == 27) {
     // esc
     if(typeof searchsquare !== "undefined") {
@@ -199,13 +199,13 @@ function main() {
   document.addEventListener("keydown", globalKeyListener);
 
   // generate helptext for static options
-  var prefix = data.squares[data.squares.length - 1].prefix;
+  let prefix = data.squares[data.squares.length - 1].prefix;
   HelpText = document.createElement("table");
-  var tr = () => document.createElement("tr");
-  var td = () => document.createElement("td");
-  var txtNode = (s) => document.createTextNode(s);
-  var append = (n, l) => {
-    for(var i = 0; i < l.length; ++i) {
+  let tr = () => document.createElement("tr");
+  let td = () => document.createElement("td");
+  let txtNode = (s) => document.createTextNode(s);
+  let append = (n, l) => {
+    for(let i = 0; i < l.length; ++i) {
       n.appendChild(l[i]);
     }
     return n;
@@ -222,12 +222,12 @@ function main() {
   ]);
 
   // generate helptext for custom options
-  var searchsquareOptions = data.squares[data.squares.length - 1].options;
+  let searchsquareOptions = data.squares[data.squares.length - 1].options;
   if(searchsquareOptions) {
     append(HelpText, [document.createElement("br")]);
-    for(var i=0; i < searchsquareOptions.length; i++) {
+    for(let i=0; i < searchsquareOptions.length; i++) {
       // remove scheme, path and everything after path from URL
-      var url = searchsquareOptions[i].url.replace(/https?:\/\//, "")
+      let url = searchsquareOptions[i].url.replace(/https?:\/\//, "")
                         .replace(/\/.*/, "");
       append(HelpText, [
         append(tr(), [
@@ -238,7 +238,7 @@ function main() {
     }
   }
 
-  var versionNode = document.createElement("span");
+  let versionNode = document.createElement("span");
   append(versionNode, [document.createTextNode("startpage " + VERSION)]);
   append(HelpText, [document.createElement("br"), versionNode]);
   versionNode.className = "version";
