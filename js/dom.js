@@ -1,5 +1,5 @@
 function $(query) {
-  var dom = function(query) {
+  let dom = function(query) {
     this.elements = [];
     switch(query[0]) {
       case "#":
@@ -17,7 +17,7 @@ function $(query) {
   };
 
   dom.prototype.css = function(key, value) {
-    for(var i = 0; i < this.elements.length; i++) {
+    for(let i = 0; i < this.elements.length; i++) {
       this.elements[i].style[key] = value;
     }
   };
@@ -26,7 +26,7 @@ function $(query) {
 }
 
 $.loadJSON = function(url, callback) {
-  var request = new XMLHttpRequest();
+  let request = new XMLHttpRequest();
   request.overrideMimeType("application/json");
 
   request.onload = function(){

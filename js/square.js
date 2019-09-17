@@ -12,21 +12,21 @@ function Square(heading, links, isSearch, size) {
   this.squareElement.setAttribute("class", "sqr");
 
   this.headingElement = document.createElement("span");
-  var headingTextnode = document.createTextNode(this.heading);
+  let headingTextnode = document.createTextNode(this.heading);
   this.headingElement.appendChild(headingTextnode);
 
   this.contentElement = document.createElement("div");
   this.contentElement.setAttribute("class", "content");
 
   if(!isSearch) {
-    var linkElements = [];
+    let linkElements = [];
 
-    for (var i = 0; i < links.length; i++) {
+    for (let i = 0; i < links.length; i++) {
       linkElements[i] = document.createElement("a");
       linkElements[i].tabIndex = "-1";
       linkElements[i].setAttribute("href", this.links[i].url);
 
-      var textnode = document.createTextNode(this.links[i].name);
+      let textnode = document.createTextNode(this.links[i].name);
       linkElements[i].appendChild(textnode);
       this.contentElement.appendChild(linkElements[i]);
       this.contentElement.appendChild(document.createElement("br"));
@@ -43,14 +43,14 @@ function Square(heading, links, isSearch, size) {
     this.contentElement.appendChild(this.searchinput);
     this.squareElement.acount = 0;
 
-    var enter = function(a) {
-      var key = a.keyCode;
+    let enter = function(a) {
+      let key = a.keyCode;
       if(key == 13) {
-        var query = this.value;
+        let query = this.value;
         search(query);
       }
     };
-    var searchFocused = (this.searchinput == document.activeElement);
+    let searchFocused = (this.searchinput == document.activeElement);
     this.searchinput.addEventListener("keypress", enter);
   }
 
@@ -60,20 +60,20 @@ function Square(heading, links, isSearch, size) {
   document.getElementById("container").appendChild(this.squareElement);
 
   if(!data.bool.alwaysopen) {
-    var square = this;
+    let square = this;
     this.squareElement.addEventListener("mouseover", this.expand.bind(this),
                                         false);
     this.squareElement.addEventListener("mouseout", this.contract.bind(this),
                                         false);
   }
 
-  var squareElement = this.squareElement;
-  var searchinput = this.searchinput;
+  let squareElement = this.squareElement;
+  let searchinput = this.searchinput;
 }
 
 
 Square.prototype.expand = function() {
-  var obj;
+  let obj;
   if(this.squareElement) {
     obj = this.squareElement;
   } else {
@@ -91,7 +91,7 @@ Square.prototype.expand = function() {
 };
 
 Square.prototype.contract = function() {
-  var obj;
+  let obj;
   if(this.squareElement) {
     obj = this.squareElement;
   } else {
