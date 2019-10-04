@@ -66,7 +66,7 @@ body{
 #popup {
   z-index:101;
   position:absolute;
-  bottom:-200px;
+  bottom:-1000px;
   right:15px;
   padding:25px;
   -moz-transition:all .25s ease-in-out;
