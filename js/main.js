@@ -1,20 +1,26 @@
 const VERSION = "v1.8.1";
 
 
-function popup(obj, node) {
+function splitUnit(str) {
+  let size = isNaN(str) ? str.substr(0, str.length-2) : str;
+  let sizeUnit = isNaN(str) ? str.substr(-2) : "";
+  return [ size, sizeUnit ];
+}
+
+let popupVisibility = false;
+function popup(obj) {
   const popuphandler = function() {
-    popup(this, node);
+    popup(this);
   };
   // add event listener when it's going to be visible
-  if(!visibility) {
+  if(popupVisibility) {
     obj.addEventListener("click", popuphandler);
-    obj.appendChild(node);
-    obj.style.bottom = "-" + data.style.border_width_normal;
+    obj.style.bottom = "-" + obj.offsetHeight + "px";
   } else {
     obj.removeEventListener("click", popuphandler);
-    obj.style.bottom = "-200px";
+    obj.style.bottom = "0px";
   }
-  visibility = !visibility;
+  popupVisibility = !popupVisibility;
 }
 
 
@@ -37,11 +43,12 @@ String.prototype.replaceChars = function(character, replacement) {
 
 
 function search(query) {
+  const popupDiv = document.getElementById("popup");
   if(typeof searchsquare == 'undefined') {
     configmenuInit(undefined);
   } else if(query[0] == searchsquare.prefix) {
     if(query.substr(1) == "help") {
-      popup(popupDiv, HelpText);
+      popup(popupDiv);
     } else if(query.substr(1) == "config") {
       configmenuInit(undefined);
     } else {
@@ -55,7 +62,7 @@ function search(query) {
       }
     }
   } else if(query === "") {
-    popup(popupDiv, HelpText);
+    popup(popupDiv);
   } else {
     window.location = searchsquare.links[0].url +
         query.replaceChars(" ", searchsquare.links[0].space);
@@ -192,25 +199,24 @@ function globalKeyListener(e) {
 
 
 function main() {
-  visibility = false;
-  container = document.getElementById("container");
-  popupDiv = document.getElementById("popup");
+  const container = document.getElementById("container");
+  const popupDiv = document.getElementById("popup");
 
   document.addEventListener("keydown", globalKeyListener);
 
   // generate helptext for static options
-  let prefix = data.squares[data.squares.length - 1].prefix;
-  HelpText = document.createElement("table");
-  let tr = () => document.createElement("tr");
-  let td = () => document.createElement("td");
-  let txtNode = (s) => document.createTextNode(s);
-  let append = (n, l) => {
+  const prefix = data.squares[data.squares.length - 1].prefix;
+  const helpText = document.createElement("table");
+  const tr = () => document.createElement("tr");
+  const td = () => document.createElement("td");
+  const txtNode = (s) => document.createTextNode(s);
+  const append = (n, l) => {
     for(let i = 0; i < l.length; ++i) {
       n.appendChild(l[i]);
     }
     return n;
   };
-  append(HelpText, [
+  append(helpText, [
     append(tr(), [
       append(td(), [txtNode(prefix + "help")]),
       append(td(), [txtNode(": Shows this help message")])
@@ -224,12 +230,12 @@ function main() {
   // generate helptext for custom options
   let searchsquareOptions = data.squares[data.squares.length - 1].options;
   if(searchsquareOptions) {
-    append(HelpText, [document.createElement("br")]);
+    append(helpText, [document.createElement("br")]);
     for(let i = 0; i < searchsquareOptions.length; i++) {
       // remove scheme, path and everything after path from URL
       let url = searchsquareOptions[i].url.replace(/https?:\/\//, "")
                         .replace(/\/.*/, "");
-      append(HelpText, [
+      append(helpText, [
         append(tr(), [
           append(td(), [txtNode(prefix + searchsquareOptions[i].opt)]),
           append(td(), [txtNode(": " + url)])
@@ -240,8 +246,11 @@ function main() {
 
   let versionNode = document.createElement("span");
   append(versionNode, [document.createTextNode("startpage " + VERSION)]);
-  append(HelpText, [document.createElement("br"), versionNode]);
+  append(helpText, [document.createElement("br"), versionNode]);
   versionNode.className = "version";
+  append(popupDiv, [helpText]);
+
+  popupDiv.style.bottom = "-" + popupDiv.offsetHeight + "px";
 }
 
 
