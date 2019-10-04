@@ -87,9 +87,9 @@ If you're having problems or have an improvement you can create an issue
 
 <p align="center">
   <img alt="example screenshot" src="/img/readme/screenshot-29032017-1.png?raw=true" width="400px">
-  <img alt="example screenshot" src="/img/readme/screenshot-29032017-3.png?raw=true" width="400px"><br>
-  <img alt="example screenshot" src="/img/readme/screenshot-29032017-4.png?raw=true" width="400px">
+  <img alt="example screenshot" src="/img/readme/screenshot-20191004.png?raw=true" width="400px"><br>
   <img alt="example screenshot" src="/img/readme/screenshot-29032017-2.png?raw=true" width="400px">
+  <img alt="example screenshot" src="/img/readme/screenshot-29032017-4.png?raw=true" width="400px">
 </p>
 
 
