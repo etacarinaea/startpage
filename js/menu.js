@@ -64,7 +64,7 @@ function Tab(name) {
 }
 
 Menu.prototype.appendTab = function(name) {
-  let tab = new Tab(name);
+  const tab = new Tab(name);
   this.tabs.push(tab);
 
   this.tabBar.appendChild(tab.node);
@@ -78,7 +78,7 @@ Tab.prototype.hide = function() {
   this.content.style.display = "none";
 };
 Menu.prototype.makeTabActive = function(tabIndex) {
-  for(let i=0; i < this.tabs.length; i++) {
+  for(let i = 0; i < this.tabs.length; i++) {
     if(i === tabIndex) {
       this.tabs[i].show();
       this.tabs[i].node.setAttribute("id", "activeTab");
@@ -114,7 +114,7 @@ Menu.prototype.kill = function() {
 };
 
 Menu.prototype.appendButton = function(name, color) {
-  let button = document.createElement("div");
+  const button = document.createElement("div");
   this.buttons.push(button);
   button.setAttribute("class", "button");
   button.setAttribute("id", name);
@@ -131,7 +131,7 @@ Menu.prototype.appendButton = function(name, color) {
 // type == 0: normal, else: toggle
 // hasHeading: boolean
 Menu.prototype.appendCategory = function(name, hasHeading, tabIndex) {
-  let category = new Category(name, hasHeading);
+  const category = new Category(name, hasHeading);
 
   if(this.tabs.length < 1) {
     this.tabs[0].content.appendChild(category.element);
@@ -147,12 +147,12 @@ Menu.prototype.appendCategory = function(name, hasHeading, tabIndex) {
 // arrays of button names and their descriptions
 // returns array of button elements
 Menu.prototype.split = function(name, description) {
-  let buttondiv = [];
-  let nametable = [];
-  let namecell = [];
-  let descriptiondiv = [];
+  const buttondiv = [];
+  const nametable = [];
+  const namecell = [];
+  const descriptiondiv = [];
 
-  for(let i=0; i < name.length; i++) {
+  for(let i = 0; i < name.length; i++) {
     buttondiv[i] = document.createElement("div");
     buttondiv[i].setAttribute("class", "splitbutton");
 
@@ -183,10 +183,10 @@ Menu.prototype.split = function(name, description) {
 // type == 0: checkbox, else: text
 // value: HTML element value
 Category.prototype.appendOption = function(name, key, type, value) {
-  let option = document.createElement("div");
-  let label = document.createElement("label");
-  let text = document.createTextNode(name);
-  let input = document.createElement("input");
+  const option = document.createElement("div");
+  const label = document.createElement("label");
+  const text = document.createTextNode(name);
+  const input = document.createElement("input");
 
   // add to category option list
   this.options.push(option);
@@ -222,7 +222,7 @@ function ConfigSquareDiv(name) {
 
 
 Category.prototype.appendSquareDiv = function(name) {
-  let div = new ConfigSquareDiv(name);
+  const div = new ConfigSquareDiv(name);
 
   this.element.appendChild(div.node);
   this.options.push(div);
@@ -263,8 +263,8 @@ function TextField(name, key, cssClass, value, amount, parentObject, index,
   if(typeof value !== 'object') {
     value = [value];
   }
-  for(let i=0; i < amount; i++) {
-    let input = document.createElement("input");
+  for(let i = 0; i < amount; i++) {
+    const input = document.createElement("input");
     input.setAttribute("name", key[i]);
     input.setAttribute("value", value[i]);
     this.node.appendChild(input);
@@ -273,12 +273,12 @@ function TextField(name, key, cssClass, value, amount, parentObject, index,
 
 // add === true : add a new option ; else remove the option
 TextField.prototype.addEvent = function(add) {
-  let parentObject = this.parentObject;
-  let parentCategoryObject = this.parentCategoryObject;
-  let node = this.node;
-  let cssClass = this.cssClass;
-  let index = this.index;
-  let textfieldDiv = node.parentElement;
+  const parentObject = this.parentObject;
+  const parentCategoryObject = this.parentCategoryObject;
+  const node = this.node;
+  const cssClass = this.cssClass;
+  const index = this.index;
+  const textfieldDiv = node.parentElement;
 
   if(add) {
     this.addNode.addEventListener("click", function() {
@@ -295,16 +295,16 @@ TextField.prototype.addEvent = function(add) {
         textfieldDiv.appendChild(node);
       } else if(cssClass == "squareHeading") {
         // new square
-        let addObject = parentCategoryObject.options.pop();
+        const addObject = parentCategoryObject.options.pop();
         parentCategoryObject.element.removeChild(addObject.node);
         // insert before search square if one exists
-        let searchObject = parentCategoryObject.options[
+        const searchObject = parentCategoryObject.options[
             parentCategoryObject.options.length-1];
         if(searchObject.urls[1].className == "squareOption") {
           searchObject = parentCategoryObject.options.pop();
           parentCategoryObject.element.removeChild(searchObject.node);
         }
-        let sqr = parentCategoryObject.appendSquareDiv("new square");
+        const sqr = parentCategoryObject.appendSquareDiv("new square");
         sqr.appendTextField("heading" + index, index, "squareHeading",
                             "new square", 1, index, parentCategoryObject);
         sqr.appendTextField("link" + index, [index, "url"], "squareURL",
@@ -319,12 +319,12 @@ TextField.prototype.addEvent = function(add) {
         parentCategoryObject.options.push(addObject);
       } else {
         // new search square
-        let searchObject = parentCategoryObject.options[
+        const searchObject = parentCategoryObject.options[
             parentCategoryObject.options.length-2];
         if(searchObject.urls[1].className != "squareOption") {
-          let addObject = parentCategoryObject.options.pop();
+          const addObject = parentCategoryObject.options.pop();
           parentCategoryObject.element.removeChild(addObject.node);
-          let sqr = parentCategoryObject.appendSquareDiv("new search square");
+          const sqr = parentCategoryObject.appendSquareDiv("new search square");
           sqr.appendTextField("heading" + index, [index, "prefix"],
                               "squareHeading", ["new search square", "-"], 2,
                               index, parentCategoryObject);
@@ -343,12 +343,12 @@ TextField.prototype.addEvent = function(add) {
     this.removeNode.addEventListener("click", function() {
       if(cssClass == "squareURL" || cssClass == "squareOption") {
         textfieldDiv.removeChild(node);
-        let index = parentObject.urls.indexOf(node);
+        const index = parentObject.urls.indexOf(node);
         if(index > -1) {
           parentObject.urls.splice(index, 1);
         }
       } else {
-        let textfieldDivObjectIndex =
+        const textfieldDivObjectIndex =
             parentCategoryObject.options.indexOf(parentObject);
         if(textfieldDivObjectIndex > -1) {
           parentCategoryObject.options.splice(textfieldDivObjectIndex, 1);
@@ -362,8 +362,8 @@ TextField.prototype.addEvent = function(add) {
 ConfigSquareDiv.prototype.appendTextField = function(name, key, cssClass, value,
                                                      amount, index,
                                                      parentCategoryObject) {
-  let textfield = new TextField(name, key, cssClass, value, amount, this, index,
-                                parentCategoryObject);
+  const textfield = new TextField(name, key, cssClass, value, amount, this,
+                                  index, parentCategoryObject);
 
   this.node.appendChild(textfield.node);
 

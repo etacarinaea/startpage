@@ -4,15 +4,15 @@ function ConfigObject(items) {
   }
 }
 
-let boolItems = {
+const boolItems = {
   borders: "Borders",
   alwaysopen: "Keep all squares open",
   mascot: "Enable background image/mascot",
   use_json_file: "Use config.json instead of this menu"
 };
-let bool = new ConfigObject(boolItems);
+const bool = new ConfigObject(boolItems);
 
-let styleItems = {
+const styleItems = {
   square_size: "Square Size",
   square_spacing: "Square Spacing",
   heading_font: "Heading Font",
@@ -33,9 +33,9 @@ let styleItems = {
   search_color: "Search Color",
   search_bg_color: "Search Background Color"
 };
-let style = new ConfigObject(styleItems);
+const style = new ConfigObject(styleItems);
 
-let extItems = {
+const extItems = {
   images: "Images",
   bottom: "Bottom",
   right: "Right",
@@ -43,7 +43,7 @@ let extItems = {
   width: "Width",
   opacity: "Opacity"
 };
-let ext = new ConfigObject(extItems);
+const ext = new ConfigObject(extItems);
 
 
 function configmenuInit(callback) {
@@ -65,7 +65,7 @@ function pipe(data, callback) {
     initmenu = new Menu("Init-Menu", 550, 350);
     initmenu.appendTab("Choose an Option:");
     initmenu.makeTabActive(0);
-    let initbuttons = initmenu.split(
+    const initbuttons = initmenu.split(
         ["Use files.",
          "Use configuration menu."],
         ["Use the config.json file located in the startpage's root directory.",
@@ -100,24 +100,24 @@ function createMenu(data, callback) {
   });
 
   // squares
-  let normalcategory = configmenu.appendCategory("normal", undefined, 0);
+  const normalcategory = configmenu.appendCategory("normal", undefined, 0);
 
   if(localStorage.squares) {
-    let squares = JSON.parse(localStorage.squares);
+    const squares = JSON.parse(localStorage.squares);
 
     let i = 0;
     while(i < squares.length) {
       if(squares[i].options === undefined) {
         let div = configmenu.tabs[0]
-                            .categories[0]
-                            .appendSquareDiv(squares[i].name);
+                              .categories[0]
+                              .appendSquareDiv(squares[i].name);
         configmenu.tabs[0]
                   .categories[0]
                   .options[i]
                   .appendTextField("heading" + i, i, "squareHeading",
                                    squares[i].name, 1, i, normalcategory);
-        for(let a=0; a < squares[i].links.length; a++) {
-          let tf = configmenu.tabs[0]
+        for(let a = 0; a < squares[i].links.length; a++) {
+          const tf = configmenu.tabs[0]
               .categories[0].options[i]
               .appendTextField("link" + i, [i, "url"], "squareURL",
                                [squares[i].links[a].name,
@@ -127,8 +127,8 @@ function createMenu(data, callback) {
       } else {
         // search
         let div = configmenu.tabs[0]
-                  .categories[0]
-                  .appendSquareDiv(squares[i].name);
+                              .categories[0]
+                              .appendSquareDiv(squares[i].name);
         configmenu.tabs[0]
               .categories[0]
               .options[i]
@@ -136,35 +136,35 @@ function createMenu(data, callback) {
                                [squares[i].name, squares[i].prefix], 2, i,
                                normalcategory);
         for(let a=0; a < squares[i].options.length; a++) {
-          let tf = configmenu.tabs[0]
-                .categories[0]
-                .options[i]
-                .appendTextField("option" + i, ["opt", "url", "space"],
-                                 "squareOption",
-                                 [squares[i].options[a].opt,
-                                  squares[i].options[a].url,
-                                  squares[i].options[a].space],
-                                 3, i, normalcategory);
+          const tf = configmenu.tabs[0]
+              .categories[0]
+              .options[i]
+              .appendTextField("option" + i, ["opt", "url", "space"],
+                               "squareOption",
+                               [squares[i].options[a].opt,
+                                squares[i].options[a].url,
+                                squares[i].options[a].space],
+                               3, i, normalcategory);
         }
       }
       if(squares[i].options === undefined) {
-        let add = configmenu.tabs[0]
-                  .categories[0]
-                  .options[i]
-                  .appendTextField("link" + i, undefined,
-                           "squareURL", undefined, 0, i, normalcategory);
+        const add = configmenu.tabs[0]
+            .categories[0]
+            .options[i]
+            .appendTextField("link" + i, undefined,
+                     "squareURL", undefined, 0, i, normalcategory);
       } else {
-        let add = configmenu.tabs[0]
-                  .categories[0]
-                  .options[i]
-                  .appendTextField("option" + i, undefined, "squareOption",
-                           undefined, 0, i, normalcategory);
+        const add = configmenu.tabs[0]
+            .categories[0]
+            .options[i]
+            .appendTextField("option" + i, undefined, "squareOption",
+                     undefined, 0, i, normalcategory);
       }
       i++;
     }
     // square/search add button
-    let newDiv = normalcategory.appendSquareDiv();
-    let opts = configmenu.tabs[0].categories[0].options;
+    const newDiv = normalcategory.appendSquareDiv();
+    const opts = configmenu.tabs[0].categories[0].options;
     opts[opts.length-1].appendTextField(undefined, undefined, "squareHeading",
                                         undefined, 0, i, normalcategory);
     opts[opts.length-1].appendTextField(undefined, undefined,
@@ -188,12 +188,12 @@ function createMenu(data, callback) {
 
 
   // style
-  let boolcategory = configmenu.appendCategory("bool", undefined, 1);
-  let stylecategory = configmenu.appendCategory("style", "General", 1);
-  let extcategory = configmenu.appendCategory("ext", "Mascot", 1);
+  const boolcategory = configmenu.appendCategory("bool", undefined, 1);
+  const stylecategory = configmenu.appendCategory("style", "General", 1);
+  const extcategory = configmenu.appendCategory("ext", "Mascot", 1);
 
   if(!data) {
-    let data = { bool:"",style:"",ext:"" };
+    const data = { bool:"",style:"",ext:"" };
   }
 
   for(let key in bool) {
@@ -209,17 +209,17 @@ function createMenu(data, callback) {
                                                   data.ext[key]);
   }
 
-  let saveButton = configmenu.appendButton("save", "#99bb99");
+  const saveButton = configmenu.appendButton("save", "#99bb99");
   saveButton.addEventListener("click", function() {
     saveConfig(callback);
     configmenu.kill();
     configmenu = undefined;
   });
-  let exportButton = configmenu.appendButton("export", "#9999bb");
+  const exportButton = configmenu.appendButton("export", "#9999bb");
   exportButton.addEventListener("click", function() {
     exportConfig();
   });
-  let importButton = configmenu.appendButton("import", "#bb9999");
+  const importButton = configmenu.appendButton("import", "#bb9999");
   importButton.addEventListener("click", function() {
     importConfig(callback);
   });
@@ -227,16 +227,16 @@ function createMenu(data, callback) {
 
 
 function importConfig(callback) {
-  let importinput = document.createElement("input");
+  const importinput = document.createElement("input");
   importinput.setAttribute("type", "file");
   importinput.setAttribute("name", "importinput");
 
   configmenu.menu.appendChild(importinput);
 
   importinput.addEventListener("change", function(e) {
-    let file = importinput.files[0];
+    const file = importinput.files[0];
 
-    let reader = new FileReader();
+    const reader = new FileReader();
     reader.readAsText(file);
 
     reader.onload = function(e) {
@@ -258,8 +258,8 @@ function saveConfig(callback) {
   json = { squares:[], bool:{}, style:{}, ext:{} };
   // squares
   let searchSquareCount = 0;
-  let squares = configmenu.tabs[0].categories[0].options;
-  for(let i=0; i < (squares.length - 1); i++) {
+  const squares = configmenu.tabs[0].categories[0].options;
+  for(let i = 0; i < (squares.length - 1); i++) {
     if(squares[i].urls[1].className == "squareOption") {
       searchSquareCount += 1;
     }
@@ -279,7 +279,7 @@ function saveConfig(callback) {
 
     try {
       if(squares[i].urls[1].className == "squareOption") {
-        for(let a=2; a < squares[i].urls.length; a++) {
+        for(let a = 2; a < squares[i].urls.length; a++) {
           // dont allow options longer than one character
           if(squares[i].urls[a].childNodes[1].value.length > 1) {
             throw "\"" + squares[i].urls[a].childNodes[1].value + "\"(" + (i+1)
@@ -300,20 +300,22 @@ function saveConfig(callback) {
       }
     }
 
+    let sqr;
     if(length !== 4) {
-      let sqr = {name:squares[i].urls[0].childNodes[1].value, links:[]};
-      for(let a=1; a < squares[i].urls.length; a++) {
-        let url = { name:squares[i].urls[a].childNodes[1].value,
-                    url:squares[i].urls[a].childNodes[2].value };
+      sqr = { name: squares[i].urls[0].childNodes[1].value, links: [] };
+      for(let a = 1; a < squares[i].urls.length; a++) {
+        const url = { name: squares[i].urls[a].childNodes[1].value,
+                      url: squares[i].urls[a].childNodes[2].value };
         sqr.links.push(url);
       }
     } else {
-      let sqr = { name:squares[i].urls[0].childNodes[1].value,
-                  prefix:squares[i].urls[0].childNodes[2].value, options:[] };
-      for(let a=1; a < squares[i].urls.length; a++) {
-        let opt = {opt:squares[i].urls[a].childNodes[1].value,
-               url:squares[i].urls[a].childNodes[2].value,
-               space:squares[i].urls[a].childNodes[3].value};
+      sqr = { name: squares[i].urls[0].childNodes[1].value,
+                    prefix: squares[i].urls[0].childNodes[2].value,
+                    options: [] };
+      for(let a = 1; a < squares[i].urls.length; a++) {
+        const opt = { opt: squares[i].urls[a].childNodes[1].value,
+                      url: squares[i].urls[a].childNodes[2].value,
+                      space: squares[i].urls[a].childNodes[3].value};
         sqr.options.push(opt);
       }
     }
@@ -322,23 +324,21 @@ function saveConfig(callback) {
 
   // style
   for(let key in bool) {
-    let elem = document.querySelector("input[name='" + key + "'");
+    const elem = document.querySelector("input[name='" + key + "'");
     bool[key].value = elem.checked;
     json.bool[key] = elem.checked;
   }
-  localStorage.use_json_file = document.querySelector("input[name='use_json_file'")
-                                       .checked;
+  localStorage.use_json_file =
+      document.querySelector("input[name='use_json_file'").checked;
   for(let key in style) {
-    let elem = document.querySelector(
-        "#style input[name='" + key + "'");
+    const elem = document.querySelector("#style input[name='" + key + "'");
     style[key].value = elem.value;
     json.style[key] = String(elem.value);
   }
   for(let key in ext) {
-    let elem = document.querySelector(
-        "#ext input[name='" + key + "'");
+    const elem = document.querySelector("#ext input[name='" + key + "'");
     if(elem.getAttribute("name") == "images") {
-      let val = elem.value.replace(/\s+/g, "").split(",");
+      const val = elem.value.replace(/\s+/g, "").split(",");
       ext[key].value = val;
       json.ext[key] = val;
     } else {
@@ -362,12 +362,12 @@ function loadConfig(d, callback) {
   /* remove all existing squares, otherwise the old ones will still be
    * displayed (without a page reload)
    */
-  let container = document.getElementById("container");
+  const container = document.getElementById("container");
   while(container.firstChild) {
     container.removeChild(container.firstChild);
   }
   normalSquares = [];
-  for(let i=0; i < data.squares.length; i++) {
+  for(let i = 0; i < data.squares.length; i++) {
     if(data.squares[i].links) {
       normalSquares[i] = new Square(data.squares[i].name, data.squares[i].links,
                                     false, data.style.square_size);
@@ -386,12 +386,12 @@ function loadConfig(d, callback) {
   }
 
   // Append px if just a number
-  let px = (s) => isNaN(s) ? s : s + "px";
+  const px = (s) => isNaN(s) ? s : s + "px";
   // style
-  let span = $("span");
-  let a = $("a");
-  let popup = $("#popup");
-  let sqr = $(".sqr");
+  const span = $("span");
+  const a = $("a");
+  const popup = $("#popup");
+  const sqr = $(".sqr");
   sqr.css("width", px(data.style.square_size))
   sqr.css("height", px(data.style.square_size))
   sqr.css("margin", "0 " + px(parseInt(data.style.square_spacing, 10) / 2));
@@ -416,13 +416,13 @@ function loadConfig(d, callback) {
   }
   popup.css("borderTop", data.style.border_width_normal + " solid "
             + data.style.border_color);
-  let searchinput = $("#searchinput");
+  const searchinput = $("#searchinput");
   if(searchinput !== null) {
     searchinput.css("color", data.style.search_color);
     searchinput.css("backgroundColor", data.style.search_bg_color);
     searchinput.css("width", px(data.style.square_size))
   }
-  let bgimg = $("#bgimg");
+  const bgimg = $("#bgimg");
   if(data.bool.mascot) {
     bgimg.css("backgroundImage", "url('" + data.ext.images[
       Math.floor(Math.random()*data.ext.images.length)] + "')");

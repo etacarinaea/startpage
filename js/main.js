@@ -1,8 +1,8 @@
-VERSION = "v1.7.4";
+const VERSION = "v1.7.4";
 
 
 function popup(obj, node) {
-  let popuphandler = function() {
+  const popuphandler = function() {
     popup(this, node);
   };
   // add event listener when it's going to be visible
@@ -22,7 +22,7 @@ String.prototype.replaceChars = function(character, replacement) {
   let str = this;
   let a;
   let b;
-  for(let i=0; i < str.length; i++) {
+  for(let i = 0; i < str.length; i++) {
     if(str.charAt(i) == character) {
       a = str.substr(0, i) + replacement;
       b = str.substr(i + 1);
@@ -45,7 +45,7 @@ function search(query) {
     } else if(query.substr(1) == "config") {
       configmenuInit(undefined);
     } else {
-      for(let i=0; i < searchsquare.links.length; i++) {
+      for(let i = 0; i < searchsquare.links.length; i++) {
         if(query[1] == searchsquare.links[i].opt) {
           query = query.substr(3);
           window.location = searchsquare.links[i].url +
@@ -225,7 +225,7 @@ function main() {
   let searchsquareOptions = data.squares[data.squares.length - 1].options;
   if(searchsquareOptions) {
     append(HelpText, [document.createElement("br")]);
-    for(let i=0; i < searchsquareOptions.length; i++) {
+    for(let i = 0; i < searchsquareOptions.length; i++) {
       // remove scheme, path and everything after path from URL
       let url = searchsquareOptions[i].url.replace(/https?:\/\//, "")
                         .replace(/\/.*/, "");

@@ -1,5 +1,5 @@
 function $(query) {
-  let dom = function(query) {
+  const dom = function(query) {
     this.elements = [];
     switch(query[0]) {
       case "#":
@@ -26,10 +26,10 @@ function $(query) {
 }
 
 $.loadJSON = function(url, callback) {
-  let request = new XMLHttpRequest();
+  const request = new XMLHttpRequest();
   request.overrideMimeType("application/json");
 
-  request.onload = function(){
+  request.onload = function() {
     if(request.status == "200") {
       callback(JSON.parse(request.responseText));
     }

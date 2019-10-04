@@ -12,21 +12,21 @@ function Square(heading, links, isSearch, size) {
   this.squareElement.setAttribute("class", "sqr");
 
   this.headingElement = document.createElement("span");
-  let headingTextnode = document.createTextNode(this.heading);
+  const headingTextnode = document.createTextNode(this.heading);
   this.headingElement.appendChild(headingTextnode);
 
   this.contentElement = document.createElement("div");
   this.contentElement.setAttribute("class", "content");
 
   if(!isSearch) {
-    let linkElements = [];
+    const linkElements = [];
 
     for (let i = 0; i < links.length; i++) {
       linkElements[i] = document.createElement("a");
       linkElements[i].tabIndex = "-1";
       linkElements[i].setAttribute("href", this.links[i].url);
 
-      let textnode = document.createTextNode(this.links[i].name);
+      const textnode = document.createTextNode(this.links[i].name);
       linkElements[i].appendChild(textnode);
       this.contentElement.appendChild(linkElements[i]);
       this.contentElement.appendChild(document.createElement("br"));
@@ -43,14 +43,14 @@ function Square(heading, links, isSearch, size) {
     this.contentElement.appendChild(this.searchinput);
     this.squareElement.acount = 0;
 
-    let enter = function(a) {
-      let key = a.keyCode;
+    const enter = function(a) {
+      const key = a.keyCode;
       if(key == 13) {
-        let query = this.value;
+        const query = this.value;
         search(query);
       }
     };
-    let searchFocused = (this.searchinput == document.activeElement);
+    const searchFocused = (this.searchinput == document.activeElement);
     this.searchinput.addEventListener("keypress", enter);
   }
 
@@ -60,15 +60,15 @@ function Square(heading, links, isSearch, size) {
   document.getElementById("container").appendChild(this.squareElement);
 
   if(!data.bool.alwaysopen) {
-    let square = this;
+    const square = this;
     this.squareElement.addEventListener("mouseover", this.expand.bind(this),
                                         false);
     this.squareElement.addEventListener("mouseout", this.contract.bind(this),
                                         false);
   }
 
-  let squareElement = this.squareElement;
-  let searchinput = this.searchinput;
+  const squareElement = this.squareElement;
+  const searchinput = this.searchinput;
 }
 
 
