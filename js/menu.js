@@ -298,7 +298,7 @@ TextField.prototype.addEvent = function(add) {
         const addObject = parentCategoryObject.options.pop();
         parentCategoryObject.element.removeChild(addObject.node);
         // insert before search square if one exists
-        const searchObject = parentCategoryObject.options[
+        let searchObject = parentCategoryObject.options[
             parentCategoryObject.options.length-1];
         if(searchObject.urls[1].className == "squareOption") {
           searchObject = parentCategoryObject.options.pop();
@@ -319,7 +319,7 @@ TextField.prototype.addEvent = function(add) {
         parentCategoryObject.options.push(addObject);
       } else {
         // new search square
-        const searchObject = parentCategoryObject.options[
+        let searchObject = parentCategoryObject.options[
             parentCategoryObject.options.length-2];
         if(searchObject.urls[1].className != "squareOption") {
           const addObject = parentCategoryObject.options.pop();
