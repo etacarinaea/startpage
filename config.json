@@ -33,7 +33,7 @@
   "bool": {
     "borders": true,
     "alwaysopen": false,
-    "mascot": false,
+    "background_image": true,
     "use_json_file": false
   },
 
@@ -60,11 +60,8 @@
   },
 
   "ext": {
-    "images": ["image1.png", "image2.png", "image3.png"],
-    "bottom": "0",
-    "right": "0",
-    "height": "500px",
-    "width": "400px",
-    "opacity": ".2"
+    "images": [ "https://images.unsplash.com/photo-1497076888581-9acaad5f74cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9" ],
+    "size": "cover",
+    "filter": "opacity(0.2) grayscale(1)"
   }
 }

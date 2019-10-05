@@ -7,7 +7,7 @@ function ConfigObject(items) {
 const boolItems = {
   borders: "Borders",
   alwaysopen: "Keep all squares open",
-  mascot: "Enable background image/mascot",
+  background_image: "Enable background image",
   use_json_file: "Use config.json instead of this menu"
 };
 const bool = new ConfigObject(boolItems);
@@ -37,11 +37,8 @@ const style = new ConfigObject(styleItems);
 
 const extItems = {
   images: "Images",
-  bottom: "Bottom",
-  right: "Right",
-  height: "Height",
-  width: "Width",
-  opacity: "Opacity"
+  size: "Size",
+  filter: "Filter"
 };
 const ext = new ConfigObject(extItems);
 
@@ -190,7 +187,7 @@ function createMenu(data, callback) {
   // style
   const boolcategory = configmenu.appendCategory("bool", undefined, 1);
   const stylecategory = configmenu.appendCategory("style", "General", 1);
-  const extcategory = configmenu.appendCategory("ext", "Mascot", 1);
+  const extcategory = configmenu.appendCategory("ext", "Background Image", 1);
 
   if(!data) {
     const data = { bool:"",style:"",ext:"" };
@@ -423,14 +420,11 @@ function loadConfig(d, callback) {
     searchinput.css("width", px(data.style.square_size))
   }
   const bgimg = $("#bgimg");
-  if(data.bool.mascot) {
+  if(data.bool.background_image) {
     bgimg.css("backgroundImage", "url('" + data.ext.images[
       Math.floor(Math.random()*data.ext.images.length)] + "')");
-    bgimg.css("bottom", data.ext.bottom);
-    bgimg.css("right", data.ext.right);
-    bgimg.css("height", data.ext.height);
-    bgimg.css("width", data.ext.width);
-    bgimg.css("opacity", data.ext.opacity);
+    bgimg.css("backgroundSize", data.ext.size);
+    bgimg.css("filter", data.ext.filter);
   } else {
     bgimg.css("backgroundImage", "");
   }

@@ -1,5 +1,7 @@
-body{
+body {
   overflow:hidden;
+  margin:0;
+  padding:0;
 }
 
 #container a {
@@ -14,9 +16,12 @@ body{
 
 #bgimg {
   z-index:-10;
-  position:fixed;
+  position:absolute;
+  height:100vh;
+  width:100vw;
   background-size:cover;
   background-repeat:no-repeat;
+  box-sizing: border-box;
 }
 
 
