@@ -33,10 +33,6 @@ function Menu(name, x, y) {
     this.container.style.padding =
     (y > 0 ? 0 : -y + "px") + " " + (x > 0 ? 0 : -x + "px")
   }
-  this.menu.style.position = "relative";
-  this.menu.style.top = "50%";
-  this.menu.style.transform = "translateY(-50%)";
-  this.menu.style.margin = "auto";
   this.menu.style.width = this.width;
   this.menu.style.height = this.height;
 
