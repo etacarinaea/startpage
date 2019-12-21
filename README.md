@@ -3,7 +3,6 @@
 </p>
 <p align="center">
   <a href="https://github.com/etacarinaea/startpage/releases"><img src="https://img.shields.io/github/manifest-json/v/etacarinaea/startpage.svg?color=%23C9A0DC&label=Version" /></a>
-  <a href="https://github.com/etacarinaea/startpage/blob/master/COPYING"><img src="https://img.shields.io/github/license/etacarinaea/startpage.svg?color=%23C9A0DC&label=License" /></a>
   <a href="https://addons.mozilla.org/en-US/firefox/addon/square-startpage/"><img src="https://img.shields.io/badge/Firefox-Download-%23FF9400.svg" /></a>
   <a href="https://chrome.google.com/webstore/detail/startpage/odmjpppdiaenedpilgldapgbodindjak"><img src="https://img.shields.io/badge/Chrome%2FChromium-Download-%234285F4.svg" /></a>
 </p>
@@ -14,10 +13,12 @@ Quickly access your favourite websites whenever you open a new tab
 
 ## Key Features
 
-* Easy customisation using a built-in configuration menu
+* Easy customisation using a built-in configuration menu, or alternatively a
+  JSON file
 * Keyboard controls
 * Customisable search function
-* Export/Import function to backup your config or to use the same one on multiple devices
+* Export/Import function to backup your config or to use the same one on
+  multiple devices
 
 
 <br><br>
