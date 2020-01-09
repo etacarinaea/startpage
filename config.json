@@ -1,15 +1,15 @@
 {
   "squares": [
-    { "name": "reddit", "links": [
-        { "name": "SkincareAddiction", "url": "https://www.reddit.com/r/SkincareAddiction/" },
-        { "name": "MakeupAddiction", "url": "https://www.reddit.com/r/MakeupAddiction/" },
-        { "name": "dwarffortress", "url": "https://www.reddit.com/r/dwarffortress/" },
-        { "name": "unixporn", "url": "https://www.reddit.com/r/unixporn/" }
+    { "name": "social", "links": [
+        { "name": "twitter", "url": "https://twitter.com/home" },
+        { "name": "ao3", "url": "https://archiveofourown.org/" },
+        { "name": "reddit", "url": "https://www.reddit.com/" },
+        { "name": "curiouscat", "url": "https://curiouscat.me/" }
       ]
     },
     { "name": "media", "links": [
-        { "name": "Netflix", "url": "https://www.netflix.com/" },
-        { "name": "goodreads", "url": "https://www.goodreads.com/" },
+        { "name": "netflix", "url": "https://www.netflix.com/" },
+        { "name": "youtube", "url": "https://www.goodreads.com/" },
         { "name": "imgur", "url": "http://imgur.com/" }
       ]
     },
@@ -40,23 +40,23 @@
   "style": {
     "square_size": "175px",
     "square_spacing": "6px",
-    "heading_font": "DejaVu Sans",
-    "link_font": "DejaVu Sans",
+    "heading_font": "Open Sans",
+    "link_font": "Open Sans",
     "heading_font_size": "14px",
     "link_font_size": "14px",
-    "background": "#282a36",
-    "foreground": "#3c3e4d ",
-    "heading_color": "#e4756b",
+    "background": "#2e2b38",
+    "foreground": "#474451 ",
+    "heading_color": "#E87477",
     "link_color": "#c1cadd",
-    "border_color": "#e4756b",
+    "border_color": "#4D7248",
     "border_width_normal": "0",
     "border_width_hovered": "2px 0",
     "border_radius": "0",
     "square_shadow": "0",
     "focus_color": "#e4756b",
     "focus_bg_color": "#454757",
-    "search_color": "#c1cadd",
-    "search_bg_color": "#454757"
+    "search_color": "#ffffff",
+    "search_bg_color": "#433e52"
   },
 
   "ext": {
