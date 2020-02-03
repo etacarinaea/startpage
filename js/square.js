@@ -71,33 +71,20 @@ function Square(heading, links, isSearch, size) {
 
 
 Square.prototype.expand = function() {
-  let obj;
-  if(this.squareElement) {
-    obj = this.squareElement;
-  } else {
-    obj = this;
-  }
-
   if(this.isSearch) {
-    obj.style.height = (this.size*2 + 37) + this.sizeUnit;
+    this.squareElement.style.height = (this.size*2 + 37) + this.sizeUnit;
   } else {
-    obj.style.height = (this.size*2 + 25 * this.links.length) + this.sizeUnit;
+    this.squareElement.style.height = (this.size*2 + 25 * this.links.length)
+                                      + this.sizeUnit;
   }
   if(data.bool.borders) {
-    obj.style.borderWidth = data.style.border_width_hovered;
+    this.squareElement.style.borderWidth = data.style.border_width_hovered;
   }
 };
 
 Square.prototype.contract = function() {
-  let obj;
-  if(this.squareElement) {
-    obj = this.squareElement;
-  } else {
-    obj = this;
-  }
-
-  obj.style.height = this.size + this.sizeUnit;
-  obj.style.borderWidth = data.style.border_width_normal;
+  this.squareElement.style.height = this.size + this.sizeUnit;
+  this.squareElement.style.borderWidth = data.style.border_width_normal;
 };
 
 Square.prototype.focus = function(index) {
