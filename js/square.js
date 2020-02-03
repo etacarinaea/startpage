@@ -74,6 +74,7 @@ Square.prototype.maxHeight = function() {
 }
 
 Square.prototype.expand = function() {
+  if(data.bool.alwaysopen) return;
   this.squareElement.style.height = this.maxHeight() + this.sizeUnit;
   if(data.bool.borders) {
     this.squareElement.style.borderWidth = data.style.border_width_hovered;
@@ -81,6 +82,7 @@ Square.prototype.expand = function() {
 };
 
 Square.prototype.contract = function() {
+  if(data.bool.alwaysopen) return;
   this.squareElement.style.height = this.size + this.sizeUnit;
   this.squareElement.style.borderWidth = data.style.border_width_normal;
 };
