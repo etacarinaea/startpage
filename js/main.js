@@ -1,4 +1,4 @@
-const VERSION = "v1.8.2";
+const VERSION = "v1.9.1";
 
 
 function splitUnit(str) {
