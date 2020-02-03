@@ -69,14 +69,12 @@ function Square(heading, links, isSearch, size) {
   const searchinput = this.searchinput;
 }
 
+Square.prototype.maxHeight = function() {
+  return this.size*2 + (this.isSearch ? 37 : 25*this.links.length);
+}
 
 Square.prototype.expand = function() {
-  if(this.isSearch) {
-    this.squareElement.style.height = (this.size*2 + 37) + this.sizeUnit;
-  } else {
-    this.squareElement.style.height = (this.size*2 + 25 * this.links.length)
-                                      + this.sizeUnit;
-  }
+  this.squareElement.style.height = this.maxHeight() + this.sizeUnit;
   if(data.bool.borders) {
     this.squareElement.style.borderWidth = data.style.border_width_hovered;
   }
