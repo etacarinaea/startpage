@@ -390,7 +390,22 @@ function loadConfig(d, callback) {
   const popup = $("#popup");
   const sqr = $(".sqr");
   sqr.css("width", px(data.style.square_size))
-  sqr.css("height", px(data.style.square_size))
+  if(data.bool.alwaysopen) {
+    let maxHeight = 0;
+    for(let i = 0; i < normalSquares.length; ++i) {
+      let iMaxHeight = normalSquares[i].maxHeight();
+      if(iMaxHeight > maxHeight) {
+        maxHeight = normalSquares[i].maxHeight();
+      }
+    }
+    let sMaxHeight = searchsquare.maxHeight();
+    if(searchsquare && sMaxHeight > maxHeight) {
+      maxHeight = sMaxHeight;
+    }
+    sqr.css("height", px(maxHeight));
+  } else {
+    sqr.css("height", px(data.style.square_size))
+  }
   sqr.css("margin", "0 " + px(parseInt(data.style.square_spacing, 10) / 2));
   span.css("lineHeight", px(data.style.square_size))
   span.css("fontFamily", data.style.heading_font);
