@@ -2,7 +2,7 @@
 function Square(heading, links, isSearch, size) {
   this.heading = heading;
   this.links = links;
-  this.search = isSearch;
+  this.isSearch = isSearch;
 
   // Make sure size has a unit
   this.size = isNaN(size) ? size.substr(0, size.length-2) : size;
@@ -32,7 +32,6 @@ function Square(heading, links, isSearch, size) {
       this.contentElement.appendChild(document.createElement("br"));
      }
 
-    this.squareElement.acount = this.links.length;
   } else {
     this.squareElement.setAttribute("id", "search_sqr");
     this.searchinput = document.createElement("input");
@@ -41,7 +40,6 @@ function Square(heading, links, isSearch, size) {
     this.searchinput.setAttribute("autocomplete", "off");
 
     this.contentElement.appendChild(this.searchinput);
-    this.squareElement.acount = 0;
 
     const enter = function(a) {
       const key = a.keyCode;
@@ -80,10 +78,10 @@ Square.prototype.expand = function() {
     obj = this;
   }
 
-  if(obj.acount > 0) {
-    obj.style.height = (this.size*2 + 25 * obj.acount) + this.sizeUnit;
-  } else {
+  if(this.isSearch) {
     obj.style.height = (this.size*2 + 37) + this.sizeUnit;
+  } else {
+    obj.style.height = (this.size*2 + 25 * this.links.length) + this.sizeUnit;
   }
   if(data.bool.borders) {
     obj.style.borderWidth = data.style.border_width_hovered;
