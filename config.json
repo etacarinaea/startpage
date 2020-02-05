@@ -33,7 +33,7 @@
   "bool": {
     "borders": true,
     "alwaysopen": false,
-    "background_image": true,
+    "background_image": false,
     "use_json_file": false
   },
 
