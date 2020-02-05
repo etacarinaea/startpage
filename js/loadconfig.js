@@ -76,10 +76,10 @@ function pipe(data, callback) {
       createMenu(data, callback);
       initmenu.kill();
     });
-  } else if(callback === undefined) {
-    createMenu(data, callback);
-  } else {
+  } else if(typeof callback === "function") {
     loadConfig(data, callback);
+  } else {
+    createMenu(data, callback);
   }
 }
 
@@ -388,6 +388,7 @@ function loadConfig(d, callback) {
   const span = $("span");
   const a = $("a");
   const popup = $("#popup");
+  const gearPath = $("#gearPath").elements[0];
   const sqr = $(".sqr");
   sqr.css("width", px(data.style.square_size))
   if(data.bool.alwaysopen) {
@@ -420,6 +421,7 @@ function loadConfig(d, callback) {
   span.css("color", data.style.heading_color);
   a.css("color", data.style.link_color);
   popup.css("color", data.style.link_color);
+  gearPath.style.fill = data.style.foreground;
   sqr.css("borderColor", data.style.border_color);
   sqr.css("borderRadius", data.style.border_radius);
   sqr.css("boxShadow", data.style.square_shadow);
@@ -444,7 +446,7 @@ function loadConfig(d, callback) {
     bgimg.css("backgroundImage", "");
   }
 
-  if(callback) {
+  if(typeof callback === "function") {
     callback();
   }
 }
