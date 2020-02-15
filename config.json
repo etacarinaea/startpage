@@ -34,7 +34,8 @@
     "borders": true,
     "alwaysopen": false,
     "background_image": false,
-    "use_json_file": false
+    "use_json_file": false,
+    "hide_gear_button": false
   },
 
   "style": {

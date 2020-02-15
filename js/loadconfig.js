@@ -8,7 +8,8 @@ const boolItems = {
   borders: "Borders",
   alwaysopen: "Keep all squares open",
   background_image: "Enable background image",
-  use_json_file: "Use config.json instead of this menu"
+  use_json_file: "Use config.json instead of this menu",
+  hide_gear_button: "Make gear button invisible"
 };
 const bool = new ConfigObject(boolItems);
 
@@ -388,7 +389,7 @@ function loadConfig(d, callback) {
   const span = $("span");
   const a = $("a");
   const popup = $("#popup");
-  const gearPath = $("#gearPath").elements[0];
+  const gearPath = $("#gearPath");
   const sqr = $(".sqr");
   sqr.css("width", px(data.style.square_size))
   if(data.bool.alwaysopen) {
@@ -421,7 +422,22 @@ function loadConfig(d, callback) {
   span.css("color", data.style.heading_color);
   a.css("color", data.style.link_color);
   popup.css("color", data.style.link_color);
-  gearPath.style.fill = data.style.foreground;
+  const gear = $("#gear");
+  if(data.bool.hide_gear_button) {
+    gear.css("opacity", 0);
+    gear.elements[0].addEventListener("mouseout", (e) => {
+      gear.css("opacity", 0);
+    });
+  } else {
+    gear.css("opacity", 0.5);
+    gear.elements[0].addEventListener("mouseout", (e) => {
+      gear.css("opacity", 0.5);
+    });
+  }
+  gear.elements[0].addEventListener("mouseover", (e) => {
+    gear.css("opacity", 1);
+  });
+  gearPath.css("fill", data.style.foreground);
   sqr.css("borderColor", data.style.border_color);
   sqr.css("borderRadius", data.style.border_radius);
   sqr.css("boxShadow", data.style.square_shadow);
