@@ -201,9 +201,9 @@ function globalKeyListener(e) {
 function main() {
   const container = document.getElementById("container");
   const popupDiv = document.getElementById("popup");
-  const gear = document.getElementById("gear");
+  const gearContainer = document.getElementById("gearContainer");
 
-  gear.addEventListener("click", configmenuInit);
+  gearContainer.addEventListener("click", configmenuInit);
   document.addEventListener("keydown", globalKeyListener);
 
   // generate helptext for static options

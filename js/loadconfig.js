@@ -423,18 +423,19 @@ function loadConfig(d, callback) {
   a.css("color", data.style.link_color);
   popup.css("color", data.style.link_color);
   const gear = $("#gear");
+  const gearContainer = $("#gearContainer");
   if(data.bool.hide_gear_button) {
     gear.css("opacity", 0);
-    gear.elements[0].addEventListener("mouseout", (e) => {
+    gearContainer.elements[0].addEventListener("mouseout", (e) => {
       gear.css("opacity", 0);
     });
   } else {
     gear.css("opacity", 0.5);
-    gear.elements[0].addEventListener("mouseout", (e) => {
+    gearContainer.elements[0].addEventListener("mouseout", (e) => {
       gear.css("opacity", 0.5);
     });
   }
-  gear.elements[0].addEventListener("mouseover", (e) => {
+  gearContainer.elements[0].addEventListener("mouseover", (e) => {
     gear.css("opacity", 1);
   });
   gearPath.css("fill", data.style.foreground);
