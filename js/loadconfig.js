@@ -7,8 +7,7 @@ function ConfigObject(items) {
 const boolItems = {
   borders: "Borders",
   alwaysopen: "Keep all squares open",
-  background_image: "Enable background image",
-  use_json_file: "Use config.json instead of this menu"
+  background_image: "Enable background image"
 };
 const bool = new ConfigObject(boolItems);
 
@@ -47,8 +46,7 @@ function configmenuInit(callback) {
   $.loadJSON("config.json", function(data) {
     if(data.bool.privateMode === true) {
       loadConfig(data, callback);
-    } else if(localStorage.use_json_file == "true"
-              || localStorage.config === undefined) {
+    } else if(localStorage.config === undefined) {
       pipe(data, callback);
     } else {
       pipe(JSON.parse(localStorage.config), callback);
@@ -325,8 +323,6 @@ function saveConfig(callback) {
     bool[key].value = elem.checked;
     json.bool[key] = elem.checked;
   }
-  localStorage.use_json_file =
-      document.querySelector("input[name='use_json_file'").checked;
   for(let key in style) {
     const elem = document.querySelector("#style input[name='" + key + "'");
     style[key].value = elem.value;
