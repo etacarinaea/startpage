@@ -7,7 +7,8 @@ function ConfigObject(items) {
 const boolItems = {
   borders: "Borders",
   alwaysopen: "Keep all squares open",
-  background_image: "Enable background image"
+  background_image: "Enable background image",
+  hide_gear_button: "Make gear button invisible"
 };
 const bool = new ConfigObject(boolItems);
 
@@ -74,10 +75,10 @@ function pipe(data, callback) {
       createMenu(data, callback);
       initmenu.kill();
     });
-  } else if(callback === undefined) {
-    createMenu(data, callback);
-  } else {
+  } else if(typeof callback === "function") {
     loadConfig(data, callback);
+  } else {
+    createMenu(data, callback);
   }
 }
 
@@ -384,6 +385,7 @@ function loadConfig(d, callback) {
   const span = $("span");
   const a = $("a");
   const popup = $("#popup");
+  const gearPath = $("#gearPath");
   const sqr = $(".sqr");
   sqr.css("width", px(data.style.square_size))
   if(data.bool.alwaysopen) {
@@ -416,6 +418,23 @@ function loadConfig(d, callback) {
   span.css("color", data.style.heading_color);
   a.css("color", data.style.link_color);
   popup.css("color", data.style.link_color);
+  const gear = $("#gear");
+  const gearContainer = $("#gearContainer");
+  if(data.bool.hide_gear_button) {
+    gear.css("opacity", 0);
+    gearContainer.elements[0].addEventListener("mouseout", (e) => {
+      gear.css("opacity", 0);
+    });
+  } else {
+    gear.css("opacity", 0.5);
+    gearContainer.elements[0].addEventListener("mouseout", (e) => {
+      gear.css("opacity", 0.5);
+    });
+  }
+  gearContainer.elements[0].addEventListener("mouseover", (e) => {
+    gear.css("opacity", 1);
+  });
+  gearPath.css("fill", data.style.foreground);
   sqr.css("borderColor", data.style.border_color);
   sqr.css("borderRadius", data.style.border_radius);
   sqr.css("boxShadow", data.style.square_shadow);
@@ -440,7 +459,7 @@ function loadConfig(d, callback) {
     bgimg.css("backgroundImage", "");
   }
 
-  if(callback) {
+  if(typeof callback === "function") {
     callback();
   }
 }

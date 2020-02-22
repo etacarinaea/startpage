@@ -33,7 +33,8 @@
   "bool": {
     "borders": true,
     "alwaysopen": false,
-    "background_image": false
+    "background_image": false,
+    "hide_gear_button": false
   },
 
   "style": {

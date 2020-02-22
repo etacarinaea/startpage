@@ -72,7 +72,7 @@ body {
   z-index:101;
   position:absolute;
   bottom:-1000px;
-  right:15px;
+  right:40px;
   padding:25px;
   -moz-transition:all .25s ease-in-out;
   -webkit-transition:all .25s ease-in-out;
@@ -86,6 +86,20 @@ body {
   font-family:Arial, Sans-Serif;
   color:#fafafa;
   text-shadow:0 -1px #000, 1px 0 #000, 0 1px #000, -1px 0 #000;
+}
+
+#gearContainer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 20px;
+  width: 20px;
+  padding: 10px;
+  cursor: pointer;
+}
+#gear {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
 }
 
 
