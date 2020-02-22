@@ -72,7 +72,7 @@ body {
   z-index:101;
   position:absolute;
   bottom:-1000px;
-  right:15px;
+  right:40px;
   padding:25px;
   -moz-transition:all .25s ease-in-out;
   -webkit-transition:all .25s ease-in-out;
