@@ -48,8 +48,9 @@ GitHub pages version will always be up-to-date.
 
 ## Usage
 
-The config menu can be opened any time by writing `-config` into the search
-square or by writing `search("-config")` into the browser console.
+The config menu can be opened any time by clicking the gear icon in the
+bottom-right corner of the screen, or by writing `-config` into the search
+square.
 
 The arrow keys can be used to navigate the squares: left and right will move to
 a different square and up and down will move between links in a square. The
@@ -62,20 +63,6 @@ The tab key automatically selects the search field.
 
 The startpage can be configured by using a configuration file or by using the
 built-in menu.<br>
-If you're using some sort of private/incognito mode in your browser the
-configuration will not be saved and has to be loaded from `config.json`
-every time the page is reloaded. To prevent the configuration menu from
-appearing every time you load the page you will have to set `privateMode`
-to `true` in `config.json`.
-
-When first opening the startpage you can choose to load the configuration from
-the `config.json` file or configure the page by using the configuration
-menu. Choose whatever you like, you will be able to change this later.<br>
-
-Because of the way the configuration menu saves data, moving the startpage's
-directory to a different location will result in it not being able to load the
-config. Moving it back should fix it. You can export the configuration as a JSON
-file in the menu, then move the directory and import it again.
 
 
 ## Contact
