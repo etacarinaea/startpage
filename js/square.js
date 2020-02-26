@@ -64,9 +64,6 @@ function Square(heading, links, isSearch, size) {
     this.squareElement.addEventListener("mouseout", this.contract.bind(this),
                                         false);
   }
-
-  const squareElement = this.squareElement;
-  const searchinput = this.searchinput;
 }
 
 Square.prototype.maxHeight = function() {
