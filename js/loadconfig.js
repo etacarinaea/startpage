@@ -62,9 +62,9 @@ function pipe(data, callback) {
     initmenu.appendTab("Choose an Option:");
     initmenu.makeTabActive(0);
     const initbuttons = initmenu.split(
-        ["Use files.",
+        ["Use defaults.",
          "Use configuration menu."],
-        ["Use the config.json file located in the startpage's root directory.",
+        ["Use the example config. You can later open up the configuration menu by clicking the gear icon in the bottom-right corner of the screen.",
          "Use a GUI to easily configure the startpage's style. Has import/export function."]);
     initbuttons[0].addEventListener("click", function() {
       loadConfig(data, callback);
