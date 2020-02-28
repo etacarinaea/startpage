@@ -1,4 +1,4 @@
-const VERSION = "v1.10.0";
+const VERSION = "1.10.0";
 
 
 function splitUnit(str) {
@@ -247,7 +247,7 @@ function main() {
   }
 
   let versionNode = document.createElement("span");
-  append(versionNode, [document.createTextNode("startpage " + VERSION)]);
+  append(versionNode, [document.createTextNode("startpage v" + VERSION)]);
   append(helpText, [document.createElement("br"), versionNode]);
   versionNode.className = "version";
   append(popupDiv, [helpText]);
