@@ -123,13 +123,12 @@ Menu.prototype.kill = function() {
   document.body.removeChild(this.container);
 };
 
-Menu.prototype.appendButton = function(name, color) {
+Menu.prototype.appendButton = function(name) {
   const button = document.createElement("div");
   this.buttons.push(button);
-  button.setAttribute("class", "button");
+  button.setAttribute("class", "menu-button");
   button.setAttribute("id", name);
   button.setAttribute("title", name);
-  button.style.backgroundColor = color;
 
   this.menuBar.appendChild(button);
 

@@ -205,17 +205,17 @@ function createMenu(data, callback) {
                                                   data.ext[key]);
   }
 
-  const saveButton = configmenu.appendButton("save", "#99bb99");
+  const saveButton = configmenu.appendButton("save");
   saveButton.addEventListener("click", function() {
     saveConfig(callback);
     configmenu.kill();
     configmenu = undefined;
   });
-  const exportButton = configmenu.appendButton("export", "#9999bb");
+  const exportButton = configmenu.appendButton("export");
   exportButton.addEventListener("click", function() {
     exportConfig();
   });
-  const importButton = configmenu.appendButton("import", "#bb9999");
+  const importButton = configmenu.appendButton("import");
   importButton.addEventListener("click", function() {
     importConfig(callback);
   });

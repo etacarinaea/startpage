@@ -321,7 +321,7 @@ input {
   font-size:20px;
 }
 
-.button {
+.menu-button {
   width:40px;
   height:40px;
 
@@ -330,10 +330,20 @@ input {
   line-height:40px;
   text-align:center;
 
+  background-color:#ffffff;
+  border-bottom:2px solid #e5e5e5;
+
   cursor:pointer;
+  box-sizing:border-box;
+  background-color:#ccccdd;
 }
-.button:hover {
-  opacity:0.7;
+.menu-button:hover {
+  background-color:#9999bb;
+}
+.menu-button:last-of-type {
+  border-width:0 0 2px 2px;
+  border-style:solid;
+  border-color:#e5e5e5;
 }
 
 #import {
@@ -352,6 +362,10 @@ input {
 #save {
   background-image:url("../img/save.png");
   background-size:contain;
+  background-color:#ccddcc;
+}
+#save:hover {
+  background-color:#99bb99;
 }
 
 
