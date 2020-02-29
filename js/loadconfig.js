@@ -84,19 +84,19 @@ function pipe(data, callback) {
 
 function createMenu(data, callback) {
   configmenu = new Menu("Config-Menu", 750, -100);
-  configmenu.appendTab("Squares");
-  configmenu.appendTab("Style");
+  const squareTab = configmenu.appendTab("Squares");
+  const styleTab = configmenu.appendTab("Style");
   configmenu.makeTabActive(0);
 
-  configmenu.tabs[0].node.addEventListener("click", function() {
+  squareTab.node.addEventListener("click", function() {
     configmenu.makeTabActive(0);
   });
-  configmenu.tabs[1].node.addEventListener("click", function() {
+  styleTab.node.addEventListener("click", function() {
     configmenu.makeTabActive(1);
   });
 
   // squares
-  const normalcategory = configmenu.appendCategory("normal", undefined, 0);
+  const normalcategory = squareTab.appendCategory("normal", undefined);
 
   if(localStorage.squares) {
     const squares = JSON.parse(localStorage.squares);
@@ -105,8 +105,8 @@ function createMenu(data, callback) {
     while(i < squares.length) {
       if(squares[i].options === undefined) {
         let div = configmenu.tabs[0]
-                              .categories[0]
-                              .appendSquareDiv(squares[i].name);
+                            .categories[0]
+                            .appendSquareDiv(squares[i].name);
         configmenu.tabs[0]
                   .categories[0]
                   .options[i]
@@ -184,9 +184,9 @@ function createMenu(data, callback) {
 
 
   // style
-  const boolcategory = configmenu.appendCategory("bool", undefined, 1);
-  const stylecategory = configmenu.appendCategory("style", "General", 1);
-  const extcategory = configmenu.appendCategory("ext", "Background Image", 1);
+  const boolcategory = styleTab.appendCategory("bool", undefined);
+  const stylecategory = styleTab.appendCategory("style", "General");
+  const extcategory = styleTab.appendCategory("ext", "Background Image");
 
   if(!data) {
     const data = { bool:"",style:"",ext:"" };
