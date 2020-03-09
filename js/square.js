@@ -1,10 +1,17 @@
 // string, array, bool
-function Square(heading, links, isSearch, size) {
+function Square(heading, links, isSearch, configBool, configStyle) {
   this.heading = heading;
   this.links = links;
   this.isSearch = isSearch;
-
+  this.border_width_hovered = configStyle.border_width_hovered;
+  this.border_width_normal = configStyle.border_width_normal;
+  this.focus_color = configStyle.focus_color;
+  this.focus_bg_color = configStyle.focus_bg_color;
+  this.link_color = configStyle.link_color;
+  this.isAlwaysopen = configBool.alwaysopen;
+  this.hasBorders = configBool.borders;
   // Make sure size has a unit
+  let size = configStyle.square_size;
   this.size = isNaN(size) ? size.substr(0, size.length-2) : size;
   this.sizeUnit = isNaN(size) ?  size.substr(-2) : "px";
 
@@ -57,7 +64,7 @@ function Square(heading, links, isSearch, size) {
   this.squareElement.appendChild(this.contentElement);
   document.getElementById("container").appendChild(this.squareElement);
 
-  if(!data.bool.alwaysopen) {
+  if(!this.isAlwaysopen) {
     const square = this;
     this.squareElement.addEventListener("mouseover", this.expand.bind(this),
                                         false);
@@ -66,31 +73,32 @@ function Square(heading, links, isSearch, size) {
   }
 }
 
+
 Square.prototype.maxHeight = function() {
   return this.size*2 + (this.isSearch ? 37 : 25*this.links.length);
 }
 
 Square.prototype.expand = function() {
-  if(data.bool.alwaysopen) return;
+  if(this.isAlwaysopen) return;
   this.squareElement.style.height = this.maxHeight() + this.sizeUnit;
-  if(data.bool.borders) {
-    this.squareElement.style.borderWidth = data.style.border_width_hovered;
+  if(this.hasBorders) {
+    this.squareElement.style.borderWidth = this.border_width_hovered;
   }
 };
 
 Square.prototype.contract = function() {
-  if(data.bool.alwaysopen) return;
+  if(this.isAlwaysopen) return;
   this.squareElement.style.height = this.size + this.sizeUnit;
-  this.squareElement.style.borderWidth = data.style.border_width_normal;
+  this.squareElement.style.borderWidth = this.border_width_normal;
 };
 
 Square.prototype.focus = function(index) {
   this.contentElement.childNodes[index*2].style.backgroundColor =
-      data.style.focus_bg_color;
-  this.contentElement.childNodes[index*2].style.color = data.style.focus_color;
+      this.focus_bg_color;
+  this.contentElement.childNodes[index*2].style.color = this.focus_color;
 };
 
 Square.prototype.unfocus = function(index) {
   this.contentElement.childNodes[index*2].style.backgroundColor = "initial";
-  this.contentElement.childNodes[index*2].style.color = data.style.link_color;
+  this.contentElement.childNodes[index*2].style.color = this.link_color;
 };

@@ -206,53 +206,55 @@ function main() {
   gearContainer.addEventListener("click", configmenuInit);
   document.addEventListener("keydown", globalKeyListener);
 
-  // generate helptext for static options
-  const prefix = data.squares[data.squares.length - 1].prefix;
-  const helpText = document.createElement("table");
-  const tr = () => document.createElement("tr");
-  const td = () => document.createElement("td");
-  const txtNode = (s) => document.createTextNode(s);
-  const append = (n, l) => {
-    for(let i = 0; i < l.length; ++i) {
-      n.appendChild(l[i]);
-    }
-    return n;
-  };
-  append(helpText, [
-    append(tr(), [
-      append(td(), [txtNode(prefix + "help")]),
-      append(td(), [txtNode(": Shows this help message")])
-    ]),
-    append(tr(), [
-      append(td(), [txtNode(prefix + "config")]),
-      append(td(), [txtNode(": Opens the config menu")])
-    ])
-  ]);
-
-  // generate helptext for custom options
-  let searchsquareOptions = data.squares[data.squares.length - 1].options;
-  if(searchsquareOptions) {
-    append(helpText, [document.createElement("br")]);
-    for(let i = 0; i < searchsquareOptions.length; i++) {
-      // remove scheme, path and everything after path from URL
-      let url = searchsquareOptions[i].url.replace(/https?:\/\//, "")
-                        .replace(/\/.*/, "");
-      append(helpText, [
-        append(tr(), [
-          append(td(), [txtNode(prefix + searchsquareOptions[i].opt)]),
-          append(td(), [txtNode(": " + url)])
-        ])
+  browser.storage.local.get("config").then(({config: data}) => {
+    // generate helptext for static options
+    const prefix = data.squares[data.squares.length - 1].prefix;
+    const helpText = document.createElement("table");
+    const tr = () => document.createElement("tr");
+    const td = () => document.createElement("td");
+    const txtNode = (s) => document.createTextNode(s);
+    const append = (n, l) => {
+      for(let i = 0; i < l.length; ++i) {
+        n.appendChild(l[i]);
+      }
+      return n;
+    };
+    append(helpText, [
+      append(tr(), [
+        append(td(), [txtNode(prefix + "help")]),
+        append(td(), [txtNode(": Shows this help message")])
+      ]),
+      append(tr(), [
+        append(td(), [txtNode(prefix + "config")]),
+        append(td(), [txtNode(": Opens the config menu")])
       ])
+    ]);
+
+    // generate helptext for custom options
+    let searchsquareOptions = data.squares[data.squares.length - 1].options;
+    if(searchsquareOptions) {
+      append(helpText, [document.createElement("br")]);
+      for(let i = 0; i < searchsquareOptions.length; i++) {
+        // remove scheme, path and everything after path from URL
+        let url = searchsquareOptions[i].url.replace(/https?:\/\//, "")
+                          .replace(/\/.*/, "");
+        append(helpText, [
+          append(tr(), [
+            append(td(), [txtNode(prefix + searchsquareOptions[i].opt)]),
+            append(td(), [txtNode(": " + url)])
+          ])
+        ])
+      }
     }
-  }
 
-  let versionNode = document.createElement("span");
-  append(versionNode, [document.createTextNode("startpage v" + VERSION)]);
-  append(helpText, [document.createElement("br"), versionNode]);
-  versionNode.className = "version";
-  append(popupDiv, [helpText]);
+    let versionNode = document.createElement("span");
+    append(versionNode, [document.createTextNode("startpage v" + VERSION)]);
+    append(helpText, [document.createElement("br"), versionNode]);
+    versionNode.className = "version";
+    append(popupDiv, [helpText]);
 
-  popupDiv.style.bottom = "-" + popupDiv.offsetHeight + "px";
+    popupDiv.style.bottom = "-" + popupDiv.offsetHeight + "px";
+  });
 }
 
 
