@@ -6,6 +6,12 @@
   "description": "Overrides the browsers newtab page with a custom startpage.",
   "author": "etacarinaea",
 
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{219d2cc9-3c2f-45a9-a55b-6c04d6c097f3}"
+    }
+  },
+
   "icons": {
     "48": "img/icon48.png",
     "96": "img/icon96.png",
