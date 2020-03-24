@@ -114,6 +114,8 @@ body {
 /* CONFIGMENU */
 
 .menuContainer {
+  display:flex;
+
   position:absolute;
   z-index:120;
   top:0;
