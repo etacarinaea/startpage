@@ -6,4 +6,5 @@ if [ "$manifestVersion" != "$sourceVersion" ]; then
   printf "Warning: Manifest version (%s) and source version (%s) differ\n"\
       $manifestVersion $sourceVersion
 fi
-zip -Z deflate -r -FS ../startpage.zip * -x *.git* -x img/readme/* -x zip.sh
+zip -Z deflate -r -FS ../startpage-$(git rev-parse --abbrev-ref HEAD).zip *\
+    -x *.git* -x img/readme/* -x zip.sh
