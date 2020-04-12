@@ -264,21 +264,23 @@ function TextField(name, key, cssClass, value, amount, parentObject, index) {
 }
 
 TextField.prototype.addEvent = function() {
-  this.addNode.addEventListener("click", function() {
+  this.addNode.addEventListener("click", () => {
     if(this.cssClass == "squareURL") {
-      this.node.parentElement.removeChild(this.node);
+      let parentElement = this.node.parentElement;
+      parentElement.removeChild(this.node);
       this.parentObject.appendTextField("link" + this.index,
                                         [this.index, "url"], "squareURL",
                                         ["name", "url"], 2);
-      this.node.parentElement.appendChild(this.node);
+      parentElement.appendChild(this.node);
     } else if(this.cssClass == "squareOption") {
-      this.node.parentElement.removeChild(this.node);
+      let parentElement = this.node.parentElement;
+      parentElement.removeChild(this.node);
       this.parentObject.appendTextField("option" + this.index,
                                         ["opt", "url", "space"],
                                         "squareOption",
                                         ["option", "url", "space"], 3,
                                         this.index);
-      this.node.parentElement.appendChild(this.node);
+      parentElement.appendChild(this.node);
     } else if(this.cssClass == "squareHeading") {
       // new square
       const addObject = this.parentObject.parentCategory.options.pop();
@@ -334,7 +336,7 @@ TextField.prototype.addEvent = function() {
 };
 
 TextField.prototype.removeEvent = function() {
-  this.removeNode.addEventListener("click", function() {
+  this.removeNode.addEventListener("click", () => {
     if(this.cssClass == "squareURL" || this.cssClass == "squareOption") {
       this.node.parentElement.removeChild(this.node);
       const index = this.parentObject.urls.indexOf(this.node);
@@ -342,8 +344,8 @@ TextField.prototype.removeEvent = function() {
         this.parentObject.urls.splice(index, 1);
       }
     } else {
-      const index =
-          this.parentObject.parentCategory.options.indexOf(this.parentObject);
+      const index = this.parentObject.parentCategory.options
+                        .indexOf(this.parentObject);
       if(index > -1) {
         this.parentObject.parentCategory.options.splice(index, 1);
       }
