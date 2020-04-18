@@ -239,6 +239,7 @@ function importConfig(callback) {
     reader.readAsText(file);
 
     reader.onload = function(e) {
+      browser.storage.local.set({config: json});
       applyConfig(JSON.parse(reader.result), callback);
       configmenu.kill();
     };
