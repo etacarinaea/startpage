@@ -261,7 +261,13 @@ function exportConfig() {
 }
 
 function saveConfig(callback) {
-  let json = { version: VERSION, squares:[], bool:{}, style:{}, ext:{} };
+  let json = {
+    version: browser.runtime.getManifest().version,
+    squares: [],
+    bool: {},
+    style: {},
+    ext: {}
+  };
   // squares
   let searchSquareCount = 0;
   const squares = configmenu.tabs[0].categories[0].options;

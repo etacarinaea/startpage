@@ -23,6 +23,12 @@
     "newtab": "index.html"
   },
 
+  "background": {
+    "scripts": [
+      "js/update.js"
+    ]
+  },
+
   "permissions": [
     "storage"
   ]

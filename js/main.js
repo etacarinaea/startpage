@@ -1,6 +1,3 @@
-const VERSION = "1.11.0";
-
-
 function splitUnit(str) {
   let size = isNaN(str) ? str.substr(0, str.length-2) : str;
   let sizeUnit = isNaN(str) ? str.substr(-2) : "";
@@ -248,7 +245,8 @@ function main() {
     }
 
     let versionNode = document.createElement("span");
-    append(versionNode, [document.createTextNode("startpage v" + VERSION)]);
+    let version = browser.runtime.getManifest().version;
+    append(versionNode, [document.createTextNode("startpage v" + version)]);
     append(helpText, [document.createElement("br"), versionNode]);
     versionNode.className = "version";
     append(popupDiv, [helpText]);
