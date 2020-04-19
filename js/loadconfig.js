@@ -239,7 +239,7 @@ function importConfig(callback) {
     reader.readAsText(file);
 
     reader.onload = function(e) {
-      browser.storage.local.set({config: json});
+      updateConfig(JSON.parse(reader.result));
       applyConfig(JSON.parse(reader.result), callback);
       configmenu.kill();
     };

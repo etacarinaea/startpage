@@ -25,7 +25,8 @@
 
   "background": {
     "scripts": [
-      "js/update.js"
+      "js/update.js",
+      "js/updateconfig.js"
     ]
   },
 
