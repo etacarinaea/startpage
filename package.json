@@ -8,8 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rm -r build/",
-    "build-base": "mkdir -p build/ && cp -r src/* build/",
+    "clean": "rm -r build/ || true",
+    "build-base": "npm run clean && mkdir build/ && cp -r src/* build/",
     "build-ff": "npm run build-base && ./zip.sh 'firefox'",
     "patch-ch": "patch build/index.html < patch/index-html-chrome.diff && patch build/manifest.json < patch/manifest-json-chrome.diff",
     "polyf-ch": "cp node_modules/webextension-polyfill/dist/browser-polyfill.js build/js/",
