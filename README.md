@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="logo" src="/img/readme/logo.png?raw=true">
+  <img alt="logo" src="/readme-img/logo.png?raw=true">
 </p>
 <p align="center">
   <a href="https://github.com/etacarinaea/startpage/releases"><img src="https://img.shields.io/github/manifest-json/v/etacarinaea/startpage.svg?color=%23C9A0DC&label=Version" /></a>
@@ -23,7 +23,7 @@ Quickly access your favourite websites whenever you open a new tab
 
 <br><br>
 <p align="center">
-  <img alt="example screenshot" src="/img/readme/screenshot-20190601.png?raw=true" width="850px">
+  <img alt="example screenshot" src="/readme-img/screenshot-20190601.png?raw=true" width="850px">
 </p>
 <br><br>
 
@@ -74,10 +74,10 @@ If you're having problems or have an improvement you can create an issue
 ## More examples
 
 <p align="center">
-  <img alt="example screenshot" src="/img/readme/screenshot-29032017-1.png?raw=true" width="400px">
-  <img alt="example screenshot" src="/img/readme/screenshot-20191004.png?raw=true" width="400px"><br>
-  <img alt="example screenshot" src="/img/readme/screenshot-29032017-2.png?raw=true" width="400px">
-  <img alt="example screenshot" src="/img/readme/screenshot-29032017-4.png?raw=true" width="400px">
+  <img alt="example screenshot" src="/readme-img/screenshot-29032017-1.png?raw=true" width="400px">
+  <img alt="example screenshot" src="/readme-img/screenshot-20191004.png?raw=true" width="400px"><br>
+  <img alt="example screenshot" src="/readme-img/screenshot-29032017-2.png?raw=true" width="400px">
+  <img alt="example screenshot" src="/readme-img/screenshot-29032017-4.png?raw=true" width="400px">
 </p>
 
 
