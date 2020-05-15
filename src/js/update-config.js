@@ -18,6 +18,7 @@ function updateConfig(config) {
   if(previousVersion.toString() === currentVersionString) {
     browser.storage.local.set({config: config}).then(
       () => {
+        // Save anyway because updateConfig is also called on config import
         console.log("Config up to date (v%s), saving to storage anyway.",
                     previousVersion.toString());
       },
