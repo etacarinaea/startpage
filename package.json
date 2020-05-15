@@ -1,0 +1,28 @@
+{
+  "name": "startpage",
+  "version": "1.11.0",
+  "description": "Overrides the browsers newtab page with a custom startpage.",
+  "main": "src/index.js",
+  "devDependencies": {
+    "webextension-polyfill": "^0.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -r build/ || true",
+    "build-base": "npm run clean && mkdir build/ && cp -r src/* build/",
+    "build-ff": "npm run build-base && ./zip.sh 'firefox'",
+    "patch-ch": "patch build/index.html < patch/index-html-chrome.diff && patch build/manifest.json < patch/manifest-json-chrome.diff",
+    "polyf-ch": "cp node_modules/webextension-polyfill/dist/browser-polyfill.js build/js/",
+    "build-ch": "npm run build-base && npm run polyf-ch && npm run patch-ch && ./zip.sh 'chrome'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/etacarinaea/startpage.git"
+  },
+  "author": "etacarinaea",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/etacarinaea/startpage/issues"
+  },
+  "homepage": "https://github.com/etacarinaea/startpage#readme"
+}

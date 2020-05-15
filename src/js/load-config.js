@@ -44,42 +44,46 @@ const ext = new ConfigObject(extItems);
 
 
 function configmenuInit(callback) {
-  $.loadJSON("config.json", function(data) {
-    if(data.bool.privateMode === true) {
-      loadConfig(data, callback);
-    } else if(localStorage.config === undefined) {
-      pipe(data, callback);
-    } else {
-      pipe(JSON.parse(localStorage.config), callback);
+  browser.storage.local.get("config").then(
+    (configData) => {
+      // Check if configData is empty
+      if(Object.keys(configData).length === 0
+         && configData.constructor === Object) {
+        $.loadJSON("config.json", (configJSON) => {
+          initmenu = new Menu("Init-Menu", 550, 350);
+          initmenu.appendTab("Choose an Option");
+          initmenu.makeTabActive(0);
+          const initbuttons = initmenu.split(
+              ["Use defaults.",
+               "Use configuration menu."],
+              ["Use the example config. You can later open up the " +
+               "configuration menu by clicking the gear icon in the " +
+               "bottom-right corner of the screen.",
+               "Use a GUI to easily configure the startpage's style. Has " +
+               "import/export function."]);
+          initbuttons[0].addEventListener("click", () => {
+            browser.storage.local.set({config: configJSON});
+            applyConfig(configJSON, callback);
+            initmenu.kill();
+          });
+          initbuttons[1].addEventListener("click", () => {
+            browser.storage.local.set({config: configJSON});
+            applyConfig(configJSON, undefined);
+            createMenu(configJSON, callback);
+            initmenu.kill();
+          });
+        });
+      } else if(typeof callback === "function") {
+        applyConfig(configData.config, callback);
+      } else {
+        createMenu(configData.config, callback);
+      }
+    },
+    (err) => {
+      alert("An error occured while loading the config.")
+      console.log(err);
     }
-  });
-}
-
-function pipe(data, callback) {
-  // create initial menu, config menu or load config on window load
-  if(localStorage.config === undefined) {
-    initmenu = new Menu("Init-Menu", 550, 350);
-    initmenu.appendTab("Choose an Option:");
-    initmenu.makeTabActive(0);
-    const initbuttons = initmenu.split(
-        ["Use defaults.",
-         "Use configuration menu."],
-        ["Use the example config. You can later open up the configuration menu by clicking the gear icon in the bottom-right corner of the screen.",
-         "Use a GUI to easily configure the startpage's style. Has import/export function."]);
-    initbuttons[0].addEventListener("click", function() {
-      loadConfig(data, callback);
-      initmenu.kill();
-    });
-    initbuttons[1].addEventListener("click", function() {
-      loadConfig(data, undefined);
-      createMenu(data, callback);
-      initmenu.kill();
-    });
-  } else if(typeof callback === "function") {
-    loadConfig(data, callback);
-  } else {
-    createMenu(data, callback);
-  }
+  );
 }
 
 function createMenu(data, callback) {
@@ -98,52 +102,50 @@ function createMenu(data, callback) {
   // squares
   const normalcategory = squareTab.appendCategory("normal", undefined);
 
-  if(localStorage.squares) {
-    const squares = JSON.parse(localStorage.squares);
-
+  if(data.squares) {
     let i = 0;
-    while(i < squares.length) {
-      if(squares[i].options === undefined) {
+    while(i < data.squares.length) {
+      if(data.squares[i].options === undefined) {
         let div = configmenu.tabs[0]
                             .categories[0]
-                            .appendSquareDiv(squares[i].name);
+                            .appendSquareDiv(data.squares[i].name);
         configmenu.tabs[0]
                   .categories[0]
                   .options[i]
                   .appendTextField("heading" + i, i, "squareHeading",
-                                   squares[i].name, 1, i, normalcategory);
-        for(let a = 0; a < squares[i].links.length; a++) {
+                                   data.squares[i].name, 1, i, normalcategory);
+        for(let a = 0; a < data.squares[i].links.length; a++) {
           const tf = configmenu.tabs[0]
               .categories[0].options[i]
               .appendTextField("link" + i, [i, "url"], "squareURL",
-                               [squares[i].links[a].name,
-                                squares[i].links[a].url],
+                               [data.squares[i].links[a].name,
+                                data.squares[i].links[a].url],
                                2, i, normalcategory);
         }
       } else {
         // search
         let div = configmenu.tabs[0]
                               .categories[0]
-                              .appendSquareDiv(squares[i].name);
+                              .appendSquareDiv(data.squares[i].name);
         configmenu.tabs[0]
               .categories[0]
               .options[i]
               .appendTextField("heading" + i, [i, "prefix"], "squareHeading",
-                               [squares[i].name, squares[i].prefix], 2, i,
-                               normalcategory);
-        for(let a=0; a < squares[i].options.length; a++) {
+                               [data.squares[i].name, data.squares[i].prefix],
+                               2, i, normalcategory);
+        for(let a=0; a < data.squares[i].options.length; a++) {
           const tf = configmenu.tabs[0]
               .categories[0]
               .options[i]
               .appendTextField("option" + i, ["opt", "url", "space"],
                                "squareOption",
-                               [squares[i].options[a].opt,
-                                squares[i].options[a].url,
-                                squares[i].options[a].space],
+                               [data.squares[i].options[a].opt,
+                                data.squares[i].options[a].url,
+                                data.squares[i].options[a].space],
                                3, i, normalcategory);
         }
       }
-      if(squares[i].options === undefined) {
+      if(data.squares[i].options === undefined) {
         const add = configmenu.tabs[0]
             .categories[0]
             .options[i]
@@ -167,9 +169,10 @@ function createMenu(data, callback) {
                                         "squareHeading_addS",
                                         undefined, 0, i, normalcategory);
   } else {
-    div = configmenu.tabs[0]
-                    .categories[0]
-                    .appendSquareDiv("default");
+    // empty squares
+    let div = configmenu.tabs[0]
+                        .categories[0]
+                        .appendSquareDiv("default");
     configmenu.tabs[0]
               .categories[0]
               .options[0]
@@ -236,7 +239,8 @@ function importConfig(callback) {
     reader.readAsText(file);
 
     reader.onload = function(e) {
-      loadConfig(JSON.parse(reader.result), callback);
+      updateConfig(JSON.parse(reader.result));
+      applyConfig(JSON.parse(reader.result), callback);
       configmenu.kill();
     };
   });
@@ -246,12 +250,25 @@ function importConfig(callback) {
 
 function exportConfig() {
   saveConfig();
-  window.open("data:application/octet-stream;base64,"
-              + btoa(localStorage.config));
+  browser.storage.local.get("config").then(
+    (configData) => {
+      window.open("data:application/octet-stream;base64,"
+                  + window.btoa(JSON.stringify(configData.config, null, 2)));
+    },
+    (err) => {
+      alert("An error occured while exporting config.")
+    }
+  );
 }
 
 function saveConfig(callback) {
-  json = { squares:[], bool:{}, style:{}, ext:{} };
+  let json = {
+    version: browser.runtime.getManifest().version,
+    squares: [],
+    bool: {},
+    style: {},
+    ext: {}
+  };
   // squares
   let searchSquareCount = 0;
   const squares = configmenu.tabs[0].categories[0].options;
@@ -341,16 +358,12 @@ function saveConfig(callback) {
     }
   }
 
-  loadConfig(json, callback);
+  browser.storage.local.set({config: json});
+  applyConfig(json, callback);
 }
 
 
-let data;
-// load and apply
-function loadConfig(d, callback) {
-  data = d;
-  localStorage.config = JSON.stringify(data, undefined, 4);
-  localStorage.squares = JSON.stringify(data.squares, undefined, 4);
+function applyConfig(data, callback) {
 
   // squares
   /* remove all existing squares, otherwise the old ones will still be
@@ -364,14 +377,14 @@ function loadConfig(d, callback) {
   for(let i = 0; i < data.squares.length; i++) {
     if(data.squares[i].links) {
       normalSquares[i] = new Square(data.squares[i].name, data.squares[i].links,
-                                    false, data.style.square_size);
+                                    false, data.bool, data.style);
       if(data.bool.alwaysopen) {
         normalSquares[i].expand();
       }
     } else {
       // otherwise expect this to be a search square
       searchsquare = new Square(data.squares[i].name, data.squares[i].options,
-                                true, data.style.square_size);
+                                true, data.bool, data.style);
       searchsquare.prefix = data.squares[i].prefix;
       if(data.bool.alwaysopen) {
         searchsquare.expand();

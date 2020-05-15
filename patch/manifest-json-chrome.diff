@@ -1,0 +1,9 @@
+9,14d8
+<   "browser_specific_settings": {
+<     "gecko": {
+<       "id": "{219d2cc9-3c2f-45a9-a55b-6c04d6c097f3}"
+<     }
+<   },
+< 
+27a22
+>       "js/browser-polyfill.js",

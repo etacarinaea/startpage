@@ -1,4 +1,5 @@
 {
+  "version": "1.11.0",
   "squares": [
     { "name": "reddit", "links": [
         { "name": "SkincareAddiction", "url": "https://www.reddit.com/r/SkincareAddiction/" },
