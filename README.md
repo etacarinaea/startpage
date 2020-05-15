@@ -34,16 +34,18 @@ Install the [Firefox add-on][1] or the [Chrome add-on][2].
 
 If you're using a different browser:<br>
 Download a [release][3], download the [zip][4] of the latest version on GitHub,
-or just clone the repository.  If your browser doesn't support the
-[WebExtensions API][5] you'll have to find a way to overwrite the newtab page of
-your browser and select `index.html` as the new one.
+or just clone the repository. Your browser has to support the
+[WebExtensions API][5] or you'll have to download an older version, find a way
+to overwrite the newtab page of your browser and select `index.html` as the new
+one.
 
-##### GitHub Pages
+##### GitHub Pages Preview
 
 The startpage is also hosted on
-[GitHub pages](http://etacarinaea.github.io/startpage/) for demonstration
-purposes. You can set your newtab url to that site, but I can't guarantee the
-GitHub pages version will always be up-to-date.
+[GitHub Pages](http://etacarinaea.github.io/startpage/) for demonstration
+purposes. You can set your newtab URL to that site if you like, but keep in mind
+that the version hosted there is an older one from the one currently available
+as a browser extension.
 
 
 ## Usage
@@ -58,6 +60,11 @@ selected link can then be visited by pressing enter.
 
 The tab key automatically selects the search field.
 
+To use the keyboard controls the newtab page has to have focus. This
+unfortunately isn't the case when opening a new tab by default in most browsers,
+and I'm not aware of any workarounds, other than clicking inside the window or
+pressing tab until the page gets focus.
+
 
 ## Configuration
 
@@ -67,8 +74,7 @@ built-in menu.<br>
 
 ## Contact
 
-If you're having problems or have an improvement you can create an issue
-[here][6].
+If you find a bug or run into problems please create an issue [here][6].
 
 
 ## More examples
