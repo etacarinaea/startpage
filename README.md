@@ -2,7 +2,7 @@
   <img alt="logo" src="/readme-img/logo.png?raw=true">
 </p>
 <p align="center">
-  <a href="https://github.com/etacarinaea/startpage/releases"><img src="https://img.shields.io/github/manifest-json/v/etacarinaea/startpage.svg?color=%23C9A0DC&label=Version" /></a>
+  <a href="https://github.com/etacarinaea/startpage/releases"><img src="https://img.shields.io/github/package-json/v/etacarinaea/startpage.svg?color=%23C9A0DC&label=Version" /></a>
   <a href="https://addons.mozilla.org/en-US/firefox/addon/square-startpage/"><img src="https://img.shields.io/badge/Firefox-Download-%23FF9400.svg" /></a>
   <a href="https://chrome.google.com/webstore/detail/startpage/odmjpppdiaenedpilgldapgbodindjak"><img src="https://img.shields.io/badge/Chrome%2FChromium-Download-%234285F4.svg" /></a>
 </p>
