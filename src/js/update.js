@@ -1,5 +1,4 @@
 function update(details) {
-  console.log("UPDATE TRIGGERED", details);
   if(details.reason === "update") {
     const tryLocalStorage = () => {
       // undefined || empty
