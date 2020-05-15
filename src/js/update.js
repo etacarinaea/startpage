@@ -1,27 +1,34 @@
 function update(details) {
   console.log("UPDATE TRIGGERED", details);
   if(details.reason === "update") {
-    if(typeof localStorage.config === "undefined") {
-      browser.storage.local.get("config").then(
-        (configData) => {
-          if(Object.keys(configData).length === 0
-             && configData.constructor === Object) {
-            // localStorage and storage.local are empty. Shouldn't happen on
-            // updates under normal circumstances
-            throw "No config found during update";
-          } else {
-            updateConfig(configData.config)
-          }
-        },
-        (err) => {
-          // localStorage was empty and there was an error getting storage.local
-          // Not recoverable?
+    const tryLocalStorage = () => {
+      // undefined || empty
+      if(typeof localStorage.config === "undefined"
+         || (Object.keys(localStorage.config).length === 0
+             && localStorage.config.constructor === Object)) {
+        // localStorage and storage.local are empty. Shouldn't happen on
+        // updates under normal circumstances
+        throw "No config found during update";
+      } else {
+        updateConfig(JSON.parse(localStorage.config));
+      }
+    };
+    browser.storage.local.get("config").then(
+      (configData) => {
+        if(Object.keys(configData).length === 0
+           && configData.constructor === Object) {
+          // storage.local is empty, try loading localStorage
+          tryLocalStorage();
+        } else {
+          updateConfig(configData.config)
         }
-      );
-    } else {
-      // If localStorage.config exists then the version is < 1.11.0
-      updateConfig(JSON.parse(localStorage.config));
-    }
+      },
+      (err) => {
+        // Failed to get storage.local, try loading localStorage
+        tryLocalStorage();
+        // Not recoverable?
+      }
+    );
   }
 }
 browser.runtime.onInstalled.addListener(update);
