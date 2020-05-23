@@ -15,7 +15,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
     webextension-polyfill (for chrome)
 * Version string in config.json; the current version of the config file
 * Automatically update config based on config version string
-
 ### Changed
 * Configuration data is now saved in `storage.local` instead of
   `localStorage`, as is conventional for browser extensions
