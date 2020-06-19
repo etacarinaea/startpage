@@ -376,15 +376,25 @@ function applyConfig(data, callback) {
   normalSquares = [];
   for(let i = 0; i < data.squares.length; i++) {
     if(data.squares[i].links) {
-      normalSquares[i] = new Square(data.squares[i].name, data.squares[i].links,
-                                    false, data.bool, data.style);
+      normalSquares[i] = new Square(data.squares[i].name,
+                                    {
+                                      isSearch: false,
+                                      links: data.squares[i].links
+                                    },
+                                    data.bool,
+                                    data.style);
       if(data.bool.alwaysopen) {
         normalSquares[i].expand();
       }
     } else {
       // otherwise expect this to be a search square
-      searchsquare = new Square(data.squares[i].name, data.squares[i].options,
-                                true, data.bool, data.style);
+      searchsquare = new Square(data.squares[i].name,
+                                {
+                                  isSearch: true,
+                                  prefix: data.squares[i].prefix,
+                                  options: data.squares[i].options,
+                                },
+                                data.bool, data.style);
       searchsquare.prefix = data.squares[i].prefix;
       if(data.bool.alwaysopen) {
         searchsquare.expand();
@@ -397,7 +407,8 @@ function applyConfig(data, callback) {
   // style
   const span = $("span");
   const a = $("a");
-  const popup = $("#popup");
+  // FIXME: Doesn't actually get the popup because it's created on-demand
+  const popup = $(".popup");
   const gearPath = $("#gearPath");
   const sqr = $(".sqr");
   sqr.css("width", px(data.style.square_size))

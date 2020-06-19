@@ -68,10 +68,9 @@ body {
 }
 
 
-#popup {
+.popup {
   z-index:101;
   position:absolute;
-  bottom:-1000px;
   right:40px;
   padding:25px;
   -moz-transition:all .25s ease-in-out;
@@ -79,13 +78,6 @@ body {
   -o-transition:all .25s ease-in-out;
   transition:all .25s ease-in-out;
   text-align:left;
-}
-
-#popup a {
-  font-size:14px;
-  font-family:Arial, Sans-Serif;
-  color:#fafafa;
-  text-shadow:0 -1px #000, 1px 0 #000, 0 1px #000, -1px 0 #000;
 }
 
 #gearContainer {

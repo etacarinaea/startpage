@@ -4,22 +4,6 @@ function splitUnit(str) {
   return [ size, sizeUnit ];
 }
 
-let popupVisibility = false;
-function popup(obj) {
-  const popuphandler = function() {
-    popup(this);
-  };
-  // add event listener when it's going to be visible
-  if(popupVisibility) {
-    obj.addEventListener("click", popuphandler);
-    obj.style.bottom = "-" + obj.offsetHeight + "px";
-  } else {
-    obj.removeEventListener("click", popuphandler);
-    obj.style.bottom = "0px";
-  }
-  popupVisibility = !popupVisibility;
-}
-
 
 String.prototype.replaceChars = function(character, replacement) {
   let str = this;
@@ -39,31 +23,10 @@ String.prototype.replaceChars = function(character, replacement) {
 };
 
 
-function search(query) {
-  const popupDiv = document.getElementById("popup");
-  if(typeof searchsquare == 'undefined') {
-    configmenuInit(undefined);
-  } else if(query[0] == searchsquare.prefix) {
-    if(query.substr(1) == "help") {
-      popup(popupDiv);
-    } else if(query.substr(1) == "config") {
-      configmenuInit(undefined);
-    } else {
-      for(let i = 0; i < searchsquare.links.length; i++) {
-        if(query[1] == searchsquare.links[i].opt) {
-          query = query.substr(3);
-          window.location = searchsquare.links[i].url +
-              query.replaceChars(" ", searchsquare.links[i].space);
-          break;
-        }
-      }
-    }
-  } else if(query === "") {
-    popup(popupDiv);
-  } else {
-    window.location = searchsquare.links[0].url +
-        query.replaceChars(" ", searchsquare.links[0].space);
-  }
+/**
+ * @param {string} query The search query
+ */
+function search(query, popup) {
 }
 
 
@@ -71,9 +34,6 @@ let focusedSquare = -1;
 let focusedLink = 0;
 
 function globalKeyListener(e) {
-  if(typeof configmenu !== "undefined") {
-    return;
-  }
   if(typeof searchsquare !== "undefined") {
     if(searchsquare.searchinput === document.activeElement
        && !(searchsquare.searchinput.value === ""
@@ -197,62 +157,10 @@ function globalKeyListener(e) {
 
 function main() {
   const container = document.getElementById("container");
-  const popupDiv = document.getElementById("popup");
   const gearContainer = document.getElementById("gearContainer");
 
   gearContainer.addEventListener("click", configmenuInit);
   document.addEventListener("keydown", globalKeyListener);
-
-  browser.storage.local.get("config").then(({config: data}) => {
-    // generate helptext for static options
-    const prefix = data.squares[data.squares.length - 1].prefix;
-    const helpText = document.createElement("table");
-    const tr = () => document.createElement("tr");
-    const td = () => document.createElement("td");
-    const txtNode = (s) => document.createTextNode(s);
-    const append = (n, l) => {
-      for(let i = 0; i < l.length; ++i) {
-        n.appendChild(l[i]);
-      }
-      return n;
-    };
-    append(helpText, [
-      append(tr(), [
-        append(td(), [txtNode(prefix + "help")]),
-        append(td(), [txtNode(": Shows this help message")])
-      ]),
-      append(tr(), [
-        append(td(), [txtNode(prefix + "config")]),
-        append(td(), [txtNode(": Opens the config menu")])
-      ])
-    ]);
-
-    // generate helptext for custom options
-    let searchsquareOptions = data.squares[data.squares.length - 1].options;
-    if(searchsquareOptions) {
-      append(helpText, [document.createElement("br")]);
-      for(let i = 0; i < searchsquareOptions.length; i++) {
-        // remove scheme, path and everything after path from URL
-        let url = searchsquareOptions[i].url.replace(/https?:\/\//, "")
-                          .replace(/\/.*/, "");
-        append(helpText, [
-          append(tr(), [
-            append(td(), [txtNode(prefix + searchsquareOptions[i].opt)]),
-            append(td(), [txtNode(": " + url)])
-          ])
-        ])
-      }
-    }
-
-    let versionNode = document.createElement("span");
-    let version = browser.runtime.getManifest().version;
-    append(versionNode, [document.createTextNode("startpage v" + version)]);
-    append(helpText, [document.createElement("br"), versionNode]);
-    versionNode.className = "version";
-    append(popupDiv, [helpText]);
-
-    popupDiv.style.bottom = "-" + popupDiv.offsetHeight + "px";
-  });
 }
 
 
