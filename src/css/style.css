@@ -68,24 +68,22 @@ body {
 }
 
 
-#popup {
+.popup {
   z-index:101;
   position:absolute;
-  bottom:-1000px;
   right:40px;
   padding:25px;
-  -moz-transition:all .25s ease-in-out;
-  -webkit-transition:all .25s ease-in-out;
-  -o-transition:all .25s ease-in-out;
-  transition:all .25s ease-in-out;
+  -moz-transition:bottom .25s ease-in-out;
+  -webkit-transition:bottom .25s ease-in-out;
+  -o-transition:bottom .25s ease-in-out;
+  transition:bottom .25s ease-in-out;
   text-align:left;
 }
-
-#popup a {
-  font-size:14px;
-  font-family:Arial, Sans-Serif;
-  color:#fafafa;
-  text-shadow:0 -1px #000, 1px 0 #000, 0 1px #000, -1px 0 #000;
+.popup table {
+  margin-bottom: 1em;
+}
+.popup td:first-child {
+  padding-right: 3em;
 }
 
 #gearContainer {

@@ -1,8 +1,18 @@
-// string, array, bool
-function Square(heading, links, isSearch, configBool, configStyle) {
+/**
+ * A square
+ *
+ * @param {string} heading The heading of the square
+ * @param {Object} props Properties of the square
+ * @param {boolean} props.isSearch Whether the square is a search square
+ * @param {boolean} [props.options] The search options
+ * @param {boolean} [props.prefix] The search prefix
+ * @param {boolean} [props.links] The square links
+ * @param {Object} configBool The global boolean config options
+ * @param {Object} configStyle The global style config options
+ */
+function Square(heading, props, configBool, configStyle) {
   this.heading = heading;
-  this.links = links;
-  this.isSearch = isSearch;
+  this.props = props;
   this.border_width_hovered = configStyle.border_width_hovered;
   this.border_width_normal = configStyle.border_width_normal;
   this.focus_color = configStyle.focus_color;
@@ -25,20 +35,17 @@ function Square(heading, links, isSearch, configBool, configStyle) {
   this.contentElement = document.createElement("div");
   this.contentElement.setAttribute("class", "content");
 
-  if(!isSearch) {
+  if(!this.props.isSearch) {
     const linkElements = [];
-
-    for (let i = 0; i < links.length; i++) {
+    for (let i = 0; i < this.props.links.length; i++) {
       linkElements[i] = document.createElement("a");
       linkElements[i].tabIndex = "-1";
-      linkElements[i].setAttribute("href", this.links[i].url);
-
-      const textnode = document.createTextNode(this.links[i].name);
+      linkElements[i].setAttribute("href", this.props.links[i].url);
+      const textnode = document.createTextNode(this.props.links[i].name);
       linkElements[i].appendChild(textnode);
       this.contentElement.appendChild(linkElements[i]);
       this.contentElement.appendChild(document.createElement("br"));
-     }
-
+    }
   } else {
     this.squareElement.setAttribute("id", "search_sqr");
     this.searchinput = document.createElement("input");
@@ -48,15 +55,58 @@ function Square(heading, links, isSearch, configBool, configStyle) {
 
     this.contentElement.appendChild(this.searchinput);
 
-    const enter = function(a) {
-      const key = a.keyCode;
+    this.popup;
+    const constructPopup = () => {
+      let opts = [];
+      for (const option of this.props.options) {
+        // Remove scheme, path and everything after path from URL
+        const url = option.url.replace(/https?:\/\//, "").replace(/\/.*/, "");
+        opts.push({
+          opt: option.opt,
+          description: url
+        });
+      }
+      const bottomText = "startpage v" + browser.runtime.getManifest().version;
+      this.popup = new Popup(this.props.prefix, opts, bottomText, {
+        background: configStyle.foreground,
+        color: configStyle.link_color,
+        fontFamily: configStyle.link_font,
+        fontSize: configStyle.link_font_size
+      });
+    }
+    const searchEnter = (event) => {
+      const key = event.keyCode;
       if(key == 13) {
-        const query = this.value;
-        search(query);
+        const query = this.searchinput.value;
+        if(query[0] == this.props.prefix) {
+          if(query.substr(1) == "help") {
+            if(this.popup === undefined) constructPopup();
+            // Have to requestAnimationFrame here because otherwise we're
+            // calling toggle too fast and the transition won't fire
+            window.requestAnimationFrame(() => this.popup.toggle())
+          } else if(query.substr(1) == "config") {
+            configmenuInit(undefined);
+          } else {
+            for(const option of this.props.options) {
+              if(query[1] == option.opt) {
+                query = query.substr(3);
+                window.location = option.url +
+                    query.replaceChars(" ", option.space);
+                break;
+              }
+            }
+          }
+        } else if(query === "") {
+            if(this.popup === undefined) constructPopup();
+            window.requestAnimationFrame(() => this.popup.toggle())
+        } else {
+          window.location = this.props.options[0].url +
+              query.replaceChars(" ", this.props.options[0].space);
+        }
       }
     };
     const searchFocused = (this.searchinput == document.activeElement);
-    this.searchinput.addEventListener("keypress", enter);
+    this.searchinput.addEventListener("keydown", searchEnter);
   }
 
 
@@ -74,8 +124,10 @@ function Square(heading, links, isSearch, configBool, configStyle) {
 }
 
 
+// TODO: Calculate maxHeight once on construction instead of on every call to
+// expand
 Square.prototype.maxHeight = function() {
-  return this.size*2 + (this.isSearch ? 37 : 25*this.links.length);
+  return this.size*2 + (this.props.isSearch ? 37 : 25*this.props.links.length);
 }
 
 Square.prototype.expand = function() {
