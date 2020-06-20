@@ -3,6 +3,9 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.11.1] - 2020-6-20
+### Fixed
+* Fixed the help popup for search options always showing in chrome
 
 ## [1.11.0] - 2020-5-15
 ### Added
