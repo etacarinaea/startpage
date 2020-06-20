@@ -73,12 +73,12 @@ function Square(heading, props, configBool, configStyle) {
       const key = event.keyCode;
       if(key == 13) {
         const query = this.searchinput.value;
-        // FIXME: Moved the search function here, need to integrate this with
-        // Square
         if(query[0] == this.props.prefix) {
           if(query.substr(1) == "help") {
             if(this.popup === undefined) constructPopup();
-            this.popup.toggle();
+            // Have to requestAnimationFrame here because otherwise we're
+            // calling toggle too fast and the transition won't fire
+            window.requestAnimationFrame(() => this.popup.toggle())
           } else if(query.substr(1) == "config") {
             configmenuInit(undefined);
           } else {
@@ -93,7 +93,7 @@ function Square(heading, props, configBool, configStyle) {
           }
         } else if(query === "") {
             if(this.popup === undefined) constructPopup();
-            this.popup.toggle();
+            window.requestAnimationFrame(() => this.popup.toggle())
         } else {
           window.location = this.props.options[0].url +
               query.replaceChars(" ", this.props.options[0].space);

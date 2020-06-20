@@ -73,10 +73,10 @@ body {
   position:absolute;
   right:40px;
   padding:25px;
-  -moz-transition:all .25s ease-in-out;
-  -webkit-transition:all .25s ease-in-out;
-  -o-transition:all .25s ease-in-out;
-  transition:all .25s ease-in-out;
+  -moz-transition:bottom .25s ease-in-out;
+  -webkit-transition:bottom .25s ease-in-out;
+  -o-transition:bottom .25s ease-in-out;
+  transition:bottom .25s ease-in-out;
   text-align:left;
 }
 
