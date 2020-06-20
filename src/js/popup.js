@@ -5,10 +5,14 @@
  * @param {string} searchPrefix The prefix for search options
  * @param {{opt: string, description: string}[]} searchOptions An array of search options to display
  * @param {string} bottomText A string placed below the list of search options
+ * @param {Object} style An object containing the popup's style
  */
-function Popup(searchPrefix, searchOptions, bottomText) {
+function Popup(searchPrefix, searchOptions, bottomText, style) {
   this.div = document.createElement("div");
   this.div.className = "popup";
+  for (const [key, val] of Object.entries(style)) {
+    this.div.style[key] = val;
+  }
 
   // Construct options table
   const tr = () => document.createElement("tr");

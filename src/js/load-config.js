@@ -407,8 +407,6 @@ function applyConfig(data, callback) {
   // style
   const span = $("span");
   const a = $("a");
-  // FIXME: Doesn't actually get the popup because it's created on-demand
-  const popup = $(".popup");
   const gearPath = $("#gearPath");
   const sqr = $(".sqr");
   sqr.css("width", px(data.style.square_size))
@@ -432,16 +430,12 @@ function applyConfig(data, callback) {
   span.css("lineHeight", px(data.style.square_size))
   span.css("fontFamily", data.style.heading_font);
   a.css("fontFamily", data.style.link_font);
-  popup.css("fontFamily", data.style.link_font);
   span.css("fontSize", data.style.heading_font_size);
   a.css("fontSize", data.style.link_font_size);
-  popup.css("fontSize", data.style.link_font_size);
   $("body").css("backgroundColor", data.style.background);
   sqr.css("backgroundColor", data.style.foreground);
-  popup.css("backgroundColor", data.style.foreground);
   span.css("color", data.style.heading_color);
   a.css("color", data.style.link_color);
-  popup.css("color", data.style.link_color);
   const gear = $("#gear");
   const gearContainer = $("#gearContainer");
   if(data.bool.hide_gear_button) {
@@ -465,8 +459,6 @@ function applyConfig(data, callback) {
   if(!data.bool.alwaysopen) {
     sqr.css("borderWidth", data.style.border_width_normal);
   }
-  popup.css("borderTop", data.style.border_width_normal + " solid "
-            + data.style.border_color);
   const searchinput = $("#searchinput");
   if(searchinput !== null) {
     searchinput.css("color", data.style.search_color);

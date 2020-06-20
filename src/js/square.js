@@ -67,7 +67,11 @@ function Square(heading, props, configBool, configStyle) {
         });
       }
       const bottomText = "startpage v" + browser.runtime.getManifest().version;
-      this.popup = new Popup(this.props.prefix, opts, bottomText);
+      this.popup = new Popup(this.props.prefix, opts, bottomText, {
+        background: configStyle.foreground,
+        color: configStyle.link_color,
+        fontSize: configStyle.link_font_size
+      });
     }
     const searchEnter = (event) => {
       const key = event.keyCode;
