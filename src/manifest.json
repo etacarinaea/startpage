@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "startpage",
   "short_name": "startpage",
-  "version": "1.11.0",
+  "version": "1.11.1",
   "description": "Overrides the browsers newtab page with a custom startpage.",
   "author": "etacarinaea",
 
