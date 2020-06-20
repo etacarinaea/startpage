@@ -63,7 +63,7 @@ function Square(heading, props, configBool, configStyle) {
         const url = option.url.replace(/https?:\/\//, "").replace(/\/.*/, "");
         opts.push({
           opt: option.opt,
-          description: option.url
+          description: url
         });
       }
       const bottomText = "startpage v" + browser.runtime.getManifest().version;
