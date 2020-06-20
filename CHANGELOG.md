@@ -3,19 +3,21 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.11.1] - 2020-6-20
+### Fixed
+* Fixed the help popup for search options always showing in chrome
 
 ## [1.11.0] - 2020-5-15
 ### Added
 * This changelog file
 * npm to make "building" easier
-  * `patches/` contains diffs for integrating the
+  * `patch/` contains diffs for integrating the
     [webextension-polyfill](https://github.com/mozilla/webextension-polyfill)
   * `npm run build-ff` creates a zip containing the startpage (for firefox)
-  * `npm run build-ch` creates a zip containing the startpage with the
+  * `npm run build-ch` creates a zip containing the patched startpage with the
     webextension-polyfill (for chrome)
 * Version string in config.json; the current version of the config file
 * Automatically update config based on config version string
-
 ### Changed
 * Configuration data is now saved in `storage.local` instead of
   `localStorage`, as is conventional for browser extensions
