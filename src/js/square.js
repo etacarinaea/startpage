@@ -70,6 +70,7 @@ function Square(heading, props, configBool, configStyle) {
       this.popup = new Popup(this.props.prefix, opts, bottomText, {
         background: configStyle.foreground,
         color: configStyle.link_color,
+        fontFamily: configStyle.link_font,
         fontSize: configStyle.link_font_size
       });
     }
