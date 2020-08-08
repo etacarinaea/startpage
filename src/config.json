@@ -22,7 +22,7 @@
       ]
     },
     { "name": "search", "prefix": "-", "options": [
-        { "opt": "g", "url": "https://www.google.com/#q=", "space": "+" },
+        { "opt": "d", "url": "https://www.duckduckgo.com/?q=", "space": "+" },
         { "opt": "r", "url": "https://www.reddit.com/search?q=", "space": "+" },
         { "opt": "a", "url": "https://wiki.archlinux.org/index.php?search=", "space": "+" },
         { "opt": "w", "url": "https://en.wikipedia.org/w/index.php?search=", "space": "+" },
