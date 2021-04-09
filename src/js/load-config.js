@@ -373,7 +373,8 @@ function applyConfig(data, callback) {
   while(container.firstChild) {
     container.removeChild(container.firstChild);
   }
-  normalSquares = [];
+  let normalSquares = [];
+  let searchsquare = undefined;
   for(let i = 0; i < data.squares.length; i++) {
     if(data.squares[i].links) {
       normalSquares[i] = new Square(data.squares[i].name,
@@ -418,9 +419,11 @@ function applyConfig(data, callback) {
         maxHeight = normalSquares[i].maxHeight();
       }
     }
-    let sMaxHeight = searchsquare.maxHeight();
-    if(searchsquare && sMaxHeight > maxHeight) {
-      maxHeight = sMaxHeight;
+    if(searchsquare) {
+      let sMaxHeight = searchsquare.maxHeight();
+      if(sMaxHeight > maxHeight) {
+        maxHeight = sMaxHeight;
+      }
     }
     sqr.css("height", px(maxHeight));
   } else {
