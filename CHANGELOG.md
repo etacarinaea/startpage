@@ -3,6 +3,10 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.11.3] - 2021-4-10
+### Fixed
+* Fixes an error when `searchsquare` is undefined and `alwaysopen == true`
+
 ## [1.11.2] - 2020-8-8
 ### Changed
 * Made duckduckgo the default search engine in the default config
@@ -51,6 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   * `filter`: An optional filter, e.g. `opacity(0.2)`
 
 
+[1.11.3]: https://github.com/etacarinaea/startpage/compare/v1.11.2...v1.11.3
 [1.11.2]: https://github.com/etacarinaea/startpage/compare/v1.11.1...v1.11.2
 [1.11.1]: https://github.com/etacarinaea/startpage/compare/v1.11.0...v1.11.1
 [1.11.0]: https://github.com/etacarinaea/startpage/compare/v1.10.0...v1.11.0
