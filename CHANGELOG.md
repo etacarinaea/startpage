@@ -59,6 +59,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   * `filter`: An optional filter, e.g. `opacity(0.2)`
 
 
+[1.11.4]: https://github.com/etacarinaea/startpage/compare/v1.11.3...v1.11.4
 [1.11.3]: https://github.com/etacarinaea/startpage/compare/v1.11.2...v1.11.3
 [1.11.2]: https://github.com/etacarinaea/startpage/compare/v1.11.1...v1.11.2
 [1.11.1]: https://github.com/etacarinaea/startpage/compare/v1.11.0...v1.11.1
