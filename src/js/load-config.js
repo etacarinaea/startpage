@@ -374,7 +374,7 @@ function applyConfig(data, callback) {
     container.removeChild(container.firstChild);
   }
   let normalSquares = [];
-  let searchsquare = undefined;
+  let searchSquare = undefined;
   for(let i = 0; i < data.squares.length; i++) {
     if(data.squares[i].links) {
       normalSquares[i] = new Square(data.squares[i].name,
@@ -389,16 +389,16 @@ function applyConfig(data, callback) {
       }
     } else {
       // otherwise expect this to be a search square
-      searchsquare = new Square(data.squares[i].name,
+      searchSquare = new Square(data.squares[i].name,
                                 {
                                   isSearch: true,
                                   prefix: data.squares[i].prefix,
                                   options: data.squares[i].options,
                                 },
                                 data.bool, data.style);
-      searchsquare.prefix = data.squares[i].prefix;
+      searchSquare.prefix = data.squares[i].prefix;
       if(data.bool.alwaysopen) {
-        searchsquare.expand();
+        searchSquare.expand();
       }
     }
   }
@@ -419,8 +419,8 @@ function applyConfig(data, callback) {
         maxHeight = normalSquares[i].maxHeight();
       }
     }
-    if(searchsquare) {
-      let sMaxHeight = searchsquare.maxHeight();
+    if(searchSquare) {
+      let sMaxHeight = searchSquare.maxHeight();
       if(sMaxHeight > maxHeight) {
         maxHeight = sMaxHeight;
       }
@@ -479,7 +479,7 @@ function applyConfig(data, callback) {
   }
 
   if(typeof callback === "function") {
-    callback();
+    callback({normal: normalSquares, search: searchSquare});
   }
 }
 
