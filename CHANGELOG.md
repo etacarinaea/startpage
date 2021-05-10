@@ -3,6 +3,10 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.11.4] - 2021-5-10
+### Fixed
+* Fixed arrow keys not working
+
 ## [1.11.3] - 2021-4-10
 ### Fixed
 * Fixes an error when `searchsquare` is undefined and `alwaysopen == true`
