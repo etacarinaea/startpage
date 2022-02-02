@@ -35,15 +35,15 @@ function Square(heading, props, configBool, configStyle) {
   this.contentElement = document.createElement("div");
   this.contentElement.setAttribute("class", "content");
 
+  this.linkElements = [];
   if(!this.props.isSearch) {
-    const linkElements = [];
     for (let i = 0; i < this.props.links.length; i++) {
-      linkElements[i] = document.createElement("a");
-      linkElements[i].tabIndex = "-1";
-      linkElements[i].setAttribute("href", this.props.links[i].url);
+      this.linkElements[i] = document.createElement("a");
+      this.linkElements[i].tabIndex = "-1";
+      this.linkElements[i].setAttribute("href", this.props.links[i].url);
       const textnode = document.createTextNode(this.props.links[i].name);
-      linkElements[i].appendChild(textnode);
-      this.contentElement.appendChild(linkElements[i]);
+      this.linkElements[i].appendChild(textnode);
+      this.contentElement.appendChild(this.linkElements[i]);
       this.contentElement.appendChild(document.createElement("br"));
     }
   } else {
@@ -127,7 +127,9 @@ function Square(heading, props, configBool, configStyle) {
 // TODO: Calculate maxHeight once on construction instead of on every call to
 // expand
 Square.prototype.maxHeight = function() {
-  return this.size*2 + (this.props.isSearch ? 37 : 25*this.props.links.length);
+  return this.size*2 + (this.props.isSearch ? 37 :
+    (parseFloat(getComputedStyle(this.linkElements[0]).height)
+    +2*parseFloat(getComputedStyle(this.linkElements[0]).paddingTop))*this.props.links.length);
 }
 
 Square.prototype.expand = function() {
