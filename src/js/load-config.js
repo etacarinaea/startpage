@@ -19,6 +19,7 @@ const styleItems = {
   link_font: "Link Font",
   heading_font_size: "Heading Font Size",
   link_font_size: "Link Font Size",
+  link_spacing: "Link Spacing",
   background: "Background",
   foreground: "Foreground",
   heading_color: "Heading Color",
@@ -411,30 +412,14 @@ function applyConfig(data, callback) {
   const gearPath = $("#gearPath");
   const sqr = $(".sqr");
   sqr.css("width", px(data.style.square_size))
-  if(data.bool.alwaysopen) {
-    let maxHeight = 0;
-    for(let i = 0; i < normalSquares.length; ++i) {
-      let iMaxHeight = normalSquares[i].maxHeight();
-      if(iMaxHeight > maxHeight) {
-        maxHeight = normalSquares[i].maxHeight();
-      }
-    }
-    if(searchSquare) {
-      let sMaxHeight = searchSquare.maxHeight();
-      if(sMaxHeight > maxHeight) {
-        maxHeight = sMaxHeight;
-      }
-    }
-    sqr.css("height", px(maxHeight));
-  } else {
-    sqr.css("height", px(data.style.square_size))
-  }
   sqr.css("margin", "0 " + px(parseInt(data.style.square_spacing, 10) / 2));
   span.css("lineHeight", px(data.style.square_size))
   span.css("fontFamily", data.style.heading_font);
   a.css("fontFamily", data.style.link_font);
   span.css("fontSize", data.style.heading_font_size);
   a.css("fontSize", data.style.link_font_size);
+  a.css("padding-top", data.style.link_spacing);
+  a.css("padding-bottom", data.style.link_spacing);
   $("body").css("backgroundColor", data.style.background);
   sqr.css("backgroundColor", data.style.foreground);
   span.css("color", data.style.heading_color);
@@ -476,6 +461,24 @@ function applyConfig(data, callback) {
     bgimg.css("filter", data.ext.filter);
   } else {
     bgimg.css("backgroundImage", "");
+  }
+  if(data.bool.alwaysopen) {
+    let maxHeight = 0;
+    for(let i = 0; i < normalSquares.length; ++i) {
+      let iMaxHeight = normalSquares[i].maxHeight();
+      if(iMaxHeight > maxHeight) {
+        maxHeight = normalSquares[i].maxHeight();
+      }
+    }
+    if(searchSquare) {
+      let sMaxHeight = searchSquare.maxHeight();
+      if(sMaxHeight > maxHeight) {
+        maxHeight = sMaxHeight;
+      }
+    }
+    sqr.css("height", px(maxHeight));
+  } else {
+    sqr.css("height", px(data.style.square_size))
   }
 
   if(typeof callback === "function") {
