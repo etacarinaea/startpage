@@ -143,8 +143,9 @@ function globalKeyListener(squares, e) {
     }
   } else if(key == 13) {
     // enter
-    if(squares.search.searchinput !== document.activeElement &&
-       squares.normal[focusedSquare] !== undefined) {
+    if(typeof squares.search === "undefined" ||
+        (squares.search.searchinput !== document.activeElement &&
+        squares.normal[focusedSquare] !== undefined)) {
       window.location = squares.normal[focusedSquare].props.links[focusedLink].url;
     }
   }
