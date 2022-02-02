@@ -1,6 +1,6 @@
 {
   "name": "startpage",
-  "version": "1.11.4",
+  "version": "1.12.0",
   "description": "Overrides the browsers newtab page with a custom startpage.",
   "main": "src/index.js",
   "devDependencies": {

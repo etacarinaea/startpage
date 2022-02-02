@@ -3,6 +3,12 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.12.0] - 2022-2-2
+### Fixed
+* Enter not working when search square is missing
+### Added
+* `link spacing` option
+
 ## [1.11.4] - 2021-5-10
 ### Fixed
 * Fixed arrow keys not working
@@ -59,6 +65,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   * `filter`: An optional filter, e.g. `opacity(0.2)`
 
 
+[1.12.0]: https://github.com/etacarinaea/startpage/compare/v1.11.4...v1.12.0
 [1.11.4]: https://github.com/etacarinaea/startpage/compare/v1.11.3...v1.11.4
 [1.11.3]: https://github.com/etacarinaea/startpage/compare/v1.11.2...v1.11.3
 [1.11.2]: https://github.com/etacarinaea/startpage/compare/v1.11.1...v1.11.2
