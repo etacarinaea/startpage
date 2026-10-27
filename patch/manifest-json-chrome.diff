@@ -1,9 +1,27 @@
-9,14d8
-<   "browser_specific_settings": {
-<     "gecko": {
-<       "id": "{219d2cc9-3c2f-45a9-a55b-6c04d6c097f3}"
-<     }
-<   },
-< 
-27a22
->       "js/browser-polyfill.js",
+--- manifest.json	2026-10-21 14:00:24.166080000 +0200
++++ manifest.json.chrome	2026-10-21 14:15:59.788262000 +0200
+@@ -6,16 +6,6 @@
+   "description": "Overrides the browsers newtab page with a custom startpage.",
+   "author": "etacarinaea",
+ 
+-  "browser_specific_settings": {
+-    "gecko": {
+-      "id": "startpage@b100w11",
+-      "strict_min_version": "109.0",
+-      "data_collection_permissions": {
+-        "required": false
+-      }
+-    }
+-  },
+-
+   "icons": {
+     "48": "img/icon48.png",
+     "96": "img/icon96.png",
+@@ -30,6 +20,7 @@
+   "background": {
+     "scripts": [
+       "js/update.js",
++      "js/browser-polyfill.js",
+       "js/update-config.js"
+     ]
+   },

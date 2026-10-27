@@ -3,6 +3,12 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.12.0.1] - 2026-10-21
+### Fixed
+* Search engine selection not working
+### Added
+* 
+
 ## [1.12.0] - 2022-2-2
 ### Fixed
 * Enter not working when search square is missing

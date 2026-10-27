@@ -2,13 +2,19 @@
   "manifest_version": 2,
   "name": "startpage",
   "short_name": "startpage",
-  "version": "1.12.0",
+  "version": "1.12.0.1",
   "description": "Overrides the browsers newtab page with a custom startpage.",
   "author": "etacarinaea",
 
   "browser_specific_settings": {
     "gecko": {
-      "id": "{219d2cc9-3c2f-45a9-a55b-6c04d6c097f3}"
+      "id": "startpage@b100w11",
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
     }
   },
 

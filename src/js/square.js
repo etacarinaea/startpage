@@ -77,7 +77,7 @@ function Square(heading, props, configBool, configStyle) {
     const searchEnter = (event) => {
       const key = event.keyCode;
       if(key == 13) {
-        const query = this.searchinput.value;
+        let query = this.searchinput.value;
         if(query[0] == this.props.prefix) {
           if(query.substr(1) == "help") {
             if(this.popup === undefined) constructPopup();
@@ -89,9 +89,9 @@ function Square(heading, props, configBool, configStyle) {
           } else {
             for(const option of this.props.options) {
               if(query[1] == option.opt) {
-                query = query.substr(3);
+                const searchQuery = query.substr(3);
                 window.location = option.url +
-                    query.replaceChars(" ", option.space);
+                    searchQuery.replaceChars(" ", option.space);
                 break;
               }
             }
